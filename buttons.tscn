@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://vgmsxn2u8y8p"]
+
+[node name="Buttons" type="Node"]
+
+[node name="Start" type="TextureButton" parent="."]
+offset_left = 40.0
+offset_right = 107.0
+offset_bottom = 40.0
+
+[node name="Exit" type="TextureButton" parent="."]
+offset_left = 111.0
+offset_right = 151.0
+offset_bottom = 40.0
