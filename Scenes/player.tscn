@@ -4,14 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="1_vdcin"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ifbq"]
-radius = 50.2494
+radius = 44.1814
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(530, 396)
 script = ExtResource("1_a1knw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-43.5, 42.5)
+scale = Vector2(0.493, 0.5)
 texture = ExtResource("1_vdcin")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-47, 45)
 shape = SubResource("CircleShape2D_4ifbq")
