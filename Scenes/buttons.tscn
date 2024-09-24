@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://vgmsxn2u8y8p"]
+
+[ext_resource type="Texture2D" uid="uid://vhiceysba0yi" path="res://Assets/DefaultStart.png" id="1_jfxav"]
+[ext_resource type="Texture2D" uid="uid://qn51ac8hk8mj" path="res://Assets/PressedStart.png" id="2_hvgk0"]
+[ext_resource type="Texture2D" uid="uid://dwurcq4m7o50r" path="res://Assets/DefaultExit.png" id="3_qjf64"]
+[ext_resource type="Texture2D" uid="uid://craycix4djuax" path="res://Assets/PressedExit.png" id="4_tadn8"]
+
+[node name="Buttons" type="Node"]
+
+[node name="Start" type="TextureButton" parent="."]
+offset_left = 4.00001
+offset_top = 32.0
+offset_right = 38.0
+offset_bottom = 46.0
+scale = Vector2(2.28318, 2.28318)
+texture_normal = ExtResource("1_jfxav")
+texture_pressed = ExtResource("2_hvgk0")
+
+[node name="Exit" type="TextureButton" parent="."]
+offset_left = 111.0
+offset_right = 144.0
+offset_bottom = 14.0
+scale = Vector2(2.56973, 2.56329)
+texture_normal = ExtResource("3_qjf64")
+texture_pressed = ExtResource("4_tadn8")
