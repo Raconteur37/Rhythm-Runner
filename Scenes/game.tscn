@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=9 format=3 uid="uid://c1hkycx7ryy0l"]
 
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
+[ext_resource type="AudioStream" uid="uid://dkewx83pnla41" path="res://Songs/SmoothOperator120bpm.mp3" id="2_l8g5d"]
+[ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_xxvlx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_atn11"]
-distance = 26.3889
+distance = 34.2014
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4fyy3"]
 distance = -130.615
@@ -11,29 +14,74 @@ distance = -130.615
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_047oh"]
 distance = 19.8227
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1pfq"]
+distance = 272.239
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_lhvhd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(529, 36)
+scale = Vector2(3.12, 3.18809)
+stream = ExtResource("2_l8g5d")
 
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
 position = Vector2(619, 305)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2(621, 310)
+script = ExtResource("3_xxvlx")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="BoundaryBody" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(629, 604)
+[node name="BottomBoundary" type="CollisionShape2D" parent="BoundaryBody"]
+position = Vector2(624, 999)
 scale = Vector2(6.68, 5.76)
 shape = SubResource("WorldBoundaryShape2D_atn11")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(637, 27)
+[node name="LeftBoundary" type="CollisionShape2D" parent="BoundaryBody"]
+position = Vector2(245, 291)
 rotation = 1.5708
 scale = Vector2(4.48, 4.48)
 shape = SubResource("WorldBoundaryShape2D_4fyy3")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1242, 37)
+[node name="RightBoundary" type="CollisionShape2D" parent="BoundaryBody"]
+position = Vector2(1672, 291)
 rotation = 1.5708
 scale = Vector2(-4.48, -4.48)
 shape = SubResource("WorldBoundaryShape2D_047oh")
+
+[node name="TopBoundary" type="CollisionShape2D" parent="BoundaryBody"]
+position = Vector2(592, -522)
+rotation = -3.1376
+scale = Vector2(4.65007, 1.27105)
+shape = SubResource("WorldBoundaryShape2D_r1pfq")
+
+[node name="BeatTimer" type="Timer" parent="."]
+wait_time = 0.47
+autostart = true
+
+[node name="BeatTimerLabel" type="Label" parent="."]
+offset_left = -302.0
+offset_top = -145.0
+offset_right = -262.0
+offset_bottom = -122.0
+scale = Vector2(2.92, 1.92)
+
+[node name="HitLabel" type="Label" parent="."]
+offset_left = 529.0
+offset_top = 36.0
+offset_right = 577.0
+offset_bottom = 66.0
+scale = Vector2(3.12, 3.18809)
+text = "Hit!"
+
+[node name="ResultLabel" type="Label" parent="."]
+offset_left = 501.0
+offset_top = 162.0
+offset_right = 541.0
+offset_bottom = 185.0
+scale = Vector2(3.68, 2.96)
+text = "placeHolder"
+
+[connection signal="timeout" from="BeatTimer" to="." method="_on_beat_t_imer_timeout"]
