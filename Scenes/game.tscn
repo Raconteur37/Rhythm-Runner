@@ -24,6 +24,7 @@ script = ExtResource("1_lhvhd")
 position = Vector2(529, 36)
 scale = Vector2(3.12, 3.18809)
 stream = ExtResource("2_l8g5d")
+autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
 position = Vector2(619, 305)

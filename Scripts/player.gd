@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 500
 
 @onready var main = get_tree().get_root()
-@onready var projectile = load("res://BassProjectile.gd")
+@onready var projectile = preload("res://Scenes/bass_projectile.tscn")
 
 func _physics_process(delta): #Movement
 	var input_vector = Vector2.ZERO
@@ -18,9 +18,8 @@ func _physics_process(delta): #Movement
 	move_and_slide()
 
 
-func attack():
-	var instance = projectile.duplicate()
-	instance.dir = rotation
-	instance.spawnPos = global_position
-	instance.spawnRot = rotation
-	main.add_child.call_deffered(instance)
+func attack(): # Attack function...will change with multiple weapons
+	var proj = projectile.instantiate()
+	add_child(proj)
+	proj.position = $".".global_position
+	

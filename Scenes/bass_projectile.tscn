@@ -65,13 +65,14 @@ radius = 2.0
 
 [node name="BassProjectile" type="CharacterBody2D"]
 script = ExtResource("1_a8l1l")
-SPEED = 300.0
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(60, 23)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_j1f4p")
+frame = 5
+frame_progress = 0.144879
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(60, 23)
