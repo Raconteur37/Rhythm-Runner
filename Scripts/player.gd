@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 const SPEED = 500
 
-func _physics_process(delta):
+@onready var main = get_tree().get_root()
+@onready var projectile = load("res://BassProjectile.gd")
+
+func _physics_process(delta): #Movement
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_d") - Input.get_action_strength("ui_a")
 	input_vector.y = Input.get_action_strength("ui_s") - Input.get_action_strength("ui_w")
@@ -13,3 +16,11 @@ func _physics_process(delta):
 	else:
 		velocity = input_vector
 	move_and_slide()
+
+
+func attack():
+	var instance = projectile.duplicate()
+	instance.dir = rotation
+	instance.spawnPos = global_position
+	instance.spawnRot = rotation
+	main.add_child.call_deffered(instance)

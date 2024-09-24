@@ -21,4 +21,4 @@ func _process(delta):
 		
 
 func _on_beat_t_imer_timeout():
-	print_debug("Timer timeout")
+	pass

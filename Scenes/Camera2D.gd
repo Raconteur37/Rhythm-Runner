@@ -12,6 +12,7 @@ func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
 		if ($"../BeatTimer".time_left <= .4):
 			$"../ResultLabel".text = "Good"
+			$"../Player".attack()
 			add_trauma(.2)
 		else:
 			$"../ResultLabel".text = "Nope"
