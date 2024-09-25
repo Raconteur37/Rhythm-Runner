@@ -19,7 +19,14 @@ func _physics_process(delta): #Movement
 
 
 func attack(): # Attack function...will change with multiple weapons
-	var proj = projectile.instantiate()
-	add_child(proj)
-	proj.position = $".".global_position
+	
+	var waveManager = $"../WaveManager"
+	
+	if (waveManager.enemiesAlive.size() > 0):
+		var proj = projectile.instantiate()
+		proj.position = position
+		var closestEnemy = waveManager.getClosestEnemyFromSprite($".")
+		proj.target = closestEnemy
+		proj.varVelocity = (closestEnemy.position - position).normalized()
+		get_parent().add_child(proj)
 	
