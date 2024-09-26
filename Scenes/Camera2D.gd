@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		beatShake()
+		
+	
 
 func add_trauma(amount : float) -> void:
 	trauma = min(trauma + amount, 1.0)

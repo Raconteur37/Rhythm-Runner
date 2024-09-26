@@ -5,6 +5,8 @@ const SPEED = 500
 @onready var main = get_tree().get_root()
 @onready var projectile = preload("res://Scenes/bass_projectile.tscn")
 
+var immune : bool
+
 func _physics_process(delta): #Movement
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_d") - Input.get_action_strength("ui_a")
@@ -16,9 +18,27 @@ func _physics_process(delta): #Movement
 	else:
 		velocity = input_vector
 	move_and_slide()
+	
+	
+	for enemy in $"../WaveManager".enemiesAlive:
+		if (is_instance_valid(enemy)):
+			if position.distance_to(enemy.global_position) < 40 and immune != true:
+				wasHit()
+		
+	
 
+func wasHit():
+	immune = true
+	$"../GameCamera".add_trauma(.8)
+	# play other animation
+	# play sound effect
+	await get_tree().create_timer(2).timeout
+	immune = false
+	
 
 func attack(): # Attack function...will change with multiple weapons
+	
+	#print($"../WaveManager".enemiesAlive)
 	
 	var waveManager = $"../WaveManager"
 	
