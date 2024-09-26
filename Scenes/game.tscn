@@ -4433,14 +4433,14 @@ tile_set = SubResource("TileSet_bl6oi")
 
 [node name="BassHitUI" type="AnimatedSprite2D" parent="PlayerUI"]
 top_level = true
-position = Vector2(-246, 652)
+position = Vector2(-55, 648)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ygs5e")
 script = ExtResource("3_qdirg")
 
 [node name="HeartUI" type="AnimatedSprite2D" parent="PlayerUI"]
 top_level = true
-position = Vector2(1518, 724)
+position = Vector2(1325, 717)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_ojipv")
 
