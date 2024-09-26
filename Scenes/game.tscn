@@ -83,6 +83,7 @@ sprite_frames = SubResource("SpriteFrames_ojipv")
 
 [node name="WaveManager" type="Node2D" parent="."]
 script = ExtResource("2_g4bhq")
+spawnTime = 0.5
 
 [node name="EnemySpawnTimer" type="Timer" parent="WaveManager"]
 wait_time = 2.5

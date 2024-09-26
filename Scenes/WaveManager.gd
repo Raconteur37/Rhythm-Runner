@@ -10,14 +10,15 @@ var enemyMap = {}
 var enemiesAlive = []
 
 func removeAliveEnemyFromList(enemy : CharacterBody2D):
-	enemiesAlive.remove_at(enemiesAlive.find(enemy))
+	if (enemiesAlive.find(enemy) >= 0):
+		enemiesAlive.remove_at(enemiesAlive.find(enemy))
 
 func fillMap(floor : int, wave : int):
 	
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 5}
+				enemyMap = {"AcidPuddle" : 20}
 			
 			
 func spawnEnemiesFromMap(amount : int):
@@ -42,16 +43,17 @@ func instanceEnemyType(enemyName : String):
 			add_child(enemy)
 
 func generateRandomObsticlePosition():
-	var aPosition = Vector2(randf_range(100,500),randf_range(100,500))
+	var aPosition = Vector2(randf_range(-20,1300),randf_range(85,500))
 	return aPosition
 	
 func getClosestEnemyFromSprite(sprite : CharacterBody2D):
 	var distance = 999999
 	var enemy = null
 	for x in enemiesAlive:
-		if (sprite.global_position.distance_to(x.global_position) < distance):
-			distance = sprite.global_position.distance_to(x.global_position)
-			enemy = x
+		if (is_instance_valid(x)):
+			if (sprite.global_position.distance_to(x.global_position) < distance):
+				distance = sprite.global_position.distance_to(x.global_position)
+				enemy = x
 	if (enemy == null):
 		print("No enemies around")
 		return 0
