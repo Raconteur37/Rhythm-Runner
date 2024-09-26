@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=980
 
+[dotnet]
+
+project/assembly_name="Rhythm Runner"
+
 [input]
 
 ui_a={
