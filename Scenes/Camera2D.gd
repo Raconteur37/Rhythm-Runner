@@ -10,13 +10,11 @@ var trauma_power : int = 2
 
 func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
-		if ($"../BeatTimer".time_left <= .5):
-			$"../ResultLabel".text = "Good"
+		if ($"../BeatTimer".time_left >= ($"..".beatTime) - (float($"..".beatTime)* .5) or ($"../BeatTimer".time_left <= .05)):
 			$"../Player".attack()
-			add_trauma(.2)
 		else:
-			$"../ResultLabel".text = "Nope"
-			add_trauma(.7)
+			add_trauma(.5)
+		#print($"../BeatTimer".time_left)
 
 func _ready():
 	randomize()
@@ -37,3 +35,7 @@ func beatShake() -> void:
 	rotation = max_roll * amount * randf_range(-1,1)
 	offset.x = max_offset.x * amount * randf_range(-1,1)
 	offset.y = max_offset.y * amount * randf_range(-1,1)
+
+
+func _on_beat_timer_timeout() -> void:
+	add_trauma(.2)
