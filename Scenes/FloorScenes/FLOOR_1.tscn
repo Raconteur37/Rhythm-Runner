@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:Scenes/FloorScenes/FLOOR_1.tscn
 [gd_scene load_steps=17 format=4 uid="uid://bmdiomt1bkblf"]
+=======
+[gd_scene load_steps=11 format=4 uid="uid://bfewdmfew7ac7"]
+>>>>>>> Stashed changes:Scenes/FLOOR_1.tscn
 
 [ext_resource type="Texture2D" uid="uid://cfj5v2b2x2w3e" path="res://Assets/MAIN_SHEETS/Room_Builder_Walls_16x16.png" id="1_rfetc"]
 [ext_resource type="Texture2D" uid="uid://cs543o45seskr" path="res://Assets/MAIN_SHEETS/Room_Builder_Floors_16x16.png" id="2_j3y7i"]
