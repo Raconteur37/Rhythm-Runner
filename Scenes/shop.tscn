@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://yp8a2uegar3v"]
+
+[ext_resource type="Texture2D" uid="uid://ddijlvoucnunc" path="res://Sprites/Character/The Conductor.png" id="1_4ont0"]
+[ext_resource type="Script" path="res://Scenes/shop.gd" id="1_rlegy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rlegy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="ConductorSprite" type="Sprite2D" parent="CanvasLayer/HBoxContainer"]
+texture_filter = 1
+position = Vector2(177, -311)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4ont0")
+
+[node name="TextBoxPosition" type="Node2D" parent="CanvasLayer/HBoxContainer"]
+position = Vector2(1, -760)
+scale = Vector2(0.5, 0.5)

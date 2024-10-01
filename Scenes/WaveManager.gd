@@ -6,7 +6,7 @@ extends Node2D
 @export var spawnTime : float = 1
 
 var enemyMap = {}
-
+var inWave = false # Test if the player is fighting in a wave
 var enemiesAlive = []
 
 func removeAliveEnemyFromList(enemy : CharacterBody2D):
@@ -18,8 +18,9 @@ func fillMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 5}
-			
+				enemyMap = {"AcidPuddle" : 10, "CoolLizard" : 3}
+			2:
+				enemyMap = {"AcidPuddle" : 15, "CoolLizard" : 6}
 			
 func spawnEnemiesFromMap(amount : int):
 	for n in range(amount):
@@ -65,15 +66,20 @@ func getClosestEnemyFromSprite(sprite : CharacterBody2D):
 		return 0
 	else:
 		return enemy
-	
+		
+func startWave(floor : int, wave : int):
+	fillMap(floor,wave)
+	inWave = true
+	$EnemySpawnTimer.wait_time = spawnTime
 	
 func _ready():
-	fillMap(1,1)
-	$EnemySpawnTimer.wait_time = spawnTime
+	startWave(currentFloor,currentWave)
 
 func _on_enemy_spawn_timer_timeout():
 	if (enemyMap.size() > 0):
 		spawnEnemiesFromMap(1)
 		
 func _process(delta: float) -> void:
-	pass
+	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave):
+		inWave = false
+		print("Wave finished")
