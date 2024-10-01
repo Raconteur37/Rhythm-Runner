@@ -18,7 +18,7 @@ func fillMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 20}
+				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 5}
 			
 			
 func spawnEnemiesFromMap(amount : int):
@@ -41,6 +41,13 @@ func instanceEnemyType(enemyName : String):
 			enemiesAlive.append(enemy)
 			enemy.position = generateRandomObsticlePosition()
 			add_child(enemy)
+		"CoolLizard":
+			var enemy = preload("res://Scenes/CharacterScenes/cool_lizard.tscn")
+			enemy = enemy.instantiate()
+			enemiesAlive.append(enemy)
+			enemy.position = generateRandomObsticlePosition()
+			add_child(enemy)
+
 
 func generateRandomObsticlePosition():
 	var aPosition = Vector2(randf_range(-20,1300),randf_range(85,500))

@@ -4461,6 +4461,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="CinematicTop" type="TextureRect" parent="PlayerUI/Control"]
+layout_mode = 0
 offset_left = -1537.0
 offset_top = -2.0
 offset_right = -1473.0
@@ -4484,6 +4485,7 @@ grow_vertical = 0
 
 [node name="CinematicBottom" type="TextureRect" parent="PlayerUI/Control2"]
 visibility_layer = 2
+layout_mode = 0
 offset_left = -1561.0
 offset_top = -96.0
 offset_right = -1497.0
@@ -4535,10 +4537,9 @@ autostart = true
 position = Vector2(529, 36)
 scale = Vector2(3.12, 3.18809)
 stream = ExtResource("5_1kjxo")
-autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
-position = Vector2(619, 255)
+position = Vector2(1007, 616)
 
 [node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2(964, 494)
@@ -4547,7 +4548,7 @@ script = ExtResource("3_xxvlx")
 [node name="BoundaryBody" type="StaticBody2D" parent="."]
 
 [node name="BottomBoundary" type="CollisionShape2D" parent="BoundaryBody"]
-position = Vector2(998, 1049)
+position = Vector2(1000, 1178)
 scale = Vector2(6.68, 5.76)
 shape = SubResource("WorldBoundaryShape2D_atn11")
 
@@ -4564,7 +4565,7 @@ scale = Vector2(-4.48, -4.48)
 shape = SubResource("WorldBoundaryShape2D_047oh")
 
 [node name="TopBoundary" type="CollisionShape2D" parent="BoundaryBody"]
-position = Vector2(591, -394)
+position = Vector2(592, -520)
 rotation = -3.1376
 scale = Vector2(4.65007, 1.27105)
 shape = SubResource("WorldBoundaryShape2D_r1pfq")
