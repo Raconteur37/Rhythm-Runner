@@ -48,7 +48,6 @@ func instanceEnemyType(enemyName : String):
 			enemy.position = generateRandomObsticlePosition()
 			add_child(enemy)
 
-
 func generateRandomObsticlePosition():
 	var aPosition = Vector2(randf_range(-20,1300),randf_range(85,500))
 	return aPosition
@@ -75,3 +74,6 @@ func _ready():
 func _on_enemy_spawn_timer_timeout():
 	if (enemyMap.size() > 0):
 		spawnEnemiesFromMap(1)
+		
+func _process(delta: float) -> void:
+	pass

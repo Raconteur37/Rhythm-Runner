@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const SPEED = 500
 
+@onready var ap = $AnimationPlayer
+@onready var sprite = $Sprite2D
+
 @onready var main = get_tree().get_root()
 @onready var projectile = preload("res://Scenes/bass_projectile.tscn")
 
@@ -17,6 +20,13 @@ func _physics_process(delta): #Movement
 		velocity = input_vector * SPEED
 	else:
 		velocity = input_vector
+		
+	if velocity >= Vector2(1,0):
+		ap.play("run_right")
+	if velocity <= Vector2(-1,0):
+		ap.play("walk_left")
+	if velocity == Vector2(0,0):
+		ap.play("idle")
 	move_and_slide()
 	
 	
