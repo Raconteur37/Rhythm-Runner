@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=35 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -15,11 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://b8m1f1ir3alx8" path="res://Assets/MAIN_SHEETS/7_Art_16x16 copy.png" id="6_vovs4"]
 [ext_resource type="Texture2D" uid="uid://pv56p3m4ikcl" path="res://Assets/MAIN_SHEETS/2_LivingRoom_16x16.png" id="7_taeym"]
 [ext_resource type="Texture2D" uid="uid://dyw4tf14f5a04" path="res://Assets/MAIN_SHEETS/6_Music_and_sport_16x16.png" id="8_yqdo6"]
-[ext_resource type="PackedScene" uid="uid://smol1dt8tmw3" path="res://Scenes/particles.tscn" id="16_6fk3i"]
-
-[sub_resource type="Curve" id="Curve_abcdw"]
-_data = [Vector2(0.150838, 1), 0.0, 0.0, 0, 0, Vector2(0.505587, 0.295962), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yv5um"]
 atlas = ExtResource("2_mhqds")
@@ -4416,25 +4411,6 @@ distance = 412.897
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lhvhd")
 tempo = 128.0
-
-[node name="Particles" parent="." instance=ExtResource("16_6fk3i")]
-
-[node name="Explosion2" type="CPUParticles2D" parent="Particles"]
-top_level = true
-position = Vector2(94, 874)
-emitting = false
-amount = 60
-lifetime = 2.0
-one_shot = true
-explosiveness = 1.0
-spread = 180.0
-gravity = Vector2(90, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 200.0
-scale_amount_min = 50.0
-scale_amount_max = 50.0
-scale_amount_curve = SubResource("Curve_abcdw")
-color = Color(1, 0.0941176, 1, 1)
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
