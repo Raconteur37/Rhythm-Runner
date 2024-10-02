@@ -4408,30 +4408,74 @@ distance = -56.25
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1pfq"]
 distance = 412.897
 
+[sub_resource type="Animation" id="Animation_qnwgw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShopControl/CanvasLayer/HBoxContainer/ConductorSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.00392157)]
+}
+
+[sub_resource type="Animation" id="Animation_eolda"]
+resource_name = "ShopAppear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShopControl/CanvasLayer/HBoxContainer/ConductorSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.00392157), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_52dtv"]
+_data = {
+"RESET": SubResource("Animation_qnwgw"),
+"ShopAppear": SubResource("Animation_eolda")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lhvhd")
 tempo = 128.0
 
-[node name="PlayerUI" type="CanvasLayer" parent="."]
+[node name="ControlPlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI"]
+[node name="PlayerUI" type="CanvasLayer" parent="ControlPlayerUI"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlPlayerUI/PlayerUI"]
 top_level = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
 offset_top = -40.0
-offset_right = 41.0
+offset_bottom = -40.0
 grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 1
 
-[node name="BassHitUI" type="AnimatedSprite2D" parent="PlayerUI/HBoxContainer"]
+[node name="BassHitUI" type="AnimatedSprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer"]
 top_level = true
 position = Vector2(92, 831)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ygs5e")
 script = ExtResource("3_qdirg")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PlayerUI"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ControlPlayerUI/PlayerUI"]
 top_level = true
 anchors_preset = 3
 anchor_left = 1.0
@@ -4442,14 +4486,16 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 
-[node name="HeartUI" type="AnimatedSprite2D" parent="PlayerUI/HBoxContainer2"]
+[node name="HeartUI" type="AnimatedSprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer2"]
 top_level = true
 position = Vector2(1849, 898)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_ojipv")
 
-[node name="Control" type="Control" parent="PlayerUI"]
+[node name="Control" type="Control" parent="ControlPlayerUI/PlayerUI"]
 visible = false
 layout_mode = 3
 anchors_preset = 5
@@ -4460,7 +4506,8 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="CinematicTop" type="TextureRect" parent="PlayerUI/Control"]
+[node name="CinematicTop" type="TextureRect" parent="ControlPlayerUI/PlayerUI/Control"]
+layout_mode = 0
 offset_left = -1537.0
 offset_top = -2.0
 offset_right = -1473.0
@@ -4468,7 +4515,7 @@ offset_bottom = 62.0
 scale = Vector2(52.2707, 2.26996)
 texture = SubResource("GradientTexture2D_ebwb5")
 
-[node name="Control2" type="Control" parent="PlayerUI"]
+[node name="Control2" type="Control" parent="ControlPlayerUI/PlayerUI"]
 visible = false
 layout_mode = 3
 anchors_preset = 7
@@ -4482,7 +4529,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="CinematicBottom" type="TextureRect" parent="PlayerUI/Control2"]
+[node name="CinematicBottom" type="TextureRect" parent="ControlPlayerUI/PlayerUI/Control2"]
 visibility_layer = 2
 offset_left = -1561.0
 offset_top = -96.0
@@ -4491,7 +4538,13 @@ offset_bottom = -32.0
 scale = Vector2(52.2707, 2.26996)
 texture = SubResource("GradientTexture2D_ebwb5")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control3" type="Control" parent="ControlPlayerUI/PlayerUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -4589,16 +4642,31 @@ offset_bottom = 66.0
 scale = Vector2(3.12, 3.18809)
 text = "Hit!"
 
-[node name="ResultLabel" type="Label" parent="."]
-visible = false
-offset_left = 501.0
-offset_top = 164.0
-offset_right = 595.0
-offset_bottom = 187.0
-scale = Vector2(3.68, 2.96)
-text = "placeHolder"
+[node name="CanvasLayer" type="CanvasLayer" parent="ShopControl"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="ConductorSprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.00392157)
+texture_filter = 1
+position = Vector2(177, -311)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_n7mji")
+
+[node name="TextBoxPosition" type="Node2D" parent="ShopControl/CanvasLayer"]
+position = Vector2(8, 169)
+scale = Vector2(0.5, 0.5)
 
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="BeatTimer" to="." method="_on_beat_t_imer_timeout"]
-[connection signal="timeout" from="BeatTimer" to="PlayerUI/HBoxContainer/BassHitUI" method="_on_beat_timer_timeout"]
+[connection signal="timeout" from="BeatTimer" to="ControlPlayerUI/PlayerUI/HBoxContainer/BassHitUI" method="_on_beat_timer_timeout"]
 [connection signal="timeout" from="BeatTimer" to="GameCamera" method="_on_beat_timer_timeout"]

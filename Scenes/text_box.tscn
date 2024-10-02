@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://hf6d7bdehrnx"]
+
+[ext_resource type="Script" path="res://Scenes/text_box.gd" id="1_kprrw"]
+[ext_resource type="Texture2D" uid="uid://b25c4b05cku06" path="res://Sprites/text/conductorSpeech.png" id="2_wa7kw"]
+[ext_resource type="FontFile" uid="uid://d3fij3xtserhi" path="res://Sprites/text/upheavtt.ttf" id="3_v0j2h"]
+
+[node name="TextBox" type="MarginContainer"]
+texture_filter = 1
+offset_right = 351.0
+offset_bottom = 149.0
+script = ExtResource("1_kprrw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_wa7kw")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+texture_filter = 3
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_v0j2h")
+theme_override_font_sizes/font_size = 25
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]
