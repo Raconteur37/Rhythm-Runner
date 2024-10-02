@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyupd88x8c5lt"]
+
+[ext_resource type="Script" path="res://BassProjectile.gd" id="1_a8l1l"]
+[ext_resource type="Texture2D" uid="uid://6y78bu7daftd" path="res://Sprites/Projectiles/BassProjectile-Sheet.png" id="2_35pfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p61y3"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b5jj"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hnam"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd2ra"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wiq4"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kr1e"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_480c8"]
+atlas = ExtResource("2_35pfq")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j1f4p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p61y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b5jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hnam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd2ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wiq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kr1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_480c8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1tmyw"]
+radius = 12.0
+
+[node name="BassProjectile" type="CharacterBody2D"]
+position = Vector2(93, 72)
+collision_layer = 2
+script = ExtResource("1_a8l1l")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_j1f4p")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1tmyw")
