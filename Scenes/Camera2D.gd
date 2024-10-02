@@ -5,6 +5,8 @@ extends Camera2D
 @export var max_roll : float = .01 
 @export var follow_node : Node2D
 
+@onready var waveManager = $"../WaveManager"
+
 var trauma : float = 0.0
 var trauma_power : int = 2
 
@@ -20,12 +22,13 @@ func _ready():
 	randomize()
 
 func _process(delta: float) -> void:
-	if follow_node:
-		global_position = follow_node.global_position
-		
-	if trauma:
-		trauma = max(trauma - decay * delta, 0)
-		beatShake()
+	if (waveManager.inWave):
+		if follow_node:
+			global_position = follow_node.global_position
+			
+		if trauma:
+			trauma = max(trauma - decay * delta, 0)
+			beatShake()
 		
 	
 

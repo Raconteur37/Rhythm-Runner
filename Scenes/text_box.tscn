@@ -8,7 +8,7 @@
 texture_filter = 1
 offset_top = 1.0
 offset_right = 351.0
-offset_bottom = 100.0
+offset_bottom = 150.0
 script = ExtResource("1_kprrw")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

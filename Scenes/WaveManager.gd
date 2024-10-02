@@ -18,7 +18,7 @@ func fillMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 10, "CoolLizard" : 3}
+				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
 			2:
 				enemyMap = {"AcidPuddle" : 15, "CoolLizard" : 6}
 			
@@ -82,4 +82,7 @@ func _on_enemy_spawn_timer_timeout():
 func _process(delta: float) -> void:
 	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave):
 		inWave = false
+		$"../ShopControl/CanvasLayer".visible = true
+		$"../ShopAnimationPlayer".play("ShopAppear")
+		$"../ShopAnimationPlayer".emit_signal("animation_finished")
 		print("Wave finished")

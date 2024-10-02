@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqjaoynclvhrt"]
+[gd_scene load_steps=4 format=3 uid="uid://doo5ofgue1vt2"]
 
-[ext_resource type="Script" path="res://Scenes/CharacterScenes/menu.gd" id="1_w3tda"]
-[ext_resource type="Texture2D" uid="uid://bmpybdlymli7e" path="res://Assets/AdobeStock_355096373.jpeg" id="2_5226f"]
-[ext_resource type="FontFile" uid="uid://btgo1unhvbpcy" path="res://Assets/Pixel-Regular.ttf" id="3_8g7ww"]
+[ext_resource type="Script" path="res://Scenes/CharacterScenes/menu.gd" id="1_mnoiq"]
+[ext_resource type="Texture2D" uid="uid://bmpybdlymli7e" path="res://Assets/AdobeStock_355096373.jpeg" id="2_j2pic"]
+[ext_resource type="FontFile" uid="uid://btgo1unhvbpcy" path="res://Assets/Pixel-Regular.ttf" id="3_w8dv8"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 offset_bottom = 0.150024
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_w3tda")
+script = ExtResource("1_mnoiq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -26,7 +26,7 @@ offset_top = 1.0
 offset_right = 8000.0
 offset_bottom = 4501.0
 scale = Vector2(0.24, 0.22)
-texture = ExtResource("2_5226f")
+texture = ExtResource("2_j2pic")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -58,7 +58,7 @@ offset_right = 1555.0
 offset_bottom = 740.0
 scale = Vector2(1.14, 1.14)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_8g7ww")
+theme_override_fonts/font = ExtResource("3_w8dv8")
 theme_override_font_sizes/font_size = 141
 text = "Rythmn Runner"
 

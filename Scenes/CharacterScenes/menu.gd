@@ -6,4 +6,4 @@ func _ready() -> void:
 
 func _on_StartButton_pressed() -> void:
 	# Change the scene to the next one using the correct method for Godot 4.x
-	get_tree().change_scene_to_file("res://Scenes/FLOOR_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")

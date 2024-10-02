@@ -21,10 +21,12 @@ func _physics_process(delta): #Movement
 	else:
 		velocity = input_vector
 		
-	if velocity >= Vector2(1,0):
+	if Input.get_action_strength("ui_d"):
 		ap.play("run_right")
-	if velocity <= Vector2(-1,0):
+	if Input.get_action_strength("ui_a"):
 		ap.play("walk_left")
+	if Input.get_action_strength("ui_w"):
+		ap.play("walking_up")
 	if velocity == Vector2(0,0):
 		ap.play("idle")
 	move_and_slide()

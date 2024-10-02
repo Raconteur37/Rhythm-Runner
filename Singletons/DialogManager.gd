@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	#	print(can_advance_line)
 	
 	if (
-		event.is_action_pressed("ui_a") &&
+		event.is_action_pressed("ui_space") &&
 		is_dialog_active &&
 		can_advance_line
 	):
