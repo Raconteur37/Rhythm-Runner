@@ -4,15 +4,14 @@ extends Camera2D
 @export var max_offset : Vector2 = Vector2(100,75)
 @export var max_roll : float = .01 
 @export var follow_node : Node2D
+
 var trauma : float = 0.0
 var trauma_power : int = 2
 
-@onready var particles : CPUParticles2D = $"../Particles/Explosion2"
 func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
 		if ($"../BeatTimer".time_left >= ($"..".beatTime) - (float($"..".beatTime)* .5) or ($"../BeatTimer".time_left <= .05)):
 			$"../Player".attack()
-			particles.emitting = true 
 		else:
 			add_trauma(.5)
 		#print($"../BeatTimer".time_left)
