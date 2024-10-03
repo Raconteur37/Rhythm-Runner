@@ -23,7 +23,6 @@ func startShop():
 	# Unseen 1%	
 	var rarity = randi_range(1,100)
 	var rarityString : String
-	rarity = 91
 	if rarity <= 70:
 		$CanvasLayer/HBoxContainer3/Item1.texture_normal = load("res://Sprites/Items/commonItemFrame.png")
 		$CanvasLayer/HBoxContainer3/Item2.texture_normal = load("res://Sprites/Items/commonItemFrame.png")

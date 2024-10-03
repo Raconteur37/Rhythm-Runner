@@ -14,8 +14,8 @@ func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
 		if ($"../BeatTimer".time_left >= ($"..".beatTime) - (float($"..".beatTime)* .5) or ($"../BeatTimer".time_left <= .05)):
 			$"../Player".attack()
-			beatExplosion.emitting = true
-			print(beatExplosion.emitting)
+			#beatExplosion.emitting = true
+			#print(beatExplosion.emitting)
 		else:
 			add_trauma(.5)
 		#print($"../BeatTimer".time_left)
