@@ -4678,8 +4678,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("16_4i1km")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="ShopControl"]
-
 [node name="Position1" type="Node2D" parent="ShopControl"]
 position = Vector2(1137, 267)
 scale = Vector2(8.04, 6.48)
