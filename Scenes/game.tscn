@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=42 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -4447,26 +4447,13 @@ _data = {
 "ShopAppear": SubResource("Animation_eolda")
 }
 
+[sub_resource type="Curve" id="Curve_spi6o"]
+_data = [Vector2(0.0195531, 0.990736), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lhvhd")
 tempo = 128.0
-
-[node name="Particles" parent="." instance=ExtResource("18_peknf")]
-
-[node name="beatParticle" type="CPUParticles2D" parent="Particles"]
-top_level = true
-position = Vector2(90.1946, 825.509)
-emitting = false
-amount = 200
-one_shot = true
-explosiveness = 1.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 277.78
-initial_velocity_max = 277.78
-scale_amount_min = 50.0
-scale_amount_max = 50.0
-color = Color(1, 0.27451, 1, 1)
 
 [node name="ControlPlayerUI" type="Control" parent="."]
 layout_mode = 3
@@ -4652,6 +4639,25 @@ autostart = true
 libraries = {
 "": SubResource("AnimationLibrary_52dtv")
 }
+
+[node name="Particles" parent="." instance=ExtResource("18_peknf")]
+
+[node name="beatParticle" type="CPUParticles2D" parent="Particles"]
+top_level = true
+z_index = 1
+position = Vector2(101.485, 838.682)
+emitting = false
+amount = 150
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 277.78
+initial_velocity_max = 277.78
+scale_amount_min = 25.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_spi6o")
+color = Color(1, 0.27451, 1, 1)
 
 [node name="ShopControl" type="Control" parent="."]
 layout_mode = 3
