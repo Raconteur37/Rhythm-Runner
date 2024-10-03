@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8s38wsq8ab23"]
+
+[ext_resource type="Texture2D" uid="uid://cgx6uwcvyymgu" path="res://Particles/ItemExplosion.png" id="1_mqrh0"]
+
+[sub_resource type="Curve" id="Curve_7lywc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n8mwc"]
+curve = SubResource("Curve_7lywc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_onheg"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_n8mwc")
+
+[node name="ItemExplosion" type="GPUParticles2D"]
+z_index = 10
+texture_filter = 1
+scale = Vector2(10, 10)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_onheg")
+texture = ExtResource("1_mqrh0")
+explosiveness = 1.0

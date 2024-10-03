@@ -82,6 +82,8 @@ func _on_enemy_spawn_timer_timeout():
 func _process(delta: float) -> void:
 	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave):
 		inWave = false
+		$"../AudioStreamPlayer2D".pitch_scale = .7
+		$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 		$"../ShopControl/CanvasLayer".visible = true
 		$"../ShopAnimationPlayer".play("ShopAppear")
 		$"../ShopAnimationPlayer".emit_signal("animation_finished")

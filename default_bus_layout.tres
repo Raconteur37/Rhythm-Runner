@@ -1,3 +1,16 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://bjagtv8nsigfb"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://bjagtv8nsigfb"]
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_y0v5s"]
+resource_name = "EQ"
+band_db/100_hz = -25.6
 
 [resource]
+bus/0/send = &"EQ"
+bus/1/name = &"Test"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectEQ_y0v5s")
+bus/1/effect/0/enabled = true

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var text_box_scene = preload("res://Scenes/text_box.tscn")
+@onready var game_scene = preload("res://Scenes/game.tscn")
 
 var dialog_lines: Array[String] = []
 var current_line_index = 0
@@ -10,16 +11,19 @@ var text_box_position: Vector2
 
 var sfx: AudioStream
 
+var speechEvent: String
+
 var is_dialog_active = false
 var can_advance_line = false
 
-func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStream):
+func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStream, aspeechEvent: String):
 	if is_dialog_active:
 		return
 		
 	dialog_lines = lines
 	text_box_position = position
 	sfx = speech_sfx
+	speechEvent = aspeechEvent
 	_show_text_box()
 	
 	is_dialog_active = true
@@ -52,6 +56,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if current_line_index >= dialog_lines.size():
 			is_dialog_active = false
 			current_line_index = 0
+			if (speechEvent == "shop_intro"):
+				get_tree().root.get_child(1).find_child("ShopControl").startShop()
 			return
 		
 		_show_text_box()
+		
+			
+		
