@@ -4414,9 +4414,6 @@ distance = -56.25
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1pfq"]
 distance = 412.897
 
-[sub_resource type="Animation" id="Animation_gh4nb"]
-resource_name = "ItemsAppear"
-
 [sub_resource type="Animation" id="Animation_qnwgw"]
 length = 0.001
 tracks/0/type = "value"
@@ -4470,6 +4467,9 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+
+[sub_resource type="Animation" id="Animation_gh4nb"]
+resource_name = "ItemsAppear"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_52dtv"]
 _data = {
