@@ -17,7 +17,7 @@ func startShop():
 	
 	var itemSound : AudioStreamPlayer2D = $ItemPickupAudio
 	
-	# Common 70%
+	# Common 70% 
 	# Rare 20%
 	# Super Rare 9%
 	# Unseen 1%	

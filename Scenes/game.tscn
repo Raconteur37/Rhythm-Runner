@@ -4414,6 +4414,9 @@ distance = -56.25
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1pfq"]
 distance = 412.897
 
+[sub_resource type="Animation" id="Animation_gh4nb"]
+resource_name = "ItemsAppear"
+
 [sub_resource type="Animation" id="Animation_qnwgw"]
 length = 0.001
 tracks/0/type = "value"
@@ -4468,9 +4471,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_gh4nb"]
-resource_name = "ItemsAppear"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_52dtv"]
 _data = {
 "ItemsAppear": SubResource("Animation_gh4nb"),
@@ -4484,9 +4484,13 @@ tempo = 128.0
 
 [node name="ControlPlayerUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
 offset_bottom = 40.0
+grow_horizontal = 2
 
 [node name="PlayerUI" type="CanvasLayer" parent="ControlPlayerUI"]
 
@@ -4674,6 +4678,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("16_4i1km")
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="ShopControl"]
+
 [node name="Position1" type="Node2D" parent="ShopControl"]
 position = Vector2(1137, 267)
 scale = Vector2(8.04, 6.48)
@@ -4705,6 +4711,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ConductorSprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0.00392157)
+z_index = 1
 texture_filter = 1
 position = Vector2(177, -311)
 scale = Vector2(0.5, 0.5)
@@ -4731,8 +4738,8 @@ size_flags_vertical = 8
 [node name="ShopBackground" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
-position = Vector2(195.5, 256)
-scale = Vector2(1.01888, 1)
+position = Vector2(17.4999, 273.5)
+scale = Vector2(1.25065, 1.06836)
 texture = ExtResource("18_v78n4")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ShopControl/CanvasLayer"]

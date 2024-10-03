@@ -30,6 +30,8 @@ func _physics_process(delta): #Movement
 			ap.play("walk_left")
 		if Input.get_action_strength("ui_w"):
 			ap.play("walking_up")
+		if Input.get_action_strength("ui_s"):
+			ap.play("walking_down")
 		if velocity == Vector2(0,0):
 			ap.play("idle")
 		move_and_slide()

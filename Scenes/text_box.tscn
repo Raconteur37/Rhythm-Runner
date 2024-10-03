@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://d3fij3xtserhi" path="res://Sprites/text/upheavtt.ttf" id="3_v0j2h"]
 
 [node name="TextBox" type="MarginContainer"]
+z_index = 1
 texture_filter = 1
 offset_right = 351.0
 offset_bottom = 149.0
@@ -20,6 +21,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -27,6 +29,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="Label" type="Label" parent="MarginContainer"]
+z_index = 1
 texture_filter = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
