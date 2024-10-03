@@ -3,6 +3,7 @@
 [node name="Particles" type="Node2D"]
 
 [node name="Beat" type="CPUParticles2D" parent="."]
+position = Vector2(74, 84)
 emitting = false
 amount = 200
 one_shot = true

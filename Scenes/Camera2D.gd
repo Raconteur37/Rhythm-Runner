@@ -6,7 +6,7 @@ extends Camera2D
 @export var follow_node : Node2D
 
 @onready var waveManager = $"../WaveManager"
-@onready var beatExplosion = $"../Particles/Beat2"
+@onready var beatExplosion = $"../Particles/beatParticle"
 var trauma : float = 0.0
 var trauma_power : int = 2
 
@@ -15,6 +15,7 @@ func _input(event: InputEvent):
 		if ($"../BeatTimer".time_left >= ($"..".beatTime) - (float($"..".beatTime)* .5) or ($"../BeatTimer".time_left <= .05)):
 			$"../Player".attack()
 			beatExplosion.emitting = true
+			print(beatExplosion.emitting)
 		else:
 			add_trauma(.5)
 		#print($"../BeatTimer".time_left)
