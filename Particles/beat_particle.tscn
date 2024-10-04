@@ -1,20 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdbvsgtswmxqr"]
+[gd_scene load_steps=2 format=3 uid="uid://diav7c05j1shq"]
 
 [sub_resource type="Curve" id="Curve_ommal"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.756983, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.906716, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="BeatParticle" type="CPUParticles2D"]
 position = Vector2(74, 84)
 emitting = false
-amount = 50
+amount = 100
+lifetime = 0.5
 one_shot = true
+speed_scale = 1.5
 explosiveness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 277.78
 initial_velocity_max = 277.78
-scale_amount_min = 12.0
-scale_amount_max = 12.0
+scale_amount_min = 9.0
+scale_amount_max = 9.0
 scale_amount_curve = SubResource("Curve_ommal")
-color = Color(1, 0.27451, 1, 1)
+color = Color(0.114697, 0.129303, 0.164821, 1)

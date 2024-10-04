@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 500
 
+@onready var health : int = 3
+
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 
@@ -47,6 +49,9 @@ func _physics_process(delta): #Movement
 func wasHit():
 	immune = true
 	$"../GameCamera".add_trauma(.8)
+	health = health - 1
+	if (health == 0):
+		print("game over")
 	# play other animation
 	# play sound effect
 	await get_tree().create_timer(2).timeout

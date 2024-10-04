@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cxorr5y0lw62h" path="res://Sprites/Character/WalkDownMelody-Sheet.png" id="7_uccem"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqeid"]
-radius = 22.0
-height = 108.0
+radius = 30.0
+height = 96.0
 
 [sub_resource type="Animation" id="Animation_j2gm7"]
 length = 0.001
@@ -315,7 +315,7 @@ texture = ExtResource("1_vdcin")
 hframes = 3
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 2)
+position = Vector2(-8, 4)
 shape = SubResource("CapsuleShape2D_nqeid")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
