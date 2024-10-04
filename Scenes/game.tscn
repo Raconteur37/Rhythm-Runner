@@ -4750,9 +4750,11 @@ alignment = 1
 visible = false
 texture_filter = 1
 layout_mode = 2
+action_mode = 0
 texture_normal = ExtResource("19_p2i7m")
 
 [node name="Item1Sprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer3/Item1"]
+texture_filter = 1
 position = Vector2(23.7562, 23.9197)
 scale = Vector2(0.0329849, 0.0318061)
 texture = ExtResource("20_yil22")
@@ -4764,6 +4766,7 @@ layout_mode = 2
 texture_normal = ExtResource("19_p2i7m")
 
 [node name="Item2Sprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer3/Item2"]
+texture_filter = 1
 position = Vector2(24.2438, 24.0741)
 scale = Vector2(0.033, 0.032)
 texture = ExtResource("20_yil22")
@@ -4775,6 +4778,7 @@ layout_mode = 2
 texture_normal = ExtResource("19_p2i7m")
 
 [node name="Item3Sprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer3/Item3"]
+texture_filter = 1
 position = Vector2(24.4825, 23.9197)
 scale = Vector2(0.033, 0.032)
 texture = ExtResource("20_yil22")
@@ -4784,3 +4788,6 @@ texture = ExtResource("20_yil22")
 [connection signal="timeout" from="BeatTimer" to="ControlPlayerUI/PlayerUI/HBoxContainer/BassHitUI" method="_on_beat_timer_timeout"]
 [connection signal="timeout" from="BeatTimer" to="GameCamera" method="_on_beat_timer_timeout"]
 [connection signal="animation_finished" from="ShopAnimationPlayer" to="ShopControl" method="_on_shop_animation_player_animation_finished"]
+[connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item1" to="ShopControl" method="_on_item_1_pressed"]
+[connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item2" to="ShopControl" method="_on_item_2_pressed"]
+[connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item3" to="ShopControl" method="_on_item_3_pressed"]
