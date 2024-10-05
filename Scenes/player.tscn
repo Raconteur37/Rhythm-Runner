@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6xja88rrb6i8"]
+[gd_scene load_steps=18 format=3 uid="uid://b6xja88rrb6i8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a1knw"]
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="1_vdcin"]
@@ -7,10 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://fs6u3t1qgtix" path="res://Sprites/Character/WalkLeftMelody.png" id="5_u88k5"]
 [ext_resource type="Texture2D" uid="uid://c13i3tl0fkwvw" path="res://Sprites/Character/WalkUpMelody_Detail-Sheet.png" id="6_agq53"]
 [ext_resource type="Texture2D" uid="uid://cxorr5y0lw62h" path="res://Sprites/Character/WalkDownMelody-Sheet.png" id="7_uccem"]
+[ext_resource type="Script" path="res://Scenes/player_stat_manager.gd" id="8_7smb8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqeid"]
 radius = 30.0
 height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdobu"]
+radius = 36.0
+height = 116.0
 
 [sub_resource type="Animation" id="Animation_j2gm7"]
 length = 0.001
@@ -199,47 +204,6 @@ tracks/2/keys = {
 "values": [0, 2, 2]
 }
 
-[sub_resource type="Animation" id="Animation_f6y68"]
-resource_name = "walking_up"
-length = 1.33334
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [ExtResource("6_agq53")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.2, 0.333333, 0.45, 0.566667, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [2, 3, 3, 4, 5, 6, 7]
-}
-
 [sub_resource type="Animation" id="Animation_82ekc"]
 resource_name = "walking_down"
 loop_mode = 1
@@ -293,6 +257,47 @@ tracks/3/keys = {
 "values": [ExtResource("7_uccem")]
 }
 
+[sub_resource type="Animation" id="Animation_f6y68"]
+resource_name = "walking_up"
+length = 1.33334
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("6_agq53")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.2, 0.333333, 0.45, 0.566667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2, 3, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eb7fs"]
 _data = {
 "RESET": SubResource("Animation_j2gm7"),
@@ -304,22 +309,36 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(482, 337)
+position = Vector2(525, 305)
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_a1knw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-6, 0)
+position = Vector2(0, -2)
 scale = Vector2(0.493, 0.5)
 texture = ExtResource("1_vdcin")
 hframes = 3
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-8, 4)
 shape = SubResource("CapsuleShape2D_nqeid")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_bdobu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_eb7fs")
 }
 autoplay = "idle"
+
+[node name="PlayerStatManager" type="Node2D" parent="."]
+script = ExtResource("8_7smb8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

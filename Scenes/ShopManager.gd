@@ -230,7 +230,7 @@ func _on_item_3_pressed() -> void:
 	print("Button 3 pressed")
 	button1Pressed = false
 	button2Pressed = false
-	selectedItem = currentItemsListed[1]
+	selectedItem = currentItemsListed[2]
 	if (button3Pressed):
 		print("give item")
 	else:

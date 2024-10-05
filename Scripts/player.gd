@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 500
 
+var bulletSpeed = 500
+
 @onready var health : int = 3
 
 @onready var ap = $AnimationPlayer
@@ -9,7 +11,7 @@ const SPEED = 500
 
 @onready var main = get_tree().get_root()
 @onready var waveManager = $"../WaveManager"
-@onready var projectile = preload("res://Scenes/bass_projectile.tscn")
+@onready var projectile = preload("res://Scenes/Projectiles/bass_bullet.tscn")
 
 var immune : bool
 
@@ -65,10 +67,18 @@ func attack(): # Attack function...will change with multiple weapons
 	var waveManager = $"../WaveManager"
 	
 	if (waveManager.enemiesAlive.size() > 0):
-		var proj = projectile.instantiate()
-		proj.position = position
 		var closestEnemy = waveManager.getClosestEnemyFromSprite($".")
-		proj.target = closestEnemy
-		proj.varVelocity = (closestEnemy.position - position).normalized()
-		get_parent().add_child(proj)
+		#proj.apply_impulse((closestEnemy.position - position).normalized(),Vector2(bulletSpeed,0))
+		if is_instance_valid(closestEnemy):
+			var proj = projectile.instantiate()
+			proj.position = position
+			proj.linear_velocity = (closestEnemy.position - position).normalized() * bulletSpeed
+			proj.name = "PlayerBassBullet"
+			get_parent().add_child(proj)
+			
 	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if "Enemy" in body.name:
+		wasHit()

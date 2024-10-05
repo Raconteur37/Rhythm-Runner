@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://cic4o2vxyblys"]
+
+[ext_resource type="Texture2D" uid="uid://6y78bu7daftd" path="res://Sprites/Projectiles/BassProjectile-Sheet.png" id="1_6tatq"]
+[ext_resource type="Script" path="res://Scenes/Projectiles/bass_bullet.gd" id="1_lq5on"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi5l3"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wrnp"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdkdk"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooe2v"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcyfi"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdhc6"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k64bt"]
+atlas = ExtResource("1_6tatq")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_byd67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi5l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wrnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdkdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ooe2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcyfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdhc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k64bt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nt7fp"]
+radius = 14.0
+
+[node name="PlayerBassBullet" type="RigidBody2D"]
+position = Vector2(97, 63)
+gravity_scale = 0.0
+script = ExtResource("1_lq5on")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_byd67")
+frame_progress = 0.297664
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nt7fp")
+
+[node name="RangeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="RangeTimer" to="." method="_on_range_timer_timeout"]
