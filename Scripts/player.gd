@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 
+var isDashing = false
+var canDash = true
+
 @onready var main = get_tree().get_root()
 @onready var waveManager = $"../WaveManager"
 @onready var projectile = preload("res://Scenes/Projectiles/bass_bullet.tscn")
@@ -32,7 +35,22 @@ func _physics_process(delta): #Movement
 			ap.play("walking_down")
 		if velocity == Vector2(0,0):
 			ap.play("idle")
+		if Input.get_action_strength("ui_dash") and canDash:
+			isDashing = true
 		move_and_slide()
+		
+		if isDashing:
+			
+			velocity = input_vector * PlayerStatManager.getDashSpeed()
+			isDashing = false
+			$DashCooldown.start(PlayerStatManager.getDashCooldown())
+			move_and_slide()
+			pauseCooldown()
+
+
+func pauseCooldown():
+	await get_tree().create_timer(.6).timeout
+	canDash = false
 
 func wasHit():
 	PlayerStatManager.setPlayerImmune(true)
@@ -69,3 +87,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if not PlayerStatManager.isPlayerImmune():
 			wasHit()
 			body.queue_free()
+
+
+func _on_dash_cooldown_timeout() -> void:
+	canDash = true
+	$DashCooldown.wait_time = PlayerStatManager.getDashCooldown()
+	
