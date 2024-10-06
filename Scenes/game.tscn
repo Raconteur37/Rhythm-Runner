@@ -1,10 +1,9 @@
-[gd_scene load_steps=44 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=40 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
 [ext_resource type="Script" path="res://Scenes/WaveManager.gd" id="2_g4bhq"]
 [ext_resource type="Texture2D" uid="uid://dpypatt8wqf44" path="res://Sprites/UI/Bass-Sheet.png" id="2_mhqds"]
-[ext_resource type="Script" path="res://Scenes/bass_hit_ui.gd" id="3_qdirg"]
 [ext_resource type="Texture2D" uid="uid://cfj5v2b2x2w3e" path="res://Assets/MAIN_SHEETS/Room_Builder_Walls_16x16.png" id="3_uhywb"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_xxvlx"]
 [ext_resource type="Texture2D" uid="uid://c50ftikshcj54" path="res://Sprites/UI/HeartJuice.png" id="4_ju45m"]
@@ -21,28 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://bjpcjw7t0a16s" path="res://Sprites/Items/a-pixel-art-of-a-heavenly-shop-with-a-large-detail-I4MDm8f9Svm6NHipngmMaw-Mt0cssIZSx2kipg2apcMow.png" id="18_v78n4"]
 [ext_resource type="Texture2D" uid="uid://bit2kbn1kkemg" path="res://Sprites/Items/commonItemFrame.png" id="19_p2i7m"]
 [ext_resource type="Texture2D" uid="uid://ya2yf85xfa0v" path="res://Sprites/Items/debugItemTexture32x32.png" id="20_yil22"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yv5um"]
-atlas = ExtResource("2_mhqds")
-region = Rect2(0, 0, 374, 596)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3740"]
-atlas = ExtResource("2_mhqds")
-region = Rect2(374, 0, 374, 596)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ygs5e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yv5um")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e3740")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="Gradient" id="Gradient_cfitd"]
 offsets = PackedFloat32Array(0.980519, 1)
@@ -4487,23 +4464,24 @@ grow_horizontal = 2
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = 52.0
-offset_right = 40.0
-offset_bottom = 92.0
+offset_left = -7.0
+offset_top = -146.0
+offset_right = 33.0
+offset_bottom = -106.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 metadata/_edit_use_anchors_ = true
 
-[node name="BassHitUI" type="AnimatedSprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer"]
-top_level = true
-position = Vector2(92, 929)
+[node name="Sprite2D" type="Sprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer"]
+texture_filter = 1
+position = Vector2(98, 0)
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_ygs5e")
-script = ExtResource("3_qdirg")
+texture = ExtResource("2_mhqds")
+hframes = 2
 
 [node name="BassParticlePosition" type="Node2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer"]
-position = Vector2(94, 52)
+position = Vector2(96, 36)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ControlPlayerUI/PlayerUI"]
 top_level = true
@@ -4750,6 +4728,7 @@ alignment = 1
 visible = false
 texture_filter = 1
 layout_mode = 2
+focus_mode = 0
 action_mode = 0
 texture_normal = ExtResource("19_p2i7m")
 
@@ -4763,6 +4742,7 @@ texture = ExtResource("20_yil22")
 visible = false
 texture_filter = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("19_p2i7m")
 
 [node name="Item2Sprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer3/Item2"]
@@ -4775,6 +4755,7 @@ texture = ExtResource("20_yil22")
 visible = false
 texture_filter = 1
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("19_p2i7m")
 
 [node name="Item3Sprite" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer3/Item3"]
@@ -4785,7 +4766,6 @@ texture = ExtResource("20_yil22")
 
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="BeatTimer" to="." method="_on_beat_t_imer_timeout"]
-[connection signal="timeout" from="BeatTimer" to="ControlPlayerUI/PlayerUI/HBoxContainer/BassHitUI" method="_on_beat_timer_timeout"]
 [connection signal="timeout" from="BeatTimer" to="GameCamera" method="_on_beat_timer_timeout"]
 [connection signal="animation_finished" from="ShopAnimationPlayer" to="ShopControl" method="_on_shop_animation_player_animation_finished"]
 [connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item1" to="ShopControl" method="_on_item_1_pressed"]
