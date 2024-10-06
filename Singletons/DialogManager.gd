@@ -39,6 +39,12 @@ func _show_text_box():
 func _on_text_box_finished_displaying():
 	can_advance_line = true
 
+func closeDialog():
+	if is_dialog_active:
+		text_box.queue_free()
+		is_dialog_active = false
+		current_line_index = 0
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	#if (event.is_action_pressed("ui_a")):

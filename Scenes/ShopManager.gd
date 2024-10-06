@@ -197,8 +197,10 @@ func startShop():
 	explosion.one_shot = true
 	get_tree().current_scene.find_child("CanvasLayer").add_child(explosion)
 	itemSound.play()
-	
-	
+
+
+func closeShop():
+	DialogManager.closeDialog()
 	
 
 
@@ -208,8 +210,10 @@ func _on_item_1_pressed() -> void:
 	button3Pressed = false
 	selectedItem = currentItemsListed[0]
 	if (button1Pressed):
-		print("give item")
+		closeShop()
+		PlayerStatManager.addItem(selectedItem)
 	else:
+		DialogManager.closeDialog()
 		button1Pressed = true
 		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
 
@@ -220,8 +224,10 @@ func _on_item_2_pressed() -> void:
 	button3Pressed = false
 	selectedItem = currentItemsListed[1]
 	if (button2Pressed):
-		print("give item")
+		closeShop()
+		PlayerStatManager.addItem(selectedItem)
 	else:
+		DialogManager.closeDialog()
 		button2Pressed = true
 		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
 
@@ -232,7 +238,9 @@ func _on_item_3_pressed() -> void:
 	button2Pressed = false
 	selectedItem = currentItemsListed[2]
 	if (button3Pressed):
-		print("give item")
+		closeShop()
+		PlayerStatManager.addItem(selectedItem)
 	else:
+		DialogManager.closeDialog()
 		button3Pressed = true
 		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
