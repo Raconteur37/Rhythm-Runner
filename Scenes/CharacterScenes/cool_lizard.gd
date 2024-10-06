@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
-var health = 10
+var health = 6
 
 @onready var projectile = preload("res://Scenes/Projectiles/lizard_enemy_projectile.tscn")
 
 func _physics_process(delta: float) -> void:
 	pass
 	
-func takeDamage(damageAmount : float):
+func takeDamage(damageAmount):
 	health = health - damageAmount
+	if health <= 0:
+		onDeath()
 	
 
 func onDeath():
@@ -25,6 +27,6 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if "Player" in body.name:
-		onDeath()
+		takeDamage(PlayerStatManager.getDamage())
 		body.queue_free()
 		

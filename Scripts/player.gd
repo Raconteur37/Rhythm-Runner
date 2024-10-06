@@ -1,11 +1,5 @@
 extends CharacterBody2D
 
-const SPEED = 500
-
-var bulletSpeed = 500
-
-@onready var health : int = 3
-
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 
@@ -24,7 +18,7 @@ func _physics_process(delta): #Movement
 		input_vector = input_vector.normalized()
 		
 		if input_vector:
-			velocity = input_vector * SPEED
+			velocity = input_vector * PlayerStatManager.getSpeed()
 		else:
 			velocity = input_vector
 			
@@ -39,25 +33,17 @@ func _physics_process(delta): #Movement
 		if velocity == Vector2(0,0):
 			ap.play("idle")
 		move_and_slide()
-		
-		
-		for enemy in $"../WaveManager".enemiesAlive:
-			if (is_instance_valid(enemy)):
-				if position.distance_to(enemy.global_position) < 40 and immune != true:
-					wasHit()
-		
-	
 
 func wasHit():
-	immune = true
+	PlayerStatManager.setPlayerImmune(true)
 	$"../GameCamera".add_trauma(.8)
-	health = health - 1
-	if (health == 0):
+	PlayerStatManager.setHealth(PlayerStatManager.getHealth() - 1)
+	if (PlayerStatManager.getHealth() == 0):
 		print("game over")
 	# play other animation
 	# play sound effect
 	await get_tree().create_timer(2).timeout
-	immune = false
+	PlayerStatManager.setPlayerImmune(false)
 	
 
 func attack(): # Attack function...will change with multiple weapons
@@ -72,14 +58,14 @@ func attack(): # Attack function...will change with multiple weapons
 		if is_instance_valid(closestEnemy):
 			var proj = projectile.instantiate()
 			proj.position = position
-			proj.linear_velocity = (closestEnemy.position - position).normalized() * bulletSpeed
+			proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
 			proj.name = "PlayerBassBullet"
 			get_parent().add_child(proj)
-			
-	
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if "Enemy" in body.name and "Projectile" in body.name:
-		wasHit()
-		body.queue_free()
+	print(body.name)
+	if "Enemy" in body.name:
+		if not PlayerStatManager.isPlayerImmune():
+			wasHit()
+			body.queue_free()
