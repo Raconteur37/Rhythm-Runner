@@ -1,4 +1,4 @@
 extends RigidBody2D
 
-func _process(delta: float) -> void:
-	print("Alive")
+func _on_despawn_timer_timeout() -> void:
+	queue_free()

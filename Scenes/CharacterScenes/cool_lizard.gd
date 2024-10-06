@@ -20,7 +20,7 @@ func _on_attack_timer_timeout() -> void:
 	var proj = projectile.instantiate()
 	proj.position = position
 	proj.name = "LizardEnemyBullet"
-	proj.linear_velocity = get_parent().get_parent().find_child("Player").global_position * 600
+	proj.linear_velocity = (get_parent().get_parent().find_child("Player").global_position - position).normalized()  * 600
 	get_parent().add_child(proj)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

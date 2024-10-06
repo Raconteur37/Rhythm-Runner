@@ -58,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_dialog_active = false
 			current_line_index = 0
 			if (speechEvent == "shop_intro"):
-				get_tree().root.get_child(1).find_child("ShopControl").startShop()
+				get_tree().root.get_child(2).find_child("ShopControl").startShop()
 			return
 		
 		_show_text_box()

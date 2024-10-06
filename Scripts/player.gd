@@ -80,5 +80,6 @@ func attack(): # Attack function...will change with multiple weapons
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if "Enemy" in body.name:
+	if "Enemy" in body.name and "Projectile" in body.name:
 		wasHit()
+		body.queue_free()
