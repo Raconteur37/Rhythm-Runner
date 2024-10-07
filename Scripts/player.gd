@@ -61,8 +61,10 @@ func wasHit():
 	PlayerStatManager.setHealth(PlayerStatManager.getHealth() - 1)
 	if (PlayerStatManager.getHealth() == 0):
 		print("game over")
-	$"../GameCamera".follow_node = $"."
-	$"../AnimationPlayer".play("PlayerDamage")
+	
+	#$"../GameCamera".follow_node = $"."
+	#$"../AnimationPlayer".play("PlayerDamage")
+	
 	# play other animation
 	# play sound effect
 	await get_tree().create_timer(2).timeout

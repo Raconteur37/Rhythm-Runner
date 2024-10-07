@@ -4406,15 +4406,16 @@ sources/3 = SubResource("TileSetAtlasSource_4vvvh")
 sources/4 = SubResource("TileSetAtlasSource_vceu6")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_atn11"]
-distance = 34.2014
+distance = 47.9167
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4fyy3"]
-distance = -52.9017
+distance = -42.8571
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_047oh"]
 distance = -56.25
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r1pfq"]
+normal = Vector2(-0.00416277, -0.999991)
 distance = 412.897
 
 [sub_resource type="Animation" id="Animation_gh4nb"]
@@ -4964,31 +4965,31 @@ position = Vector2(1007, 616)
 scale = Vector2(1, 1)
 
 [node name="GameCamera" type="Camera2D" parent="."]
-position = Vector2(1012, 618)
+position = Vector2(983, 450)
 position_smoothing_enabled = true
 script = ExtResource("3_xxvlx")
 
 [node name="BoundaryBody" type="StaticBody2D" parent="."]
 
 [node name="BottomBoundary" type="CollisionShape2D" parent="BoundaryBody"]
-position = Vector2(1000, 1178)
+position = Vector2(1041, 1165)
 scale = Vector2(6.68, 5.76)
 shape = SubResource("WorldBoundaryShape2D_atn11")
 
 [node name="LeftBoundary" type="CollisionShape2D" parent="BoundaryBody"]
-position = Vector2(245, 291)
+position = Vector2(209, 331)
 rotation = 1.5708
 scale = Vector2(4.48, 4.48)
 shape = SubResource("WorldBoundaryShape2D_4fyy3")
 
 [node name="RightBoundary" type="CollisionShape2D" parent="BoundaryBody"]
-position = Vector2(1672, 291)
+position = Vector2(1685, 304)
 rotation = 1.5708
 scale = Vector2(-4.48, -4.48)
 shape = SubResource("WorldBoundaryShape2D_047oh")
 
 [node name="TopBoundary" type="CollisionShape2D" parent="BoundaryBody"]
-position = Vector2(592, -520)
+position = Vector2(722, -516)
 rotation = -3.1376
 scale = Vector2(4.65007, 1.27105)
 shape = SubResource("WorldBoundaryShape2D_r1pfq")
