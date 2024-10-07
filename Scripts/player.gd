@@ -33,6 +33,8 @@ func _physics_process(delta): #Movement
 			ap.play("walking_up")
 		if Input.get_action_strength("ui_s"):
 			ap.play("walking_down")
+		if Input.get_action_strength("ui_info"):
+			print(PlayerStatManager.toString())
 		if velocity == Vector2(0,0):
 			ap.play("idle")
 		if Input.get_action_strength("ui_dash") and canDash:
@@ -80,17 +82,26 @@ func attack(): # Attack function...will change with multiple weapons
 			proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
 			proj.name = "PlayerBassBullet"
 			get_parent().add_child(proj)
+			var randNum = randf_range(1,101)
+			if (randNum <= PlayerStatManager.getExtraProjectileChance()):
+				proj = projectile.instantiate()
+				proj.position = position
+				proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
+				proj.name = "PlayerBassBullet"
+				get_parent().add_child(proj)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	#print(body.name)
-	if "EnemyProjectile" in body.name:
-		if not PlayerStatManager.isPlayerImmune():
-			wasHit()
-			body.queue_free()
-	if "Enemy" in body.name:
-		if not PlayerStatManager.isPlayerImmune():
-			wasHit()
+	var randNum = randf_range(1,101)
+	if (randNum >= PlayerStatManager.getBlockChance()):
+		if body.is_in_group("Enemy Projectiles"):
+			if not PlayerStatManager.isPlayerImmune():
+				wasHit()
+				body.queue_free()
+		if body.is_in_group("Enemy"):
+			if not PlayerStatManager.isPlayerImmune():
+				wasHit()
 
 
 func _on_dash_cooldown_timeout() -> void:

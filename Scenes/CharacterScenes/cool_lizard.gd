@@ -26,7 +26,7 @@ func _on_attack_timer_timeout() -> void:
 	get_parent().add_child(proj)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if "Player" in body.name:
+	if body.is_in_group("Player Projectiles"):
 		takeDamage(PlayerStatManager.getDamage())
 		body.queue_free()
 		

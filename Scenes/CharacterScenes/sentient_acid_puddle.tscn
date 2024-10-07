@@ -95,7 +95,7 @@ height = 25.0106
 radius = 8.4986
 height = 31.013
 
-[node name="SentientAcidPuddleEnemy" type="CharacterBody2D"]
+[node name="SentientAcidPuddleEnemy" type="CharacterBody2D" groups=["Enemy"]]
 visibility_layer = 3
 position = Vector2(992, 421)
 scale = Vector2(2, 2)

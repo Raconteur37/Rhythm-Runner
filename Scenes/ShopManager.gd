@@ -52,7 +52,7 @@ func getItemDialog(itemName : String):
 			words = ["The Subwoofer...","When you shoot, you might shoot some extra projectiles"]
 			return words
 		"Medkit":
-			words = ["The classic Medkit","After not taking damage for some time, gain another health potion"]
+			words = ["The classic Medkit","Killing an enemy has a chance to gift you a health potion"]
 			return words
 		"Metal Sheet":
 			words = ["A sturdy Metal Sheet?","This might take a hit for you"]
@@ -121,6 +121,9 @@ func startShop():
 	$CanvasLayer/HBoxContainer3/Item1.disabled = false
 	$CanvasLayer/HBoxContainer3/Item2.disabled = false
 	$CanvasLayer/HBoxContainer3/Item3.disabled = false
+	button1Pressed = false
+	button2Pressed = false
+	button3Pressed = false
 	currentItemsListed.clear()
 	selectedItem = ""
 	
@@ -160,7 +163,7 @@ func startShop():
 	var explosion = commonItemExplosion.instantiate()
 	
 	if rarityString == "Common":
-		explosion.process_material.color = Color(0,0,0)
+		explosion.process_material.color = Color(255,255,255)
 	if rarityString == "Rare":
 		explosion.process_material.color = Color(0,255,0)
 	if rarityString == "Super Rare":

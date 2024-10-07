@@ -13,6 +13,6 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if "BassBullet" in body.name:
+	if body.is_in_group("Player Projectiles"):
 		body.queue_free()
 		onDeath()
