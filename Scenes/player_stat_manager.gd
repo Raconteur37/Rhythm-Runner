@@ -2,14 +2,15 @@ extends Node2D
 
 var health : int = 3
 var damage : float = 3
-var speed : float = 500
+const baseSpeed : float = 500
+var speed : float = baseSpeed
 var dashSpeed : float = 700
 var dashCooldown : float = 5
 var projectileSpeed : float = 500
 var projectileRangeTime : float = .5
 var isImmune : bool = false
 
-var items = {}
+var items = {"Mystic Feather" : 3, "Cape" : 5}
 
 func getPlayerPosition():
 	return global_position
@@ -43,20 +44,19 @@ func setPlayerImmune(immune):
 	
 func setHealth(healthChange : int):
 	health = healthChange
+
+		
+func applyItem(item : String):
 	
-func addItem(item : String):
 	if items.find_key(item):
 		items[item] = items.get(item) + 1
 	else:
 		items[item] = 1
 		
-func scanItems():
 	var amount : int
-	
-	for x in items.keys():
-		match x:
-			
-			"Mystic Feather":
-				amount = items.get(x)
-				speed = 500 + (amount * 100)
-			
+
+	match item:
+		
+		"Mystic Feather":
+			amount = items.get(item)
+			speed = baseSpeed + (amount * 200)

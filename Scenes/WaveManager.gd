@@ -5,6 +5,8 @@ extends Node2D
 
 @export var spawnTime : float = 1
 
+var isInShop : bool = false
+
 var enemyMap = {}
 var inWave = false # Test if the player is fighting in a wave
 var enemiesAlive = []
@@ -13,14 +15,14 @@ func removeAliveEnemyFromList(enemy : CharacterBody2D):
 	if (enemiesAlive.find(enemy) >= 0):
 		enemiesAlive.remove_at(enemiesAlive.find(enemy))
 
-func fillMap(floor : int, wave : int):
+func fillEnemyMap(floor : int, wave : int):
 	
 	if (floor == 1):
 		match wave:
 			1:
 				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
 			2:
-				enemyMap = {"AcidPuddle" : 15, "CoolLizard" : 6}
+				enemyMap = {"AcidPuddle" : 1}
 			
 func spawnEnemiesFromMap(amount : int):
 	for n in range(amount):
@@ -68,9 +70,10 @@ func getClosestEnemyFromSprite(sprite : CharacterBody2D):
 		return enemy
 		
 func startWave(floor : int, wave : int):
-	fillMap(floor,wave)
+	fillEnemyMap(floor,wave)
 	inWave = true
 	$EnemySpawnTimer.wait_time = spawnTime
+	
 	
 func _ready():
 	startWave(currentFloor,currentWave)
@@ -80,11 +83,11 @@ func _on_enemy_spawn_timer_timeout():
 		spawnEnemiesFromMap(1)
 		
 func _process(delta: float) -> void:
-	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave):
+	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave and !isInShop):
 		inWave = false
+		currentWave = currentWave + 1
 		$"../AudioStreamPlayer2D".pitch_scale = .7
 		$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 		$"../ShopControl/CanvasLayer".visible = true
 		$"../ShopAnimationPlayer".play("ShopAppear")
 		$"../ShopAnimationPlayer".emit_signal("animation_finished")
-		print("Wave finished")

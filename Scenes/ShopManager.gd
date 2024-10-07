@@ -20,10 +20,14 @@ const introLines: Array[String] = [
 	"Hello my child.",
 	"I offer you a choice of items...please choose one."
 ]
+const outroLines: Array[String] = [
+	"Good choice!"
+]
 
 
 func _on_shop_animation_player_animation_finished(anim_name: StringName) -> void:
-	DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,introLines,speech_sound,"shop_intro")
+	if (anim_name == "ShopAppear"):
+		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,introLines,speech_sound,"shop_intro")
 
 func getItemDialog(itemName : String):
 	
@@ -113,7 +117,10 @@ func getItemImage(itemName : String):
 			return "res://Sprites/Items/Unseen Items/Conductor's Baton.png"
 
 func startShop():
-	
+	$"../WaveManager".isInShop = true
+	$CanvasLayer/HBoxContainer3/Item1.disabled = false
+	$CanvasLayer/HBoxContainer3/Item2.disabled = false
+	$CanvasLayer/HBoxContainer3/Item3.disabled = false
 	currentItemsListed.clear()
 	selectedItem = ""
 	
@@ -149,15 +156,18 @@ func startShop():
 		$CanvasLayer/HBoxContainer3/Item3.texture_normal = load("res://Sprites/Items/UnseenItemFrame.png")
 		itemSound.pitch_scale = 4
 		rarityString = "Unseen"
-	print(rarity)
 	
 	var explosion = commonItemExplosion.instantiate()
+	
+	if rarityString == "Common":
+		explosion.process_material.color = Color(0,0,0)
 	if rarityString == "Rare":
 		explosion.process_material.color = Color(0,255,0)
 	if rarityString == "Super Rare":
 		explosion.process_material.color = Color(71,0,255)
 	if rarityString == "Unseen":
 		explosion.process_material.color = Color(255,0,0)
+		
 	$CanvasLayer/HBoxContainer3/Item1.show()
 	pickItem(rarityString,1)
 	explosion.global_position = $Position1.global_position
@@ -201,8 +211,14 @@ func startShop():
 
 func closeShop():
 	DialogManager.closeDialog()
+	DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,outroLines,speech_sound,"")
+	await get_tree().create_timer(4).timeout
+	DialogManager.closeDialog()
+	$"../ShopAnimationPlayer".play("ShopDisappear")
+	$"../WaveManager".isInShop = false
+	await get_tree().create_timer(2).timeout
+	$"../WaveManager".startWave($"../WaveManager".currentFloor,$"../WaveManager".currentWave)
 	
-
 
 func _on_item_1_pressed() -> void:
 	print("Button 1 pressed")
@@ -210,8 +226,11 @@ func _on_item_1_pressed() -> void:
 	button3Pressed = false
 	selectedItem = currentItemsListed[0]
 	if (button1Pressed):
+		PlayerStatManager.applyItem(selectedItem)
+		$CanvasLayer/HBoxContainer3/Item2.disabled = true
+		$CanvasLayer/HBoxContainer3/Item3.disabled = true
+		$CanvasLayer/HBoxContainer3/Item1.hide()
 		closeShop()
-		PlayerStatManager.addItem(selectedItem)
 	else:
 		DialogManager.closeDialog()
 		button1Pressed = true
@@ -224,8 +243,11 @@ func _on_item_2_pressed() -> void:
 	button3Pressed = false
 	selectedItem = currentItemsListed[1]
 	if (button2Pressed):
+		PlayerStatManager.applyItem(selectedItem)
+		$CanvasLayer/HBoxContainer3/Item3.disabled = true
+		$CanvasLayer/HBoxContainer3/Item1.disabled = true
+		$CanvasLayer/HBoxContainer3/Item2.hide()
 		closeShop()
-		PlayerStatManager.addItem(selectedItem)
 	else:
 		DialogManager.closeDialog()
 		button2Pressed = true
@@ -238,8 +260,11 @@ func _on_item_3_pressed() -> void:
 	button2Pressed = false
 	selectedItem = currentItemsListed[2]
 	if (button3Pressed):
+		PlayerStatManager.applyItem(selectedItem)
+		$CanvasLayer/HBoxContainer3/Item1.disabled = true
+		$CanvasLayer/HBoxContainer3/Item2.disabled = true
+		$CanvasLayer/HBoxContainer3/Item3.hide()
 		closeShop()
-		PlayerStatManager.addItem(selectedItem)
 	else:
 		DialogManager.closeDialog()
 		button3Pressed = true

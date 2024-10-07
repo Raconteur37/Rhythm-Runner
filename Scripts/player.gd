@@ -82,11 +82,14 @@ func attack(): # Attack function...will change with multiple weapons
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body.name)
-	if "Enemy" in body.name:
+	#print(body.name)
+	if "EnemyProjectile" in body.name:
 		if not PlayerStatManager.isPlayerImmune():
 			wasHit()
 			body.queue_free()
+	if "Enemy" in body.name:
+		if not PlayerStatManager.isPlayerImmune():
+			wasHit()
 
 
 func _on_dash_cooldown_timeout() -> void:
