@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=44 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -20,6 +20,43 @@
 [ext_resource type="Texture2D" uid="uid://bjpcjw7t0a16s" path="res://Sprites/Items/a-pixel-art-of-a-heavenly-shop-with-a-large-detail-I4MDm8f9Svm6NHipngmMaw-Mt0cssIZSx2kipg2apcMow.png" id="18_v78n4"]
 [ext_resource type="Texture2D" uid="uid://bit2kbn1kkemg" path="res://Sprites/Items/commonItemFrame.png" id="19_p2i7m"]
 [ext_resource type="Texture2D" uid="uid://ya2yf85xfa0v" path="res://Sprites/Items/debugItemTexture32x32.png" id="20_yil22"]
+
+[sub_resource type="Animation" id="Animation_243vm"]
+resource_name = "PlayerDamage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_2511j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krb1u"]
+_data = {
+"PlayerDamage": SubResource("Animation_243vm"),
+"RESET": SubResource("Animation_2511j")
+}
 
 [sub_resource type="Gradient" id="Gradient_cfitd"]
 offsets = PackedFloat32Array(0.980519, 1)
@@ -4764,6 +4801,11 @@ _data = {
 script = ExtResource("1_lhvhd")
 tempo = 128.0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_krb1u")
+}
+
 [node name="ControlPlayerUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 5
@@ -4922,7 +4964,8 @@ position = Vector2(1007, 616)
 scale = Vector2(1, 1)
 
 [node name="GameCamera" type="Camera2D" parent="."]
-position = Vector2(964, 494)
+position = Vector2(1012, 618)
+position_smoothing_enabled = true
 script = ExtResource("3_xxvlx")
 
 [node name="BoundaryBody" type="StaticBody2D" parent="."]
