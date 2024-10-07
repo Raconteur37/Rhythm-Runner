@@ -40,9 +40,10 @@ func _physics_process(delta): #Movement
 		move_and_slide()
 		
 		if isDashing:
-			
+			PlayerStatManager.isImmune = true
 			velocity = input_vector * PlayerStatManager.getDashSpeed()
 			isDashing = false
+			PlayerStatManager.isImmune = false
 			$DashCooldown.start(PlayerStatManager.getDashCooldown())
 			move_and_slide()
 			pauseCooldown()
