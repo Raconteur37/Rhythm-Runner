@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=46 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
 [ext_resource type="Script" path="res://Scenes/WaveManager.gd" id="2_g4bhq"]
 [ext_resource type="Texture2D" uid="uid://dpypatt8wqf44" path="res://Sprites/UI/Bass-Sheet.png" id="2_mhqds"]
+[ext_resource type="AudioStream" uid="uid://cprgbb8jqlrtl" path="res://Sounds/HITTING_3.mp3" id="2_tptel"]
 [ext_resource type="Texture2D" uid="uid://cfj5v2b2x2w3e" path="res://Assets/MAIN_SHEETS/Room_Builder_Walls_16x16.png" id="3_uhywb"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_xxvlx"]
 [ext_resource type="Texture2D" uid="uid://c50ftikshcj54" path="res://Sprites/UI/HeartJuice.png" id="4_ju45m"]
@@ -4822,6 +4823,9 @@ tempo = 128.0
 libraries = {
 "": SubResource("AnimationLibrary_krb1u")
 }
+
+[node name="DownSound" type="AudioStreamPlayer2D" parent="AnimationPlayer"]
+stream = ExtResource("2_tptel")
 
 [node name="ControlPlayerUI" type="Control" parent="."]
 layout_mode = 3

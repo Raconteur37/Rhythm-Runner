@@ -67,13 +67,14 @@ func wasHit():
 	$"../GameCamera".follow_node = $"."
 	$"../AnimationPlayer".play("PlayerDamage")
 	ap.play("drinkPotion")
-	$"../AudioStreamPlayer2D".pitch_scale = .5
+	$"../AnimationPlayer/DownSound".play()
+	$"../AudioStreamPlayer2D".volume_db = -80
 	await get_tree().create_timer(3).timeout
 	hitAnimation = false
 	$"../AnimationPlayer".play("PlayerDamageDone")
 	$"../GameCamera".follow_node = $"../GameCamera"
 	$"../GameCamera".position = Vector2(983,450)
-	$"../AudioStreamPlayer2D".pitch_scale = 1
+	$"../AudioStreamPlayer2D".volume_db = 1
 	await get_tree().create_timer(2).timeout
 	PlayerStatManager.setPlayerImmune(false)
 	
