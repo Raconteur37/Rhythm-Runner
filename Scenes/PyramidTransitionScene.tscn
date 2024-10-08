@@ -1,24 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvs4e1on6oxf3"]
+[gd_scene load_steps=20 format=3 uid="uid://dvs4e1on6oxf3"]
 
 [ext_resource type="Script" path="res://Scenes/pyramid_transition.gd" id="1_2h2ny"]
 [ext_resource type="Texture2D" uid="uid://dbns0mxytasm4" path="res://Scenes/DALL·E 2024-10-08 10.38.43 - A single 2D pixelated tower similar to the one in the reference image provided. The tower should have five distinct levels, each level progressively s.webp" id="2_3dnxo"]
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="2_kx2i5"]
-
-[sub_resource type="Animation" id="Animation_p0ukr"]
-resource_name = "move_to_the_next_level"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1, 1.3, 1.5, 1.7, 1.8, 1.9, 2, 2.5, 2.7, 3, 3.5, 3.7, 3.9, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1250, 770), Vector2(1100, 750), Vector2(1000, 731.25), Vector2(900, 712.5), Vector2(850, 700), Vector2(800, 680), Vector2(900, 580), Vector2(1133.33, 593.333), Vector2(1250, 600), Vector2(970, 570), Vector2(860, 580), Vector2(750, 420), Vector2(1000, 466.667), Vector2(800, 420), Vector2(1250, 470), Vector2(780, 280), Vector2(1000, 328), Vector2(1250, 330), Vector2(950, 315), Vector2(780, 150), Vector2(1000, 190), Vector2(1250, 175), Vector2(1250, -100)]
-}
 
 [sub_resource type="Animation" id="Animation_joajp"]
 resource_name = "move_to_next_level"
@@ -38,11 +22,181 @@ tracks/0/keys = {
 "values": [Vector2(252, 282)]
 }
 
+[sub_resource type="Animation" id="Animation_p0ukr"]
+resource_name = "move_to_level_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1257, 771), Vector2(1000, 741), Vector2(774, 674), Vector2(1254, 612)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tdquf"]
 _data = {
 "RESET": SubResource("Animation_5u01v"),
-"move_to_next_level": SubResource("Animation_joajp"),
-"move_to_the_next_level": SubResource("Animation_p0ukr")
+"move_to_level_1": SubResource("Animation_p0ukr"),
+"move_to_next_level": SubResource("Animation_joajp")
+}
+
+[sub_resource type="Animation" id="Animation_rvgh0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1256, 600)]
+}
+
+[sub_resource type="Animation" id="Animation_553lm"]
+resource_name = "move_to_level_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1256, 600), Vector2(1021, 587), Vector2(777, 534), Vector2(1257, 457)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02ob8"]
+_data = {
+"RESET": SubResource("Animation_rvgh0"),
+"move_to_level_2": SubResource("Animation_553lm")
+}
+
+[sub_resource type="Animation" id="Animation_1qhe6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1257, 457)]
+}
+
+[sub_resource type="Animation" id="Animation_4vyid"]
+resource_name = "move_to_level_3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1257, 457), Vector2(1045, 454), Vector2(781, 396), Vector2(1249, 315)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i0t8h"]
+_data = {
+"RESET": SubResource("Animation_1qhe6"),
+"move_to_level_3": SubResource("Animation_4vyid")
+}
+
+[sub_resource type="Animation" id="Animation_yasbt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1249, 315)]
+}
+
+[sub_resource type="Animation" id="Animation_blwhp"]
+resource_name = "move_to_level_4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1249, 315), Vector2(998, 316), Vector2(782, 261), Vector2(1243, 180)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ef44c"]
+_data = {
+"RESET": SubResource("Animation_yasbt"),
+"move_to_level_4": SubResource("Animation_blwhp")
+}
+
+[sub_resource type="Animation" id="Animation_hic3g"]
+resource_name = "move_to_level_end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1243, 180), Vector2(1012, 172), Vector2(786, 123), Vector2(778, -87)]
+}
+
+[sub_resource type="Animation" id="Animation_wd547"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1243, 180)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fiksl"]
+_data = {
+"RESET": SubResource("Animation_wd547"),
+"move_to_level_end": SubResource("Animation_hic3g")
 }
 
 [node name="PyramidTransitionScene" type="Node2D"]
@@ -59,16 +213,36 @@ script = ExtResource("1_2h2ny")
 [node name="Level 5" type="Node2D" parent="."]
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(968.5, 444)
+position = Vector2(969, 433)
 scale = Vector2(1.87988, 0.863281)
 texture = ExtResource("2_3dnxo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(252, 282)
+position = Vector2(1243, 180)
 scale = Vector2(0.65625, 0.678571)
 texture = ExtResource("2_kx2i5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer_Level1" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tdquf")
+}
+
+[node name="AnimationPlayer_Level2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_02ob8")
+}
+
+[node name="AnimationPlayer_Level3" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i0t8h")
+}
+
+[node name="AnimationPlayer_Level4" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ef44c")
+}
+
+[node name="AnimationPlayer_Level5" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fiksl")
 }

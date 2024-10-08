@@ -22,9 +22,10 @@ color = Color(0.503117, 0.1155, 0.567649, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
 layout_mode = 0
-offset_top = 1.0
-offset_right = 8000.0
-offset_bottom = 4501.0
+offset_left = 2.0
+offset_top = -19.0
+offset_right = 8002.0
+offset_bottom = 4481.0
 scale = Vector2(0.24, 0.22)
 texture = ExtResource("2_gcl81")
 

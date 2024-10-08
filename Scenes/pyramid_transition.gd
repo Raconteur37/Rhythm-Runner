@@ -2,35 +2,51 @@ extends Node2D
 
 var current_level = 1  # Tracks which level Melody is on
 
-# List of positions for each level (bottom to top)
-var level_positions = [
-	Vector2(500, 400),  # Level 1 - Bottom Center
-	Vector2(400, 300), Vector2(600, 300),  # Level 2 - Left and Right
-	Vector2(300, 200), Vector2(500, 200), Vector2(700, 200),  # Level 3
-	Vector2(200, 100), Vector2(400, 100), Vector2(600, 100), Vector2(800, 100)  # Level 4 (Example)
-]
-
 # Function to trigger the transition to the next level
 func transition_to_next_level():
-	if current_level <= 5:  # Assuming there are 5 levels
-		print("Transitioning to level", current_level)  # Print to the console
-		
-		# Set the position of Melody to the next level's position
-		$Sprite2D.position = level_positions[current_level - 1] 
-		
-		# Play the animation for moving to the next level
-		$AnimationPlayer.play("move_to_the_next_level")
-		
-		# Move to the next level
-		current_level += 1
+	match current_level:
+		1:
+			$AnimationPlayer_Level1.play("move_to_level_1")
+		2:
+			$AnimationPlayer_Level2.play("move_to_level_2")
+		3:
+			$AnimationPlayer_Level3.play("move_to_level_3")
+		4:
+			$AnimationPlayer_Level4.play("move_to_level_4")
+		5:
+			$AnimationPlayer_Level5.play("move_to_level_end")
 
-# Function that gets called when the level is completed
-func on_level_completed():
-	print("Level", current_level, "completed! Transitioning to the next level.")  # Output message to the console
-	transition_to_next_level()  # Trigger the transition to the next level
+	# Move to the next level
+	current_level += 1
 
 # Function to check for player input (pressing spacebar to complete a level)
 func _input(event):
-	if event.is_action_pressed("ui_accept"):  # "ui_accept" is the spacebar by default
-		print("Spacebar pressed!")  # This should show in the console when spacebar is pressed
-		on_level_completed()  # Simulate level completion when spacebar is pressed
+	if event.is_action_pressed("ui_accept") and current_level <= 5:  # Allow spacebar press for levels 1-5
+		print("Spacebar pressed! Transitioning to next level.")
+		transition_to_next_level()  # Move to the next level when spacebar is pressed
+
+# Handle animation completion for Level 1
+func _on_AnimationPlayer_Level1_animation_finished():
+	print("Finished level 1 transition.")
+	# Unlock input or other logic after animation finishes
+
+# Handle animation completion for Level 2
+func _on_AnimationPlayer_Level2_animation_finished():
+	print("Finished level 2 transition.")
+	# Unlock input or other logic after animation finishes
+
+# Handle animation completion for Level 3
+func _on_AnimationPlayer_Level3_animation_finished():
+	print("Finished level 3 transition.")
+	# Unlock input or other logic after animation finishes
+
+# Handle animation completion for Level 4
+func _on_AnimationPlayer_Level4_animation_finished():
+	print("Finished level 4 transition.")
+	# Unlock input or other logic after animation finishes
+
+# Handle animation completion for Level 5
+func _on_AnimationPlayer_Level5_animation_finished():
+	print("Finished level 5 transition.")
+	print("All levels completed! Character exits the tower.")
+	# Additional logic for completing the game
