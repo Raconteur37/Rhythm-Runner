@@ -22,7 +22,7 @@ func fillEnemyMap(floor : int, wave : int):
 			1:
 				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
 			2:
-				enemyMap = {"AcidPuddle" : 1}
+				enemyMap = {"AcidPuddle" : 20}
 			
 func spawnEnemiesFromMap(amount : int):
 	for n in range(amount):

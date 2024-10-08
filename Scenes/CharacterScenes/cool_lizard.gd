@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var health = 6
+var isDead = false
 
 @onready var projectile = preload("res://Scenes/Projectiles/lizard_enemy_projectile.tscn")
 
@@ -14,8 +15,12 @@ func takeDamage(damageAmount):
 	
 
 func onDeath():
-	get_parent().removeAliveEnemyFromList($".")
-	queue_free()
+	if (not isDead):
+		get_parent().removeAliveEnemyFromList($".")
+		PlayerStatManager.onKill($".")
+		isDead = true
+		queue_free()
+		
 
 
 func _on_attack_timer_timeout() -> void:

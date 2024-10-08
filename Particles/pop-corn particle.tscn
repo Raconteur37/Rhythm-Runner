@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bola48i5it4c8"]
+
+[ext_resource type="Texture2D" uid="uid://ysobrykw5dbp" path="res://Particles/Explosion_Sheet.png" id="1_o3ref"]
+[ext_resource type="Script" path="res://Particles/pop_corn_particle.gd" id="2_opkbe"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k3m83"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_pm14a"]
+colors = PackedColorArray(0.788235, 0.105882, 0.662745, 1, 1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wghct"]
+radius = 118.004
+
+[node name="Pop-cornParticle" type="CPUParticles2D"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_k3m83")
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_o3ref")
+emission_shape = 1
+emission_sphere_radius = 50.0
+gravity = Vector2(0, 0)
+scale_amount_min = 6.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_pm14a")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+script = ExtResource("2_opkbe")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wghct")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

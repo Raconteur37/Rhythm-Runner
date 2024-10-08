@@ -1,12 +1,21 @@
 extends CharacterBody2D
 
-func onDeath():
-	get_parent().removeAliveEnemyFromList($".")
-	$AnimatedSprite2D.play("death")
-	await get_tree().create_timer(.9).timeout
-	queue_free()
-	
+var health = 2
+var isDead = false
 
+func onDeath():
+	if not isDead:
+		isDead = true
+		PlayerStatManager.onKill($".")
+		get_parent().removeAliveEnemyFromList($".")
+		$AnimatedSprite2D.play("death")
+		await get_tree().create_timer(.9).timeout
+		queue_free()
+	
+func takeDamage(damageAmount):
+	health = health - damageAmount
+	if health <= 0:
+		onDeath()
 
 func _physics_process(delta):
 	pass
