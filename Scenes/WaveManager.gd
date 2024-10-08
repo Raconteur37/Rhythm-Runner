@@ -20,10 +20,15 @@ func fillEnemyMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
+				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5}
 			2:
-				enemyMap = {"AcidPuddle" : 20}
-			
+				enemyMap = {"AcidPuddle" : 10, "CoolLizard" : 10}
+			3:
+				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15}
+			4:
+				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 20}
+			5:
+				enemyMap = {"AcidPuddle" : 25, "CoolLizard" : 25}
 func spawnEnemiesFromMap(amount : int):
 	for n in range(amount):
 		if enemyMap.size() > 0:

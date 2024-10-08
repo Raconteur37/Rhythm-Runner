@@ -25,3 +25,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player Projectiles"):
 		body.queue_free()
 		onDeath()
+	if body.is_in_group("Enemy Projectiles"):
+		body.queue_free()

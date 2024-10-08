@@ -104,20 +104,26 @@ func onKill(enemy):
 	
 
 func toString():
-	var classString = """Health: {health}
-	Damage: {damage}
-	Speed: {speed}
-	Dash Speed: {dashspeed}
-	Dash Cooldown {dashcooldown}
-	Projectile Speed {projectilespeed}
-	Projectile Range {projectilerange}
-	Extra Projectile Chance {extraprojectilechance}
-	Block Chance {blockchance}
-	Health Potion Gain Chance {healthpotiongainchance}
+	var classString = """
+	Health - {health}
+	Damage - {damage}
+	Speed - {speed}
+	Dash Speed - {dashspeed}
+	Dash Cooldown - {dashcooldown} Seconds
+	Projectile Speed - {projectilespeed}
+	Projectile Range - {projectilerange}
+	Extra Projectile Chance - {extraprojectilechance}%
+	Block Chance - {blockchance}%
+	Health Potion Gain Chance - {healthpotiongainchance}%
+	Pop-Corn Explosion Chance - {popcornchance}%
+	Pop-Corn Explosion Damage - {popcorndamage}
+	Conductor's Wand Activated - {wandactive}
+	Conductor's Wand Activation Shot - {wandshot}
 	""".format({"damage": damage, "health": health, "speed": speed, "dashspeed": dashSpeed, 
 	"dashcooldown": dashCooldown, "projectilespeed": projectileSpeed, "projectilerange": projectileRangeTime, 
 	"extraprojectilechance": extraProjectileChance,"blockchance": blockChance,
-	 "healthpotiongainchance": healthPotionGainChance})
+	 "healthpotiongainchance": healthPotionGainChance, "popcornchance": popcornChance, "popcorndamage": popcornDamage,
+	"wandactive": hasWandVar, "wandshot": wandActivationShot})
 	return classString
 
 func applyItem(item : String):
