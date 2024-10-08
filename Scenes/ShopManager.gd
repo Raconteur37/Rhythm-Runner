@@ -221,6 +221,7 @@ func closeShop():
 	$"../ShopAnimationPlayer".play("ShopDisappear")
 	$"../WaveManager".isInShop = false
 	await get_tree().create_timer(2).timeout
+	$"../AudioStreamPlayer2D".pitch_scale = 1
 	$"../WaveManager".startWave($"../WaveManager".currentFloor,$"../WaveManager".currentWave)
 	
 

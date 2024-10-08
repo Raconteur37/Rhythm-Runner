@@ -116,8 +116,8 @@ rotation = 1.58331
 shape = SubResource("CapsuleShape2D_xb3uu")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1.5)

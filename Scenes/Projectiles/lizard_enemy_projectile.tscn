@@ -9,7 +9,6 @@ size = Vector2(37, 13)
 [node name="LizardEnemyProjectile" type="RigidBody2D" groups=["Enemy Projectiles"]]
 position = Vector2(101, 59)
 collision_layer = 2
-collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_4egs2")
 

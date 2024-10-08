@@ -11,10 +11,11 @@ var canDash = true
 @onready var projectile = preload("res://Scenes/Projectiles/bass_bullet.tscn")
 
 var immune : bool
+var hitAnimation = false
 
 func _physics_process(delta): #Movement
 	
-	if waveManager.inWave:
+	if waveManager.inWave and !hitAnimation:
 		var input_vector = Vector2.ZERO
 		input_vector.x = Input.get_action_strength("ui_d") - Input.get_action_strength("ui_a")
 		input_vector.y = Input.get_action_strength("ui_s") - Input.get_action_strength("ui_w")
@@ -56,17 +57,23 @@ func pauseCooldown():
 	canDash = false
 
 func wasHit():
+	hitAnimation = true
 	PlayerStatManager.setPlayerImmune(true)
 	$"../GameCamera".add_trauma(.8)
 	PlayerStatManager.setHealth(PlayerStatManager.getHealth() - 1)
 	if (PlayerStatManager.getHealth() == 0):
 		print("game over")
 	
-	#$"../GameCamera".follow_node = $"."
-	#$"../AnimationPlayer".play("PlayerDamage")
-	
-	# play other animation
-	# play sound effect
+	$"../GameCamera".follow_node = $"."
+	$"../AnimationPlayer".play("PlayerDamage")
+	ap.play("drinkPotion")
+	$"../AudioStreamPlayer2D".pitch_scale = .5
+	await get_tree().create_timer(3).timeout
+	hitAnimation = false
+	$"../AnimationPlayer".play("PlayerDamageDone")
+	$"../GameCamera".follow_node = $"../GameCamera"
+	$"../GameCamera".position = Vector2(983,450)
+	$"../AudioStreamPlayer2D".pitch_scale = 1
 	await get_tree().create_timer(2).timeout
 	PlayerStatManager.setPlayerImmune(false)
 	
@@ -96,19 +103,16 @@ func attack(): # Attack function...will change with multiple weapons
 			var proj = projectile.instantiate()
 			proj.position = position
 			proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
-			proj.name = "PlayerBassBullet"
 			get_parent().add_child(proj)
 			var randNum = randf_range(1,101)
 			if (randNum <= PlayerStatManager.getExtraProjectileChance()):
 				proj = projectile.instantiate()
 				proj.position = position
 				proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
-				proj.name = "PlayerBassBullet"
 				get_parent().add_child(proj)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	#print(body.name)
 	var randNum = randf_range(1,101)
 	if (randNum >= PlayerStatManager.getBlockChance()):
 		if body.is_in_group("Enemy Projectiles"):

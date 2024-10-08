@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=45 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -52,9 +52,25 @@ tracks/0/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_a4ssr"]
+resource_name = "PlayerDamageDone"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_krb1u"]
 _data = {
 "PlayerDamage": SubResource("Animation_243vm"),
+"PlayerDamageDone": SubResource("Animation_a4ssr"),
 "RESET": SubResource("Animation_2511j")
 }
 
@@ -4959,12 +4975,11 @@ autostart = true
 position = Vector2(529, 36)
 scale = Vector2(3.12, 3.18809)
 stream = ExtResource("5_1kjxo")
+autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
 position = Vector2(1007, 616)
 scale = Vector2(1, 1)
-collision_layer = 1
-collision_mask = 1
 
 [node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2(983, 450)
