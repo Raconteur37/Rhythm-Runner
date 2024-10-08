@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b6xja88rrb6i8"]
+[gd_scene load_steps=22 format=3 uid="uid://b6xja88rrb6i8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a1knw"]
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="1_vdcin"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cxorr5y0lw62h" path="res://Sprites/Character/WalkDownMelody-Sheet.png" id="7_uccem"]
 [ext_resource type="Script" path="res://Scenes/player_stat_manager.gd" id="8_7smb8"]
 [ext_resource type="Texture2D" uid="uid://cfur4sqfuqub8" path="res://Sprites/Character/DrinkingPotionMelodySheet.png" id="8_h3e8w"]
+[ext_resource type="Texture2D" uid="uid://eidsckm25ufg" path="res://Sprites/Character/DashMelody.png" id="9_14lcg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqeid"]
 radius = 16.0
@@ -352,9 +353,115 @@ tracks/2/keys = {
 "values": [2, 3, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_s2yau"]
+resource_name = "drinkPotion"
+length = 3.2
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("8_h3e8w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [13]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.116667, 0.216667, 0.35, 0.466667, 0.583333, 0.683333, 0.8, 0.916667, 1.01667, 1.13333, 1.33333, 1.53333, 1.75, 1.95, 2.16667, 2.36667, 2.58333, 2.78333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 11, 12, 11, 12, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_5wv7v"]
+resource_name = "dash"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("9_14lcg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.216667, 0.433333, 0.65, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 0, 0, 0, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eb7fs"]
 _data = {
 "RESET": SubResource("Animation_j2gm7"),
+"dash": SubResource("Animation_5wv7v"),
 "drinkPotion": SubResource("Animation_s2yau"),
 "idle": SubResource("Animation_ualft"),
 "run_right": SubResource("Animation_kfrnd"),
