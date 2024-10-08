@@ -159,7 +159,7 @@ func applyItem(item : String):
 			
 		"Pop-Corn":
 			amount = items.get(item)
-			popcornChance = (amount * 5)
+			popcornChance = (amount * 10)
 			popcornDamage = popcornBaseDamage + (amount * 5)
 			
 		"Conductor's Baton":
