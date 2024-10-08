@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dbns0mxytasm4" path="res://Scenes/DALL·E 2024-10-08 10.38.43 - A single 2D pixelated tower similar to the one in the reference image provided. The tower should have five distinct levels, each level progressively s.webp" id="2_3dnxo"]
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="2_kx2i5"]
 
-[sub_resource type="Animation" id="Animation_joajp"]
-resource_name = "move_to_next_level"
-
 [sub_resource type="Animation" id="Animation_5u01v"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,6 +44,9 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(),
 "values": []
 }
+
+[sub_resource type="Animation" id="Animation_joajp"]
+resource_name = "move_to_next_level"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tdquf"]
 _data = {
@@ -163,21 +163,6 @@ _data = {
 "move_to_level_4": SubResource("Animation_blwhp")
 }
 
-[sub_resource type="Animation" id="Animation_hic3g"]
-resource_name = "move_to_level_end"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1243, 180), Vector2(1012, 172), Vector2(786, 123), Vector2(778, -87)]
-}
-
 [sub_resource type="Animation" id="Animation_wd547"]
 length = 0.001
 tracks/0/type = "value"
@@ -191,6 +176,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1243, 180)]
+}
+
+[sub_resource type="Animation" id="Animation_hic3g"]
+resource_name = "move_to_level_end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1243, 180), Vector2(1012, 172), Vector2(786, 123), Vector2(778, -87)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fiksl"]
