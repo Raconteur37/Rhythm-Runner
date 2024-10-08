@@ -39,6 +39,7 @@ func _physics_process(delta): #Movement
 		if velocity == Vector2(0,0):
 			ap.play("idle")
 		if Input.get_action_strength("ui_dash") and canDash:
+			ap.play("dash")
 			isDashing = true
 		move_and_slide()
 		

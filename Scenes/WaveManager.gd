@@ -96,3 +96,7 @@ func _process(delta: float) -> void:
 		$"../ShopControl/CanvasLayer".visible = true
 		$"../ShopAnimationPlayer".play("ShopAppear")
 		$"../ShopAnimationPlayer".emit_signal("animation_finished")
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	pass # Replace with function body.
