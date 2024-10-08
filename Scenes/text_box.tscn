@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://hf6d7bdehrnx"]
+[gd_scene load_steps=4 format=3 uid="uid://c5e36u7arkavr"]
 
 [ext_resource type="Script" path="res://Scenes/text_box.gd" id="1_kprrw"]
 [ext_resource type="Texture2D" uid="uid://b25c4b05cku06" path="res://Sprites/text/conductorSpeech.png" id="2_wa7kw"]

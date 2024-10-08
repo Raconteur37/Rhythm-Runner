@@ -4963,6 +4963,8 @@ stream = ExtResource("5_1kjxo")
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
 position = Vector2(1007, 616)
 scale = Vector2(1, 1)
+collision_layer = 1
+collision_mask = 1
 
 [node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2(983, 450)

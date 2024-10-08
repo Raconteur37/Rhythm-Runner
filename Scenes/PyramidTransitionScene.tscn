@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvs4e1on6oxf3"]
+
+[ext_resource type="Script" path="res://Scenes/pyramid_transition.gd" id="1_2h2ny"]
+[ext_resource type="Texture2D" uid="uid://dbns0mxytasm4" path="res://Scenes/DALL·E 2024-10-08 10.38.43 - A single 2D pixelated tower similar to the one in the reference image provided. The tower should have five distinct levels, each level progressively s.webp" id="2_3dnxo"]
+[ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="2_kx2i5"]
+
+[sub_resource type="Animation" id="Animation_p0ukr"]
+resource_name = "move_to_the_next_level"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1, 1.3, 1.5, 1.7, 1.8, 1.9, 2, 2.5, 2.7, 3, 3.5, 3.7, 3.9, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1250, 770), Vector2(1100, 750), Vector2(1000, 731.25), Vector2(900, 712.5), Vector2(850, 700), Vector2(800, 680), Vector2(900, 580), Vector2(1133.33, 593.333), Vector2(1250, 600), Vector2(970, 570), Vector2(860, 580), Vector2(750, 420), Vector2(1000, 466.667), Vector2(800, 420), Vector2(1250, 470), Vector2(780, 280), Vector2(1000, 328), Vector2(1250, 330), Vector2(950, 315), Vector2(780, 150), Vector2(1000, 190), Vector2(1250, 175), Vector2(1250, -100)]
+}
+
+[sub_resource type="Animation" id="Animation_joajp"]
+resource_name = "move_to_next_level"
+
+[sub_resource type="Animation" id="Animation_5u01v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(252, 282)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdquf"]
+_data = {
+"RESET": SubResource("Animation_5u01v"),
+"move_to_next_level": SubResource("Animation_joajp"),
+"move_to_the_next_level": SubResource("Animation_p0ukr")
+}
+
+[node name="PyramidTransitionScene" type="Node2D"]
+script = ExtResource("1_2h2ny")
+
+[node name="Level 1" type="Node2D" parent="."]
+
+[node name="Level 2" type="Node2D" parent="."]
+
+[node name="Level 3" type="Node2D" parent="."]
+
+[node name="Level 4" type="Node2D" parent="."]
+
+[node name="Level 5" type="Node2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(968.5, 444)
+scale = Vector2(1.87988, 0.863281)
+texture = ExtResource("2_3dnxo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(252, 282)
+scale = Vector2(0.65625, 0.678571)
+texture = ExtResource("2_kx2i5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tdquf")
+}
