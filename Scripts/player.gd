@@ -78,6 +78,18 @@ func attack(): # Attack function...will change with multiple weapons
 	var waveManager = $"../WaveManager"
 	
 	if (waveManager.enemiesAlive.size() > 0):
+		if (PlayerStatManager.hasWand()):
+			PlayerStatManager.addShot()
+			print(PlayerStatManager.getShotNumber())
+			if (PlayerStatManager.getShotNumber() == PlayerStatManager.getShotActivationNumber()):
+				PlayerStatManager.resetShot()
+				for enemy in waveManager.enemiesAlive:
+					if is_instance_valid(enemy):
+						var proj = projectile.instantiate()
+						proj.position = position
+						proj.linear_velocity = (enemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
+						proj.name = "PlayerBassBullet"
+						get_parent().add_child(proj)
 		var closestEnemy = waveManager.getClosestEnemyFromSprite($".")
 		#proj.apply_impulse((closestEnemy.position - position).normalized(),Vector2(bulletSpeed,0))
 		if is_instance_valid(closestEnemy):
