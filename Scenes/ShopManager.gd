@@ -28,6 +28,7 @@ const outroLines: Array[String] = [
 func _on_shop_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "ShopAppear"):
 		DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,introLines,speech_sound,"shop_intro")
+		DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,introLines,speech_sound,"shop_intro")
 
 func getItemDialog(itemName : String):
 	
