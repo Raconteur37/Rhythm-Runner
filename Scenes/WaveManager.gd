@@ -20,9 +20,9 @@ func fillEnemyMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5}
+				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
 			2:
-				enemyMap = {"AcidPuddle" : 10, "CoolLizard" : 10}
+				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
 			3:
 				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15}
 			4:
@@ -99,4 +99,4 @@ func _process(delta: float) -> void:
 
 
 func _on_audio_stream_player_2d_finished() -> void:
-	pass # Replace with function body.
+	$"../AudioStreamPlayer2D".play()

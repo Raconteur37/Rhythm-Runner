@@ -27,7 +27,7 @@ const outroLines: Array[String] = [
 
 func _on_shop_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "ShopAppear"):
-		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,introLines,speech_sound,"shop_intro")
+		DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,introLines,speech_sound,"shop_intro")
 
 func getItemDialog(itemName : String):
 	
@@ -215,7 +215,7 @@ func startShop():
 
 func closeShop():
 	DialogManager.closeDialog()
-	DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,outroLines,speech_sound,"")
+	DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,outroLines,speech_sound,"")
 	await get_tree().create_timer(4).timeout
 	DialogManager.closeDialog()
 	$"../ShopAnimationPlayer".play("ShopDisappear")
@@ -239,7 +239,7 @@ func _on_item_1_pressed() -> void:
 	else:
 		DialogManager.closeDialog()
 		button1Pressed = true
-		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
+		DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
 
 
 func _on_item_2_pressed() -> void:
@@ -256,7 +256,7 @@ func _on_item_2_pressed() -> void:
 	else:
 		DialogManager.closeDialog()
 		button2Pressed = true
-		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
+		DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
 
 
 func _on_item_3_pressed() -> void:
@@ -273,4 +273,4 @@ func _on_item_3_pressed() -> void:
 	else:
 		DialogManager.closeDialog()
 		button3Pressed = true
-		DialogManager.start_dialog($CanvasLayer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")
+		DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,getItemDialog(selectedItem),speech_sound,"shop_explanation")

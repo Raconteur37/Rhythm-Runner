@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://brsttakajuew4"]
+
+[sub_resource type="Gradient" id="Gradient_c5do3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ihtl4"]
+gradient = SubResource("Gradient_c5do3")
+fill_from = Vector2(1, 0)
+
+[node name="GameIntroScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.18392, 1.0048)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ihtl4")
+expand_mode = 2
