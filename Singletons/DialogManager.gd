@@ -9,20 +9,20 @@ var current_line_index = 0
 var text_box
 var text_box_position: Vector2
 
-var sfx: AudioStream
+var character : String
 
 var speechEvent: String
 
 var is_dialog_active = false
 var can_advance_line = false
 
-func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStream, aspeechEvent: String):
+func start_dialog(position: Vector2, lines: Array[String], characterSpeeking: String, aspeechEvent: String):
 	if is_dialog_active:
 		return
 		
 	dialog_lines = lines
 	text_box_position = position
-	sfx = speech_sfx
+	character = characterSpeeking
 	speechEvent = aspeechEvent
 	_show_text_box()
 	
@@ -31,10 +31,8 @@ func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStre
 func _show_text_box():
 	text_box = text_box_scene.instantiate()
 	text_box.finished_displaying.connect(_on_text_box_finished_displaying)
-	if (speechEvent == "Intro"):
-		text_box.self_modulate = Color(0,0,0,0)
 	text_box.global_position = text_box_position
-	text_box.display_text(dialog_lines[current_line_index],sfx)
+	text_box.display_text(dialog_lines[current_line_index],character)
 	can_advance_line = false
 	
 func _on_text_box_finished_displaying():

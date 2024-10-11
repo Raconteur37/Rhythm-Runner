@@ -2,7 +2,7 @@ extends MarginContainer
 
 @onready var timer = $LetterDisplayTimer
 @onready var label = $MarginContainer/Label
-@onready var audio_player = $AudioStreamPlayer
+@onready var audio_player 
 
 const MAX_WIDTH = 256
 
@@ -15,10 +15,11 @@ var punctuation_time = .2
 
 signal finished_displaying()
 
-func display_text(displayText: String, speech_sfx: AudioStream):
+func display_text(displayText: String, speechChar: String):
 	text = displayText
 	#label.text = displayText
-	audio_player.stream = speech_sfx
+	if (speechChar == "Conductor"):
+		audio_player = $ConductorVoice
 	
 	await resized
 	custom_minimum_size.x = min(size.x, MAX_WIDTH)

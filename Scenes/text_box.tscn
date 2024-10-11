@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5e36u7arkavr"]
+[gd_scene load_steps=5 format=3 uid="uid://c5e36u7arkavr"]
 
 [ext_resource type="Script" path="res://Scenes/text_box.gd" id="1_kprrw"]
 [ext_resource type="Texture2D" uid="uid://b25c4b05cku06" path="res://Sprites/text/conductorSpeech.png" id="2_wa7kw"]
 [ext_resource type="FontFile" uid="uid://d3fij3xtserhi" path="res://Sprites/text/upheavtt.ttf" id="3_v0j2h"]
+[ext_resource type="AudioStream" uid="uid://llir5crbfe2f" path="res://Sounds/conductorVoice.mp3" id="4_ckwji"]
 
 [node name="TextBox" type="MarginContainer"]
 top_level = true
@@ -46,5 +47,8 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ConductorVoice" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ckwji")
 
 [connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]
