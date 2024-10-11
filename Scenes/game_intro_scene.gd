@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	DialogManager.start_dialog($ConductorLocation.global_position,conductorLine1,speech_sound,"Intro")
-	print("made")
 	if (anim_name == "BackgroundAnimation"):
 		$"../AnimationPlayer".play("BackgroundAnimationReverse")
 	if (anim_name == "BackgroundAnimationReverse"):
