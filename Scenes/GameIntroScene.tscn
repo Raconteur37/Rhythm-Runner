@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://brsttakajuew4"]
+[gd_scene load_steps=10 format=3 uid="uid://brsttakajuew4"]
 
 [ext_resource type="Script" path="res://Scenes/game_intro_scene.gd" id="1_uov4t"]
 [ext_resource type="AudioStream" uid="uid://llir5crbfe2f" path="res://Sounds/conductorVoice.mp3" id="2_3yab4"]
+[ext_resource type="AudioStream" uid="uid://cev5lx3128pbu" path="res://Sounds/IntroScene.mp3" id="3_vkxbm"]
 
 [sub_resource type="Gradient" id="Gradient_c5do3"]
 colors = PackedColorArray(0.365296, 0.00168265, 0.732892, 1, 0.493545, 0.493546, 0.493546, 1)
@@ -98,5 +99,8 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_3yab4")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vkxbm")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
