@@ -65,6 +65,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			current_line_index = 0
 			if (speechEvent == "shop_intro"):
 				get_tree().root.get_child(2).find_child("ShopControl").startShop()
+			if (speechEvent == "Intro"):
+				get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
 			return
 		
 		_show_text_box()

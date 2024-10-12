@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://brsttakajuew4"]
+[gd_scene load_steps=12 format=3 uid="uid://brsttakajuew4"]
 
 [ext_resource type="Script" path="res://Scenes/game_intro_scene.gd" id="1_uov4t"]
 [ext_resource type="AudioStream" uid="uid://llir5crbfe2f" path="res://Sounds/conductorVoice.mp3" id="2_3yab4"]
 [ext_resource type="AudioStream" uid="uid://cev5lx3128pbu" path="res://Sounds/IntroScene.mp3" id="3_vkxbm"]
 
 [sub_resource type="Gradient" id="Gradient_c5do3"]
-colors = PackedColorArray(0.365296, 0.00168265, 0.732892, 1, 0.493545, 0.493546, 0.493546, 1)
+colors = PackedColorArray(0.365296, 0.00168265, 0.732892, 1, 0.136825, 0.136826, 0.136826, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ihtl4"]
 gradient = SubResource("Gradient_c5do3")
@@ -57,11 +57,57 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/HBoxContainer/TextureRect:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xc4np"]
+resource_name = "FadeIn"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/HBoxContainer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.247059)]
+}
+
+[sub_resource type="Animation" id="Animation_hta2y"]
+resource_name = "FadeOut"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/HBoxContainer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.247059), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ormi7"]
 _data = {
 "BackgroundAnimation": SubResource("Animation_bbw2k"),
 "BackgroundAnimationReverse": SubResource("Animation_pkqdp"),
+"FadeIn": SubResource("Animation_xc4np"),
+"FadeOut": SubResource("Animation_hta2y"),
 "RESET": SubResource("Animation_ciq1m")
 }
 
@@ -73,7 +119,7 @@ script = ExtResource("1_uov4t")
 [node name="ConductorLocation" type="Node2D" parent="CanvasLayer"]
 visibility_layer = 2
 z_index = 1
-position = Vector2(14, 327)
+position = Vector2(14, 412)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.443137)
@@ -86,7 +132,7 @@ grow_vertical = 2
 scale = Vector2(2.18392, 1.0048)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.262745)
+self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 layout_mode = 2
 texture = SubResource("GradientTexture2D_ihtl4")
@@ -104,3 +150,4 @@ stream = ExtResource("2_3yab4")
 stream = ExtResource("3_vkxbm")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="Music" to="CanvasLayer" method="_on_music_finished"]
