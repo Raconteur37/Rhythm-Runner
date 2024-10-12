@@ -2,7 +2,7 @@ extends MarginContainer
 
 @onready var timer = $LetterDisplayTimer
 @onready var label = $MarginContainer/Label
-@onready var audio_player 
+@onready var audio_player = $ConductorVoice
 
 const MAX_WIDTH = 256
 

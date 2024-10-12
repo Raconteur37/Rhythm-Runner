@@ -73,7 +73,7 @@ script = ExtResource("1_uov4t")
 [node name="ConductorLocation" type="Node2D" parent="CanvasLayer"]
 visibility_layer = 2
 z_index = 1
-position = Vector2(-410, -234)
+position = Vector2(14, 327)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0.443137)

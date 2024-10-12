@@ -33,6 +33,7 @@ func _show_text_box():
 	text_box.finished_displaying.connect(_on_text_box_finished_displaying)
 	text_box.global_position = text_box_position
 	text_box.display_text(dialog_lines[current_line_index],character)
+	get_parent().add_child(text_box)
 	can_advance_line = false
 	
 func _on_text_box_finished_displaying():
