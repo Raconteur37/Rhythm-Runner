@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5e36u7arkavr"]
+[gd_scene load_steps=6 format=3 uid="uid://c5e36u7arkavr"]
 
 [ext_resource type="Script" path="res://Scenes/text_box.gd" id="1_kprrw"]
 [ext_resource type="Texture2D" uid="uid://b25c4b05cku06" path="res://Sprites/text/conductorSpeech.png" id="2_wa7kw"]
 [ext_resource type="FontFile" uid="uid://d3fij3xtserhi" path="res://Sprites/text/upheavtt.ttf" id="3_v0j2h"]
 [ext_resource type="AudioStream" uid="uid://llir5crbfe2f" path="res://Sounds/conductorVoice.mp3" id="4_ckwji"]
+[ext_resource type="Texture2D" uid="uid://d3g3cjdkgsohd" path="res://Sprites/UI/ShopNTextDesignFinal.png" id="5_20dri"]
 
 [node name="TextBox" type="MarginContainer"]
 top_level = true
@@ -34,7 +35,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Label" type="Label" parent="MarginContainer"]
 visibility_layer = 2
-z_index = 1
+z_index = 5
 texture_filter = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -48,5 +49,12 @@ autostart = true
 
 [node name="ConductorVoice" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ckwji")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+position = Vector2(193, 86)
+scale = Vector2(1.54, 1.41528)
+texture = ExtResource("5_20dri")
 
 [connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

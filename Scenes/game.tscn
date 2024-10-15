@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=47 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -21,7 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://dlgf675g2gr03" path="res://Sounds/Floor1Shop1.mp3" id="17_ady4d"]
 [ext_resource type="Texture2D" uid="uid://bjpcjw7t0a16s" path="res://Sprites/Items/a-pixel-art-of-a-heavenly-shop-with-a-large-detail-I4MDm8f9Svm6NHipngmMaw-Mt0cssIZSx2kipg2apcMow.png" id="18_v78n4"]
 [ext_resource type="Texture2D" uid="uid://bit2kbn1kkemg" path="res://Sprites/Items/commonItemFrame.png" id="19_p2i7m"]
-[ext_resource type="Texture2D" uid="uid://d3g3cjdkgsohd" path="res://Sprites/UI/ShopNTextDesignFinal.png" id="20_njjql"]
 [ext_resource type="Texture2D" uid="uid://ya2yf85xfa0v" path="res://Sprites/Items/debugItemTexture32x32.png" id="20_yil22"]
 
 [sub_resource type="Animation" id="Animation_243vm"]
@@ -5087,21 +5086,6 @@ texture = ExtResource("16_n7mji")
 [node name="TextBoxPosition" type="Node2D" parent="ShopControl/CanvasLayer/HBoxContainer"]
 position = Vector2(24, -929)
 scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer"]
-z_index = 4
-texture_filter = 1
-position = Vector2(173, -679)
-scale = Vector2(1.28, 1)
-texture = ExtResource("20_njjql")
-
-[node name="Sprite2D2" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer"]
-z_index = 4
-texture_filter = 1
-position = Vector2(179, -837)
-rotation = 3.14159
-scale = Vector2(1.28, 1)
-texture = ExtResource("20_njjql")
 
 [node name="PlayerPosition" type="Node2D" parent="ShopControl/CanvasLayer"]
 position = Vector2(1009, 687)
