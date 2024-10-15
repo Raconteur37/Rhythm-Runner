@@ -1,8 +1,8 @@
 extends MarginContainer
 
-@onready var timer = $CanvasLayer/LetterDisplayTimer
-@onready var label = $CanvasLayer/MarginContainer/Label
-@onready var audio_player = $CanvasLayer/ConductorVoice
+@onready var timer = $LetterDisplayTimer
+@onready var label = $MarginContainer/Label
+@onready var audio_player = $ConductorVoice
 
 const MAX_WIDTH = 256
 
@@ -19,7 +19,7 @@ func display_text(displayText: String, speechChar: String):
 	text = displayText
 	#label.text = displayText
 	if (speechChar == "Conductor"):
-		audio_player = $CanvasLayer/ConductorVoice
+		audio_player = $ConductorVoice
 	
 	await resized
 	custom_minimum_size.x = min(size.x, MAX_WIDTH)
