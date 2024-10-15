@@ -5087,7 +5087,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("16_n7mji")
 
 [node name="TextBoxPosition" type="Node2D" parent="ShopControl/CanvasLayer/HBoxContainer"]
-position = Vector2(24, -929)
+position = Vector2(-1, -785)
 scale = Vector2(0.5, 0.5)
 
 [node name="PlayerPosition" type="Node2D" parent="ShopControl/CanvasLayer"]
@@ -5107,8 +5107,9 @@ size_flags_vertical = 8
 [node name="ShopBackground" type="Sprite2D" parent="ShopControl/CanvasLayer/HBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
-position = Vector2(196.5, 273.5)
-scale = Vector2(1.01758, 1.06836)
+texture_filter = 1
+position = Vector2(20, 274)
+scale = Vector2(1.24555, 1.06836)
 texture = ExtResource("18_v78n4")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ShopControl/CanvasLayer"]
