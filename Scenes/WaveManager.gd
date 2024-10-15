@@ -20,7 +20,7 @@ func fillEnemyMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
+				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1, "Bouncer" : 1}
 			2:
 				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1}
 			3:
@@ -55,9 +55,16 @@ func instanceEnemyType(enemyName : String):
 			enemiesAlive.append(enemy)
 			enemy.position = generateRandomObsticlePosition()
 			add_child(enemy)
+		"Bouncer":
+			var enemy = preload("res://Scenes/CharacterScenes/bouncer_enemy.tscn")
+			enemy = enemy.instantiate()
+			enemiesAlive.append(enemy)
+			enemy.position = generateRandomObsticlePosition()
+			add_child(enemy)
+
 
 func generateRandomObsticlePosition():
-	var aPosition = Vector2(randf_range(-20,1300),randf_range(85,500))
+	var aPosition = Vector2(randf_range(0,1700),randf_range(85,500))
 	return aPosition
 	
 func getClosestEnemyFromSprite(sprite : CharacterBody2D):

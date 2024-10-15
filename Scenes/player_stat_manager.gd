@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var popcornExplosionParticle = preload("res://Particles/pop-corn particle.tscn")
 
+var beatTime : float = 0
 var health : int = 3
 const baseDamage : float = 3
 var damage : float = baseDamage
@@ -76,6 +77,9 @@ func getShotNumber():
 func getShotActivationNumber():
 	return wandActivationShot
 	
+func getBeatTime():
+	return beatTime
+	
 func addShot():
 	shotNumber = shotNumber + 1
 	
@@ -92,7 +96,11 @@ func setPlayerImmune(immune):
 	isImmune = immune
 	
 func setHealth(healthChange : int):
-	health = healthChange	
+	health = healthChange
+	
+func setBeatTime(aBeatTime):
+	beatTime = aBeatTime
+	
 	
 func takeDamage():
 	health = health - 1

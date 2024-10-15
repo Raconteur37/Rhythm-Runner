@@ -8,6 +8,7 @@ var count : int = 0
 func _ready():
 	$BeatTimer.wait_time = float(60) / tempo
 	beatTime = float(60) / tempo
+	PlayerStatManager.setBeatTime(beatTime)
 	$ShopControl/CanvasLayer.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
