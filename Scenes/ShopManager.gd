@@ -13,6 +13,8 @@ var button3Pressed : bool = false
 
 var selectedItem : String
 
+var audioResume
+
 var currentItemsListed : Array[String] = []
 
 const introLines: Array[String] = [
@@ -214,6 +216,9 @@ func startShop():
 
 
 func closeShop():
+	$ShopMusic.stop()
+	$"../AudioStreamPlayer2D".play(audioResume)
+	$"../BeatTimer".start($"..".beatTime)
 	DialogManager.closeDialog()
 	DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,outroLines,"Conductor","")
 	await get_tree().create_timer(4).timeout

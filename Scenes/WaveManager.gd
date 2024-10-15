@@ -91,7 +91,10 @@ func _process(delta: float) -> void:
 	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave and !isInShop):
 		inWave = false
 		currentWave = currentWave + 1
-		$"../AudioStreamPlayer2D".pitch_scale = .7
+		$"../ShopControl".audioResume = int($"../AudioStreamPlayer2D".get_playback_position()) + $"../BeatTimer".wait_time
+		$"../BeatTimer".stop()
+		$"../AudioStreamPlayer2D".stop()
+		$"../ShopControl/ShopMusic".play()
 		$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 		$"../ShopControl/CanvasLayer".visible = true
 		$"../ShopAnimationPlayer".play("ShopAppear")

@@ -93,6 +93,9 @@ func setPlayerImmune(immune):
 	
 func setHealth(healthChange : int):
 	health = healthChange	
+	
+func takeDamage():
+	health = health - 1
 
 func onKill(enemy):
 	var randNum = randf_range(1,101)

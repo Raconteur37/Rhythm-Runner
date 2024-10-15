@@ -61,10 +61,15 @@ func wasHit():
 	hitAnimation = true
 	PlayerStatManager.setPlayerImmune(true)
 	$"../GameCamera".add_trauma(.8)
-	PlayerStatManager.setHealth(PlayerStatManager.getHealth() - 1)
-	if (PlayerStatManager.getHealth() == 0):
+	PlayerStatManager.takeDamage()
+	if (PlayerStatManager.getHealth() < 0):
 		print("game over")
-	
+	if (PlayerStatManager.getHealth() == 2):
+		$"../ControlPlayerUI/PlayerUI/HBoxContainer2/HealthPotion3".visible = false
+	if (PlayerStatManager.getHealth() == 1):
+		$"../ControlPlayerUI/PlayerUI/HBoxContainer2/HealthPotion2".visible = false
+	if (PlayerStatManager.getHealth() == 0):
+		$"../ControlPlayerUI/PlayerUI/HBoxContainer2/HealthPotion1".visible = false
 	$"../GameCamera".follow_node = $"."
 	$"../AnimationPlayer".play("PlayerDamage")
 	ap.play("drinkPotion")
