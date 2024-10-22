@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dklr41n432hrr"]
 
 [ext_resource type="Script" path="res://Scenes/CharacterScenes/menu.gd" id="1_mnoiq"]
-[ext_resource type="Texture2D" uid="uid://cl1pc3e6vpa3a" path="res://Scenes/main-menu-option (1).webp" id="2_gcl81"]
+[ext_resource type="Texture2D" uid="uid://djpm2d1w36sva" path="res://Scenes/New_Main_Menu.png" id="2_uiuhl"]
 [ext_resource type="FontFile" uid="uid://btgo1unhvbpcy" path="res://Assets/Pixel-Regular.ttf" id="3_w8dv8"]
 [ext_resource type="AudioStream" uid="uid://b0spukyvmaj1e" path="res://Sounds/RhythmRunnerMainMenu.mp3" id="4_jlrpg"]
 [ext_resource type="AudioStream" uid="uid://2ytsrkdpg3ad" path="res://Sounds/SelectStart.mp3" id="5_k0pv7"]
@@ -281,7 +281,7 @@ scale = Vector2(1.46541, 1.01031)
 self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("2_gcl81")
+texture = ExtResource("2_uiuhl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
