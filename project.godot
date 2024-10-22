@@ -36,6 +36,7 @@ project/assembly_name="Rhythm Runner"
 "Enemy Projectiles"=""
 "Player Projectiles"=""
 Enemy=""
+Boss=""
 
 [input]
 

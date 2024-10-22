@@ -88,7 +88,8 @@ func startWave(floor : int, wave : int):
 	
 	
 func _ready():
-	startWave(currentFloor,currentWave)
+	#startWave(currentFloor,currentWave)
+	startBossOne()
 
 func _on_enemy_spawn_timer_timeout():
 	if (enemyMap.size() > 0):
@@ -110,3 +111,19 @@ func _process(delta: float) -> void:
 
 func _on_audio_stream_player_2d_finished() -> void:
 	$"../AudioStreamPlayer2D".play()
+	
+
+const bossOneLines: Array[String] = [
+	"You've gotten his attention.",
+	"The lobby manager is coming..."
+]
+
+func startBossOne():
+	$"../AudioStreamPlayer2D".stop()
+	DialogManager.start_dialog($"../Player".global_position,bossOneLines,"Conductor","bossOne")
+	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if (anim_name == "BossOneAppear"):
+		pass

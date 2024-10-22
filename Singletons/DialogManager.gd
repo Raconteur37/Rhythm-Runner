@@ -32,8 +32,6 @@ func _show_text_box():
 	text_box = text_box_scene.instantiate()
 	text_box.finished_displaying.connect(_on_text_box_finished_displaying)
 	text_box.global_position = text_box_position
-	print(text_box_position)
-	print(text_box.position)
 	text_box.display_text(dialog_lines[current_line_index],character)
 	get_parent().add_child(text_box)
 	can_advance_line = false
@@ -69,6 +67,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_tree().root.get_child(2).find_child("ShopControl").startShop()
 			if (speechEvent == "Intro"):
 				get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
+			if (speechEvent == "BossOne"):
+				get_tree().root.get_child(2).find_child("AnimationPlayer").play("BossOneAppear")
 			return
 		
 		_show_text_box()

@@ -5,9 +5,10 @@ const conductorLine1: Array[String] = [
 	"Melody.....",
 	"Wake up.",
 	"The world has gone silent.",
-	"You are the most capable..",
-	"Please...",
-	"Bring us back into harmony."
+	"Mute has turned his record label into a dangerous tower.",
+	"Hes going to ruin music forever if you don't stop him.",
+	"I will be with you.",
+	"Go..."
 ]
 
 var startedDialog = false

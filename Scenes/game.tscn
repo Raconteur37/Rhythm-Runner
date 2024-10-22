@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=49 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b8m1f1ir3alx8" path="res://Assets/MAIN_SHEETS/7_Art_16x16 copy.png" id="6_vovs4"]
 [ext_resource type="Texture2D" uid="uid://pv56p3m4ikcl" path="res://Assets/MAIN_SHEETS/2_LivingRoom_16x16.png" id="7_taeym"]
 [ext_resource type="Texture2D" uid="uid://dyw4tf14f5a04" path="res://Assets/MAIN_SHEETS/6_Music_and_sport_16x16.png" id="8_yqdo6"]
+[ext_resource type="PackedScene" uid="uid://djf40pfvher4g" path="res://Scenes/BossScenes/FloorOneBoss.tscn" id="15_ff1ft"]
 [ext_resource type="Script" path="res://Scenes/ShopManager.gd" id="16_4i1km"]
 [ext_resource type="Texture2D" uid="uid://ddijlvoucnunc" path="res://Sprites/Character/The Conductor.png" id="16_n7mji"]
 [ext_resource type="AudioStream" uid="uid://ckv7x3q4ltks3" path="res://Sounds/CommonItemPick.mp3" id="17_1ldqq"]
@@ -68,9 +69,86 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlPlayerUI/PlayerUI/Control/CinematicTop:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ControlPlayerUI/PlayerUI/Control2/CinematicBottom:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FloorOneBoss:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yo1u7"]
+resource_name = "BossOneAppear"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlPlayerUI/PlayerUI/Control/CinematicTop:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlPlayerUI/PlayerUI/Control2/CinematicBottom:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FloorOneBoss:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.03333, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_krb1u"]
 _data = {
+"BossOneAppear": SubResource("Animation_yo1u7"),
 "PlayerDamage": SubResource("Animation_243vm"),
 "PlayerDamageDone": SubResource("Animation_a4ssr"),
 "RESET": SubResource("Animation_2511j")
@@ -4898,7 +4976,6 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_ju45m")
 
 [node name="Control" type="Control" parent="ControlPlayerUI/PlayerUI"]
-visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -4909,6 +4986,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="CinematicTop" type="TextureRect" parent="ControlPlayerUI/PlayerUI/Control"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = -1537.0
 offset_top = -2.0
@@ -4918,7 +4996,6 @@ scale = Vector2(52.2707, 2.26996)
 texture = SubResource("GradientTexture2D_ebwb5")
 
 [node name="Control2" type="Control" parent="ControlPlayerUI/PlayerUI"]
-visible = false
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -4932,6 +5009,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="CinematicBottom" type="TextureRect" parent="ControlPlayerUI/PlayerUI/Control2"]
+self_modulate = Color(1, 1, 1, 0)
 visibility_layer = 2
 layout_mode = 0
 offset_left = -1561.0
@@ -4997,6 +5075,10 @@ autoplay = true
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
 position = Vector2(1007, 616)
 scale = Vector2(1, 1)
+
+[node name="FloorOneBoss" parent="." instance=ExtResource("15_ff1ft")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1789, 471)
 
 [node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2(983, 450)
@@ -5164,6 +5246,7 @@ position = Vector2(24.4825, 23.9197)
 scale = Vector2(0.033, 0.032)
 texture = ExtResource("20_yil22")
 
+[connection signal="animation_finished" from="AnimationPlayer" to="WaveManager" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="timeout" from="BeatTimer" to="." method="_on_beat_t_imer_timeout"]
