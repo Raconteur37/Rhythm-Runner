@@ -20,6 +20,8 @@ func display_text(displayText: String, speechChar: String):
 	#label.text = displayText
 	if (speechChar == "Conductor"):
 		audio_player = $CanvasLayer/ConductorVoice
+	if (speechChar == "BossOne"):
+		audio_player = $CanvasLayer/BossVoice
 	
 	await resized
 	custom_minimum_size.x = min(size.x, MAX_WIDTH)

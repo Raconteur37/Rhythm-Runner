@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6xja88rrb6i8"]
+[gd_scene load_steps=27 format=3 uid="uid://b6xja88rrb6i8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a1knw"]
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="1_vdcin"]
+[ext_resource type="Shader" uid="uid://yjwcuns2he2i" path="res://Shaders/HitFlash.tres" id="2_amlmx"]
 [ext_resource type="Texture2D" uid="uid://de4v6eqj131or" path="res://Sprites/Character/MelodyV2-Sheet.png" id="3_cvq6y"]
 [ext_resource type="Texture2D" uid="uid://7yqjnam6hthl" path="res://Sprites/Character/WalkSideMelody-Sheet-Sheet.png" id="4_vvyt2"]
 [ext_resource type="Texture2D" uid="uid://fs6u3t1qgtix" path="res://Sprites/Character/WalkLeftMelody.png" id="5_u88k5"]
@@ -10,6 +11,12 @@
 [ext_resource type="Script" path="res://Scenes/player_stat_manager.gd" id="8_7smb8"]
 [ext_resource type="Texture2D" uid="uid://cfur4sqfuqub8" path="res://Sprites/Character/DrinkingPotionMelodySheet.png" id="8_h3e8w"]
 [ext_resource type="Texture2D" uid="uid://eidsckm25ufg" path="res://Sprites/Character/DashMelody.png" id="9_14lcg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ssh2"]
+resource_local_to_scene = true
+shader = ExtResource("2_amlmx")
+shader_parameter/Enabled = false
+shader_parameter/Flash = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqeid"]
 radius = 16.0
@@ -417,13 +424,52 @@ _data = {
 "walking_up": SubResource("Animation_f6y68")
 }
 
+[sub_resource type="Animation" id="Animation_sdx3b"]
+resource_name = "HitFlash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_c8bkd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6i7bx"]
+_data = {
+"HitFlash": SubResource("Animation_sdx3b"),
+"RESET": SubResource("Animation_c8bkd")
+}
+
 [node name="Player" type="CharacterBody2D"]
+texture_filter = 1
 position = Vector2(525, 305)
 scale = Vector2(0.5, 0.5)
 collision_mask = 6
 script = ExtResource("1_a1knw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2ssh2")
 position = Vector2(0, -2)
 scale = Vector2(0.493, 0.5)
 texture = ExtResource("1_vdcin")
@@ -452,6 +498,12 @@ script = ExtResource("8_7smb8")
 
 [node name="DashCooldown" type="Timer" parent="."]
 
+[node name="HitFlashAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6i7bx")
+}
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="animation_finished" from="HitFlashAnimation" to="." method="_on_hit_flash_animation_animation_finished"]

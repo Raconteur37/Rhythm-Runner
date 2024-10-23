@@ -11,6 +11,10 @@ const conductorLine1: Array[String] = [
 	"Go..."
 ]
 
+const conductorLineTest: Array[String] = [
+	"test"
+]
+
 var startedDialog = false
 
 func _ready() -> void:
@@ -24,7 +28,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "FadeOut"):
 		get_tree().change_scene_to_file("res://Scenes/game.tscn")
 	if not startedDialog:
-		DialogManager.start_dialog($ConductorLocation.global_position,conductorLine1,"Conductor","Intro")
+		DialogManager.start_dialog($ConductorLocation.global_position,conductorLineTest,"Conductor","Intro")
 		startedDialog = true
 	if (anim_name == "BackgroundAnimation"):
 		$"../AnimationPlayer".play("BackgroundAnimationReverse")

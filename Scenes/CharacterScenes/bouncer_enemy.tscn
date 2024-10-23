@@ -1,7 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0q6kx1seg7t3"]
+[gd_scene load_steps=13 format=3 uid="uid://c0q6kx1seg7t3"]
 
 [ext_resource type="Texture2D" uid="uid://chgvgrrxgbsk1" path="res://Sprites/Enemies/BoomBox_Enemy-Sheet.png" id="1_fh41d"]
 [ext_resource type="Script" path="res://Scenes/CharacterScenes/bouncer_enemy.gd" id="1_ov63h"]
+[ext_resource type="Shader" uid="uid://yjwcuns2he2i" path="res://Shaders/HitFlash.tres" id="2_m8xqs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnbk"]
+resource_local_to_scene = true
+shader = ExtResource("2_m8xqs")
+shader_parameter/Enabled = false
+shader_parameter/Flash = Color(0.577008, 0.577008, 0.577008, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqu8v"]
 atlas = ExtResource("1_fh41d")
@@ -32,6 +39,43 @@ radius = 9.0
 radius = 12.3333
 height = 28.0
 
+[sub_resource type="Animation" id="Animation_yrtk3"]
+resource_name = "HitFlash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1evkk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3fby"]
+_data = {
+"HitFlash": SubResource("Animation_yrtk3"),
+"RESET": SubResource("Animation_1evkk")
+}
+
 [node name="BouncerEnemy" type="CharacterBody2D" groups=["Enemy"]]
 position = Vector2(136, 96)
 scale = Vector2(3, 3)
@@ -41,6 +85,7 @@ script = ExtResource("1_ov63h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_ygnbk")
 sprite_frames = SubResource("SpriteFrames_41vj7")
 autoplay = "default"
 frame = 1
@@ -60,6 +105,11 @@ shape = SubResource("CapsuleShape2D_s3kru")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r3fby")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

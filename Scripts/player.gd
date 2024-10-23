@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var hitFlashAnimation = $HitFlashAnimation
 
 var isDashing = false
 var canDash = true
@@ -81,6 +82,7 @@ func wasHit():
 	$"../GameCamera".follow_node = $"../GameCamera"
 	$"../GameCamera".position = Vector2(983,450)
 	$"../AudioStreamPlayer2D".volume_db = 1
+	hitFlashAnimation.play("HitFlash")
 	await get_tree().create_timer(2).timeout
 	PlayerStatManager.setPlayerImmune(false)
 	
@@ -139,3 +141,9 @@ func _on_dash_cooldown_timeout() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	pass # Replace with function body.
+
+
+func _on_hit_flash_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "HitFlash":
+		if PlayerStatManager.isPlayerImmune():
+			hitFlashAnimation.play("HitFlash")

@@ -6,6 +6,7 @@ point_count = 2
 
 [node name="BeatParticle" type="CPUParticles2D"]
 visibility_layer = 4
+z_index = 3
 position = Vector2(74, 84)
 emitting = false
 amount = 500

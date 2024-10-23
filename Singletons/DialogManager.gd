@@ -19,7 +19,7 @@ var can_advance_line = false
 func start_dialog(position: Vector2, lines: Array[String], characterSpeeking: String, aspeechEvent: String):
 	if is_dialog_active:
 		return
-		
+	
 	dialog_lines = lines
 	text_box_position = position
 	character = characterSpeeking
@@ -69,6 +69,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
 			if (speechEvent == "BossOne"):
 				get_tree().root.get_child(2).find_child("AnimationPlayer").play("BossOneAppear")
+			if (speechEvent == "BossOneStart"):
+				get_tree().root.get_child(2).find_child("WaveManager").startBossOneFight()
 			return
 		
 		_show_text_box()

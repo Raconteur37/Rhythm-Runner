@@ -10,6 +10,7 @@ const SPEED = 500
 
 func takeDamage(damageAmount):
 	health = health - damageAmount
+	$AnimationPlayer.play("HitFlash")
 	if health <= 0:
 		onDeath()
 

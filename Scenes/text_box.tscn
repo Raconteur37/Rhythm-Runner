@@ -58,4 +58,8 @@ autostart = true
 [node name="ConductorVoice" type="AudioStreamPlayer2D" parent="CanvasLayer"]
 stream = ExtResource("4_ckwji")
 
+[node name="BossVoice" type="AudioStreamPlayer2D" parent="CanvasLayer"]
+stream = ExtResource("4_ckwji")
+pitch_scale = 0.34
+
 [connection signal="timeout" from="CanvasLayer/LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

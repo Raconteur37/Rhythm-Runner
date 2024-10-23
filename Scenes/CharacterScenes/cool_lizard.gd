@@ -10,6 +10,7 @@ func _physics_process(delta: float) -> void:
 	
 func takeDamage(damageAmount):
 	health = health - damageAmount
+	$AnimationPlayer.play("HitFlash")
 	if health <= 0:
 		onDeath()
 	

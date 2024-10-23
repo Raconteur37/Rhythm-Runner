@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=50 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
@@ -23,6 +23,47 @@
 [ext_resource type="Texture2D" uid="uid://bjpcjw7t0a16s" path="res://Sprites/Items/a-pixel-art-of-a-heavenly-shop-with-a-large-detail-I4MDm8f9Svm6NHipngmMaw-Mt0cssIZSx2kipg2apcMow.png" id="18_v78n4"]
 [ext_resource type="Texture2D" uid="uid://bit2kbn1kkemg" path="res://Sprites/Items/commonItemFrame.png" id="19_p2i7m"]
 [ext_resource type="Texture2D" uid="uid://ya2yf85xfa0v" path="res://Sprites/Items/debugItemTexture32x32.png" id="20_yil22"]
+[ext_resource type="AudioStream" uid="uid://d1b2o6bql766n" path="res://Sounds/BossFight1.mp3" id="24_17ei8"]
+
+[sub_resource type="Animation" id="Animation_yo1u7"]
+resource_name = "BossOneAppear"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlPlayerUI/PlayerUI/Control/CinematicTop:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlPlayerUI/PlayerUI/Control2/CinematicBottom:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FloorOneBoss:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.03333, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_243vm"]
 resource_name = "PlayerDamage"
@@ -104,46 +145,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_yo1u7"]
-resource_name = "BossOneAppear"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ControlPlayerUI/PlayerUI/Control/CinematicTop:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ControlPlayerUI/PlayerUI/Control2/CinematicBottom:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FloorOneBoss:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2.03333, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_krb1u"]
@@ -4932,6 +4933,7 @@ size_flags_vertical = 8
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer"]
+z_index = 1
 texture_filter = 1
 position = Vector2(98, 0)
 scale = Vector2(0.5, 0.5)
@@ -4958,18 +4960,21 @@ size_flags_vertical = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthPotion1" type="Sprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer2"]
+z_index = 1
 texture_filter = 1
 position = Vector2(6, -44)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_ju45m")
 
 [node name="HealthPotion2" type="Sprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer2"]
+z_index = 1
 texture_filter = 1
 position = Vector2(-141, -44)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_ju45m")
 
 [node name="HealthPotion3" type="Sprite2D" parent="ControlPlayerUI/PlayerUI/HBoxContainer2"]
+z_index = 1
 texture_filter = 1
 position = Vector2(-284, -44)
 scale = Vector2(0.3, 0.3)
@@ -5245,6 +5250,9 @@ texture_filter = 1
 position = Vector2(24.4825, 23.9197)
 scale = Vector2(0.033, 0.032)
 texture = ExtResource("20_yil22")
+
+[node name="BossOneSong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_17ei8")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="WaveManager" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
