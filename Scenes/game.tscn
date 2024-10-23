@@ -5078,7 +5078,7 @@ stream = ExtResource("5_1kjxo")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
-position = Vector2(8, 654)
+position = Vector2(1027, 597)
 scale = Vector2(1, 1)
 
 [node name="FloorOneBoss" parent="." instance=ExtResource("15_ff1ft")]

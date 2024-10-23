@@ -10,7 +10,7 @@ var beats : int = 0
 
 var attacks = ["Shooting","Beam","Summon"]
 
-var screenPositions = [Vector2(0,500),Vector2(0,200),Vector2(0,650)]
+var screenPositions = [Vector2(0,500),Vector2(0,200),Vector2(0,800)]
 
 func setCombat(val):
 	inCombat = val
