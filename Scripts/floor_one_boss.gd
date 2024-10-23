@@ -37,6 +37,7 @@ func beamAttack():
 	beamAttackItem.global_position = screenPositions.pick_random()
 	get_parent().add_child(beamAttackItem)
 	await get_tree().create_timer(1.5).timeout
+	$BeamShoot.play()
 	beamAttackItem.get_child(0).emitting = true
 	await get_tree().create_timer(1.5).timeout
 	beamAttackItem.queue_free()
@@ -62,12 +63,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_beat_timer_timeout() -> void:
 	if (inCombat and attackReady):
 		if (shooting):
+			$BossShoot.stop()
+			$BossShoot.play()
 			var proj = projectile.instantiate()
 			proj.position = position
 			proj.linear_velocity = ($"../Player".global_position - position).normalized()  * 1500
 			get_parent().add_child(proj)
 		beats = beats + 1
 		if summoning:
+			$Summoning.stop()
+			$Summoning.play()
 			$"../WaveManager".instanceEnemyType(enemies.pick_random())
 		if beats == 4:
 			if summoning:
@@ -81,5 +86,6 @@ func _on_beat_timer_timeout() -> void:
 			if (attack == "Summoning"):
 				summoning = true
 			if (attack == "Beam"):
+				$BeamAppear.play()
 				beamAttack()
 			beats = 0
