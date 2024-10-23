@@ -4,6 +4,7 @@ extends Camera2D
 @export var max_offset : Vector2 = Vector2(100,75)
 @export var max_roll : float = .01 
 @export var follow_node : Node2D
+var lenientTime : float
 
 @onready var waveManager = $"../WaveManager"
 @onready var beatExplosionScene = preload("res://Particles/beat_particle.tscn")
@@ -12,7 +13,11 @@ var trauma_power : int = 2
 
 func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE:
-		if $"../BeatTimer".time_left <= (float($"..".beatTime)) * .5:
+		if PlayerStatManager.getBeatTime() < .35:
+			lenientTime = .85
+		else:
+			lenientTime = .5
+		if $"../BeatTimer".time_left <= (float($"..".beatTime)) * lenientTime:
 			$"../Player".attack()
 			var beatExplosion = beatExplosionScene.instantiate()
 			beatExplosion.global_position = $"../ControlPlayerUI/PlayerUI/HBoxContainer/BassParticlePosition".global_position

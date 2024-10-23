@@ -90,8 +90,8 @@ func startWave(floor : int, wave : int):
 	
 	
 func _ready():
-	startWave(currentFloor,currentWave)
-	#startBossOne()
+	#startWave(currentFloor,currentWave)
+	startBossOne()
 
 func _on_enemy_spawn_timer_timeout():
 	if (enemyMap.size() > 0):
@@ -133,7 +133,7 @@ func startBossOne():
 func startBossOneFight():
 	$"../BossOneSong".stop()
 	$"../BossOneSong".play()
-	$"../FloorOneBoss".inCombat = true
+	$"../FloorOneBoss".setCombat(true)
 	bossFight = true
 	inWave = true
 	enemiesAlive.append($"../FloorOneBoss")

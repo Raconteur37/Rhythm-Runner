@@ -5078,7 +5078,7 @@ stream = ExtResource("5_1kjxo")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_s8f1b")]
-position = Vector2(1007, 616)
+position = Vector2(8, 654)
 scale = Vector2(1, 1)
 
 [node name="FloorOneBoss" parent="." instance=ExtResource("15_ff1ft")]
@@ -5258,6 +5258,7 @@ stream = ExtResource("24_17ei8")
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="timeout" from="BeatTimer" to="." method="_on_beat_t_imer_timeout"]
+[connection signal="timeout" from="BeatTimer" to="FloorOneBoss" method="_on_beat_timer_timeout"]
 [connection signal="timeout" from="BeatTimer" to="GameCamera" method="_on_beat_timer_timeout"]
 [connection signal="animation_finished" from="ShopAnimationPlayer" to="ShopControl" method="_on_shop_animation_player_animation_finished"]
 [connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item1" to="ShopControl" method="_on_item_1_pressed"]
