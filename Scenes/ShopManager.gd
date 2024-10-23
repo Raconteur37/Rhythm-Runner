@@ -18,7 +18,6 @@ var audioResume
 var currentItemsListed : Array[String] = []
 
 const introLines: Array[String] = [
-	"Hello my child.",
 	"I offer you a choice of items...please choose one."
 ]
 const outroLines: Array[String] = [
