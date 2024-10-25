@@ -217,7 +217,8 @@ func startShop():
 func closeShop():
 	$ShopMusic.stop()
 	$"../AudioStreamPlayer2D".play(audioResume)
-	$"../BeatTimer".start($"..".beatTime)
+	print($"../AudioStreamPlayer2D".get_playback_position())
+	$"../BeatTimer".start(0)
 	DialogManager.closeDialog()
 	DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,outroLines,"Conductor","")
 	await get_tree().create_timer(4).timeout

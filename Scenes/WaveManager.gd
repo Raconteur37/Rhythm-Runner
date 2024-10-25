@@ -22,7 +22,7 @@ func fillEnemyMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 2}
+				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1, "Bouncer" : 1}
 			2:
 				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 5}
 			3:
@@ -101,7 +101,9 @@ func _process(delta: float) -> void:
 	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave and !isInShop and !bossFight):
 		inWave = false
 		currentWave = currentWave + 1
-		$"../ShopControl".audioResume = int($"../AudioStreamPlayer2D".get_playback_position()) + $"../BeatTimer".wait_time
+		#print(int($"../AudioStreamPlayer2D".get_playback_position()) + $"../BeatTimer".wait_time)
+		$"../ShopControl".audioResume = int($"../AudioStreamPlayer2D".get_playback_position()) #+ $"../BeatTimer".wait_time
+		print(int($"../AudioStreamPlayer2D".get_playback_position()))
 		$"../BeatTimer".stop()
 		$"../AudioStreamPlayer2D".stop()
 		$"../ShopControl/ShopMusic".play()
