@@ -121,6 +121,7 @@ func tutorialStepFour():
 	$HBoxContainer3/StepFourLabel.show()
 	$"../TutorialSounds".stream = load("res://Sounds/Tutorial/Tutorial Song.mp3")
 	$"../TutorialSounds".play()
+	$"../Player".setBeatTimer(125)
 	var enemy = dummy.instantiate()
 	enemies.append(enemy)
 	enemy.position = Vector2(1755,365)
