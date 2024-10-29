@@ -23,11 +23,11 @@ func fillEnemyMap(floor : int, wave : int):
 			1:
 				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1, "Bouncer" : 1}
 			2:
-				#enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 5}
+				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 5}
+			3:
 				bossFight = true
 				startBossOne()
-			3:
-				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15, "Bouncer" : 10}
+				#enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15, "Bouncer" : 10}
 			4:
 				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 20}
 			5:

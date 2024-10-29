@@ -254,7 +254,7 @@ label_settings = ExtResource("3_ybffu")
 [node name="StepFourLabel" type="Label" parent="CanvasLayer/HBoxContainer3"]
 visible = false
 layout_mode = 2
-text = "Defeat all the enemies"
+text = "DESTROY ALL THE DUMMIES"
 label_settings = ExtResource("3_ybffu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

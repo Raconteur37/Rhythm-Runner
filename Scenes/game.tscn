@@ -5258,6 +5258,8 @@ offset_bottom = 200.0
 scale = Vector2(19.5657, 10.8543)
 text = "HIT"
 
+[node name="BossTimer" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="WaveManager" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
 [connection signal="finished" from="Music" to="." method="_on_audio_stream_player_2d_finished"]

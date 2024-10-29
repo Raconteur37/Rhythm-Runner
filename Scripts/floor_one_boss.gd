@@ -7,7 +7,7 @@ const lizzard = preload("res://Scenes/CharacterScenes/cool_lizard.tscn")
 var enemies = ["Bouncer","CoolLizard"]
 var beamAttackItem
 
-var health : int = 1000
+var health : int = 500
 var inCombat : bool = false
 var beamReady : bool = false
 var shooting : bool = false
