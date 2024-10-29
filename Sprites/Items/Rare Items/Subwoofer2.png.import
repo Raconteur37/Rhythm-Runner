@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1iegamrlpkfc"
-path="res://.godot/imported/Subwoofer.png-e650b6545a381db728d936b5f1f44dad.ctex"
+uid="uid://hed5aiyapu0u"
+path="res://.godot/imported/Subwoofer2.png-cd56251f57ad87e222023a3fd0679ef4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/Rare Items/Subwoofer.png"
-dest_files=["res://.godot/imported/Subwoofer.png-e650b6545a381db728d936b5f1f44dad.ctex"]
+source_file="res://Sprites/Items/Rare Items/Subwoofer2.png"
+dest_files=["res://.godot/imported/Subwoofer2.png-cd56251f57ad87e222023a3fd0679ef4.ctex"]
 
 [params]
 
