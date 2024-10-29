@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cucmxarkaa0p4"
-path="res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"
+uid="uid://cws80723wng3w"
+path="res://.godot/imported/MysticFeather2.png-3ae7b03d1d93fa8c5e549b4b2097576d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/CommonItems/MysticFeather.png"
-dest_files=["res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"]
+source_file="res://Sprites/Items/CommonItems/MysticFeather2.png"
+dest_files=["res://.godot/imported/MysticFeather2.png-3ae7b03d1d93fa8c5e549b4b2097576d.ctex"]
 
 [params]
 

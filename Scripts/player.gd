@@ -29,9 +29,10 @@ func setBeatTimer(tempo):
 	$PlayerBeatTimer.stop()
 	beatTime = float(60) / tempo
 	$PlayerBeatTimer.wait_time = beatTime
+	PlayerStatManager.setBeatTime(beatTime)
 	
 	if beatTime < .4:
-		lenientTime = beatTime * .2
+		lenientTime = beatTime * .5
 	else:
 		lenientTime = beatTime * .3
 		
@@ -106,13 +107,13 @@ func wasHit():
 	$"../AnimationPlayer".play("PlayerDamage")
 	ap.play("drinkPotion")
 	$"../AnimationPlayer/DownSound".play()
-	$"../AudioStreamPlayer2D".volume_db = -80
+	$"../Music".volume_db = -80
 	await get_tree().create_timer(3).timeout
 	hitAnimation = false
 	$"../AnimationPlayer".play("PlayerDamageDone")
 	$"../GameCamera".follow_node = $"../GameCamera"
 	$"../GameCamera".position = Vector2(983,450)
-	$"../AudioStreamPlayer2D".volume_db = 1
+	$"../Music".volume_db = 1
 	hitFlashAnimation.play("HitFlash")
 	await get_tree().create_timer(2).timeout
 	PlayerStatManager.setPlayerImmune(false)
@@ -120,11 +121,15 @@ func wasHit():
 func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE and tutorialShoot:
 		var currentTime = $PlayerBeatTimer.time_left
-		print(currentTime)
-		if lowerBound <= currentTime and currentTime <= upperBound:
+		#print(currentTime)
+		if lowerBound >= currentTime or currentTime >= upperBound:
 			canShoot = true
 		else:
 			canShoot = false
+		#if lowerBound <= currentTime and currentTime <= upperBound: #Bluetooth
+		#	canShoot = true
+		#else:
+		#	canShoot = false
 		if canShoot and PlayerStatManager.getInWave():
 			attack()
 			var beatExplosion = beatExplosionScene.instantiate()

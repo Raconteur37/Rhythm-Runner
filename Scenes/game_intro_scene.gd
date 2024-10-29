@@ -15,7 +15,6 @@ var stepTwoCheck = false
 var stepThreeCompleted = false
 var stepThreeCheck = false
 
-var stepFourCompleted = false
 var stepFourCheck = false
 
 var enemies = []
@@ -28,6 +27,7 @@ const conductorLine1: Array[String] = [
 	"The world has gone silent from Mute",
 	"His record was leaked and now he wants revenge",
 	"You need to go into the tower and defeat him",
+	"But...",
 	"Since you've been away for a while...",
 	"Let's go over some basics before you head in there."
 ]
@@ -50,11 +50,20 @@ const tutorialLineThree: Array[String] = [
 
 const tutorialLineFour: Array[String] = [
 	"Nice! You aren't tone deaf.",
-	"Now im going to summon some dummies",
+	"Now im going to summon some dummies.",
 	"Press space on beat to defeat them.",
 	"Keep in mind you target the closest enemy to you."
 ]
 
+
+const tutorialLineFive: Array[String] = [
+	"Well done Melody",
+	"Now head into the tower.",
+	"There are 5 floors you'll need to push through.",
+	"At the end of each floor will be a boss",
+	"But do not worry...I'll be with you throughout your journey.",
+	"Goodluck."
+]
 
 const test: Array[String] = [
 	"balls"
@@ -110,6 +119,8 @@ func tutorialStepFour():
 	DialogManager.start_dialog($ConductorLocation.global_position,tutorialLineFour,"Conductor","")
 	await get_tree().create_timer(10).timeout
 	$HBoxContainer3/StepFourLabel.show()
+	$"../TutorialSounds".stream = load("res://Sounds/Tutorial/Tutorial Song.mp3")
+	$"../TutorialSounds".play()
 	var enemy = dummy.instantiate()
 	enemies.append(enemy)
 	enemy.position = Vector2(1755,365)
@@ -121,14 +132,14 @@ func tutorialStepFour():
 	stepFourCheck = true
 	
 func finalStep():
-	pass
+	DialogManager.start_dialog($ConductorLocation.global_position,tutorialLineFive,"Conductor","TutorialEnd")
 	
 func _process(delta: float) -> void:
 	
-	if $"../Player".canShoot:
-		$"../ShootLabel".show()
-	else:
-		$"../ShootLabel".hide()
+	#if $"../Player".canShoot:
+	#	$"../ShootLabel".show()
+	#else:
+	#	$"../ShootLabel".hide()
 	
 	if (stepOneCheck):
 		$HBoxContainer3/StepOneLabel.show()
@@ -159,7 +170,11 @@ func _process(delta: float) -> void:
 	if stepFourCheck:
 		if enemies.size() == 0:
 			stepFourCheck = false
+			$HBoxContainer3/StepFourLabel.label_settings = load("res://Labels/CompletedLabel.tres")
+			$"../CorrectSound".play()
+			await get_tree().create_timer(2).timeout
 			finalStep()
+			$HBoxContainer3/StepFourLabel.hide()
 	
 	if stepOneCompleted:
 		stepOneCompleted = false
@@ -188,14 +203,13 @@ func _process(delta: float) -> void:
 		$HBoxContainer3/StepThreeLabel.hide()
 		tutorialStepFour()
 		
-		
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "FadeIn"):
 		$"../AnimationPlayer".play("BackgroundAnimation")
 	if (anim_name == "FadeOut"):
 		get_tree().change_scene_to_file("res://Scenes/game.tscn")
 	if not startedDialog:
-		DialogManager.start_dialog($ConductorLocation.global_position,test,"Conductor","Intro")
+		DialogManager.start_dialog($ConductorLocation.global_position,conductorLine1,"Conductor","Intro")
 		startedDialog = true
 	if (anim_name == "BackgroundAnimation"):
 		$"../AnimationPlayer".play("BackgroundAnimationReverse")

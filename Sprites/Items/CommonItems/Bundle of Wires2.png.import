@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cucmxarkaa0p4"
-path="res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"
+uid="uid://d1t80i6gkb8e2"
+path="res://.godot/imported/Bundle of Wires2.png-6db3e01bc22ba3d15e8a91356ab67304.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/CommonItems/MysticFeather.png"
-dest_files=["res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"]
+source_file="res://Sprites/Items/CommonItems/Bundle of Wires2.png"
+dest_files=["res://.godot/imported/Bundle of Wires2.png-6db3e01bc22ba3d15e8a91356ab67304.ctex"]
 
 [params]
 

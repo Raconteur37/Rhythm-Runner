@@ -74,7 +74,6 @@ shape = SubResource("CapsuleShape2D_lar77")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="BeamAppear" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_2cftc")
@@ -88,5 +87,9 @@ stream = ExtResource("5_by7xi")
 [node name="Summoning" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_tyvry")
 
+[node name="BeatTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="CollisionShape2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="BeatTimer" to="." method="_on_beat_timer_timeout"]

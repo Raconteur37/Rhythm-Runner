@@ -13,7 +13,7 @@ func _ready():
 	randomize()
 
 func _process(delta: float) -> void:
-	if (waveManager.inWave):
+	if (PlayerStatManager.getInWave()):
 		if follow_node:
 			global_position = follow_node.global_position
 			

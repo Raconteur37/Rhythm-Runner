@@ -22,8 +22,12 @@ var screenPositions = [Vector2(0,500),Vector2(0,200),Vector2(0,800)]
 func setCombat(val):
 	inCombat = val
 
+func setBossBeatTime():
+	$BeatTimer.wait_time = PlayerStatManager.getBeatTime()
+	$AttackTimer.start(3)
+
 func _ready() -> void:
-	$AttackTimer.wait_time = PlayerStatManager.getBeatTime()
+	$AttackTimer.wait_time = 8
 
 func subtractHealth(dmg : float):
 	if health - dmg <= 0:
@@ -51,7 +55,7 @@ func _on_attack_timer_timeout() -> void:
 		attackReady = false
 	else:
 		attackReady = true
-		
+	$AttackTimer.start()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -67,7 +71,7 @@ func _on_beat_timer_timeout() -> void:
 			$BossShoot.play()
 			var proj = projectile.instantiate()
 			proj.position = position
-			proj.linear_velocity = ($"../Player".global_position - position).normalized()  * 1500
+			proj.linear_velocity = ($"../Player".global_position - position).normalized()  * 1000
 			get_parent().add_child(proj)
 		beats = beats + 1
 		if summoning:

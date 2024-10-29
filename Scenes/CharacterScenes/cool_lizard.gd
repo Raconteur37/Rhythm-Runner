@@ -13,7 +13,6 @@ func takeDamage(damageAmount):
 	$AnimationPlayer.play("HitFlash")
 	if health <= 0:
 		onDeath()
-	
 
 func onDeath():
 	if (not isDead):
@@ -21,8 +20,6 @@ func onDeath():
 		PlayerStatManager.onKill($".")
 		isDead = true
 		queue_free()
-		
-
 
 func _on_attack_timer_timeout() -> void:
 	var proj = projectile.instantiate()

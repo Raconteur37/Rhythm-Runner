@@ -4,6 +4,7 @@ extends Node2D
 
 var canHit : bool = false
 var inWave : bool = false
+var beatTime : float
 
 var health : int = 3
 const baseDamage : float = 3
@@ -84,6 +85,12 @@ func getCanHit():
 	
 func getInWave():
 	return inWave
+	
+func getBeatTime():
+	return beatTime
+
+func setBeatTime(val):
+	beatTime = val
 
 func addShot():
 	shotNumber = shotNumber + 1

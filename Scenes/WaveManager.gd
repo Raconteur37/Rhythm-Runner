@@ -23,12 +23,15 @@ func fillEnemyMap(floor : int, wave : int):
 			1:
 				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1, "Bouncer" : 1}
 			2:
-				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 5}
+				#enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 5}
+				bossFight = true
+				startBossOne()
 			3:
 				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15, "Bouncer" : 10}
 			4:
 				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 20}
 			5:
+				bossFight = true
 				startBossOne()
 func spawnEnemiesFromMap(amount : int):
 	for n in range(amount):
@@ -88,11 +91,13 @@ func startWave(floor : int, wave : int):
 	$EnemySpawnTimer.wait_time = spawnTime
 	
 	
+	
 func _ready():
 	$"../Player".tutorial = false
 	$"../Player".tutorialShoot = true
 	startWave(currentFloor,currentWave)
 	$"../Player".setBeatTimer(128)
+	$"../Music".play()
 	#startBossOne()
 
 func _on_enemy_spawn_timer_timeout():
@@ -104,9 +109,7 @@ func _process(delta: float) -> void:
 		PlayerStatManager.setInWave(false)
 		currentWave = currentWave + 1
 		#print(int($"../AudioStreamPlayer2D".get_playback_position()) + $"../BeatTimer".wait_time)
-		$"../ShopControl".audioResume = int($"../Music".get_playback_position()) #+ $"../BeatTimer".wait_time
-		print(int($"../Music".get_playback_position()))
-		$"../Music".stop()
+		$"../Music".volume_db = -200
 		$"../ShopControl/ShopMusic".play()
 		$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 		$"../ShopControl/CanvasLayer".visible = true
@@ -143,7 +146,8 @@ func startBossOneFight():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "BossOneAppear"):
 		# Change Tempo
-		PlayerStatManager.setBeatTime(float(60) / 175)
+		$"../Player".setBeatTimer(175)
+		$"../FloorOneBoss".setBossBeatTime()
 		$"../BossOneSong".stream = load("res://Sounds/BossOne/BossOnePreFight.mp3")
 		$"../BossOneSong".play()
 		DialogManager.start_dialog($"../Player".global_position,bossSpeaking,"BossOne","BossOneStart")
