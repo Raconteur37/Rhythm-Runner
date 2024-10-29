@@ -4,8 +4,8 @@
 
 [resource]
 font = ExtResource("1_s3ryt")
-font_size = 100
-font_color = Color(0.848158, 0.389428, 1, 1)
+font_size = 50
+font_color = Color(0.710049, 0.510823, 0.965215, 1)
 outline_size = 50
-outline_color = Color(0.705347, 0.917536, 1, 1)
+outline_color = Color(0.316264, 0.202267, 0.313251, 1)
 shadow_color = Color(0, 0, 0, 1)
