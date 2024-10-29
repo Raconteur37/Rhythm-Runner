@@ -1,8 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://brsttakajuew4"]
+[gd_scene load_steps=16 format=3 uid="uid://brsttakajuew4"]
 
 [ext_resource type="Script" path="res://Scenes/game_intro_scene.gd" id="1_uov4t"]
 [ext_resource type="AudioStream" uid="uid://llir5crbfe2f" path="res://Sounds/conductorVoice.mp3" id="2_3yab4"]
+[ext_resource type="Texture2D" uid="uid://ddijlvoucnunc" path="res://Sprites/Character/The Conductor.png" id="2_ysn47"]
 [ext_resource type="AudioStream" uid="uid://cev5lx3128pbu" path="res://Sounds/IntroScene.mp3" id="3_vkxbm"]
+[ext_resource type="LabelSettings" uid="uid://dlh4pjyehjfvf" path="res://Labels/UncompletedLabel.tres" id="3_ybffu"]
+[ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="5_akgg6"]
+[ext_resource type="AudioStream" uid="uid://dpp3ocrtia1sr" path="res://Sounds/Tutorial/tutorialCorrect.mp3" id="6_v245x"]
 
 [sub_resource type="Gradient" id="Gradient_c5do3"]
 colors = PackedColorArray(0.365296, 0.00168265, 0.732892, 1, 0.136825, 0.136826, 0.136826, 1)
@@ -58,6 +62,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.247059)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/HBoxContainer2/TextureRect:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_hta2y"]
 resource_name = "FadeOut"
@@ -101,6 +117,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/HBoxContainer2/TextureRect:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ormi7"]
 _data = {
@@ -139,6 +167,60 @@ layout_mode = 2
 texture = SubResource("GradientTexture2D_ihtl4")
 expand_mode = 2
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -702.0
+offset_right = 704.0
+offset_bottom = 706.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer2"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_ysn47")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1336.0
+offset_top = 22.0
+offset_right = -24.0
+offset_bottom = 122.0
+grow_horizontal = 0
+
+[node name="StepOneLabel" type="Label" parent="CanvasLayer/HBoxContainer3"]
+visible = false
+texture_filter = 3
+texture_repeat = 2
+layout_mode = 2
+text = "Use WASD to move"
+label_settings = ExtResource("3_ybffu")
+horizontal_alignment = 1
+
+[node name="StepTwoLabel" type="Label" parent="CanvasLayer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+text = "PRESS SHIFT TO DASH"
+label_settings = ExtResource("3_ybffu")
+
+[node name="StepThreeLabel" type="Label" parent="CanvasLayer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+text = "PRESS SPACE ON BEAT
+0/10 BEATS HIT"
+label_settings = ExtResource("3_ybffu")
+
+[node name="StepFourLabel" type="Label" parent="CanvasLayer/HBoxContainer3"]
+visible = false
+layout_mode = 2
+text = "Defeat all the enemies"
+label_settings = ExtResource("3_ybffu")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ormi7")
@@ -150,5 +232,24 @@ stream = ExtResource("2_3yab4")
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_vkxbm")
 
+[node name="Player" parent="." instance=ExtResource("5_akgg6")]
+position = Vector2(998, 505)
+
+[node name="CorrectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_v245x")
+pitch_scale = 1.5
+
+[node name="TutorialSounds" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ShootLabel" type="Label" parent="."]
+visible = false
+offset_left = 1475.0
+offset_top = 770.0
+offset_right = 1883.0
+offset_bottom = 870.0
+text = "SHOOT"
+label_settings = ExtResource("3_ybffu")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="CanvasLayer" method="_on_animation_player_animation_finished"]
 [connection signal="finished" from="Music" to="CanvasLayer" method="_on_music_finished"]
+[connection signal="finished" from="TutorialSounds" to="CanvasLayer" method="_on_tutorial_sounds_finished"]

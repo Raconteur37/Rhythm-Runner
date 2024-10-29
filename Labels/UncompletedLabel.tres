@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dlh4pjyehjfvf"]
+
+[ext_resource type="FontFile" uid="uid://btgo1unhvbpcy" path="res://Assets/Pixel-Regular.ttf" id="1_s3ryt"]
+
+[resource]
+font = ExtResource("1_s3ryt")
+font_size = 100
+font_color = Color(0.848158, 0.389428, 1, 1)
+outline_size = 50
+outline_color = Color(0.705347, 0.917536, 1, 1)
+shadow_color = Color(0, 0, 0, 1)

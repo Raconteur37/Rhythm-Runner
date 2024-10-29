@@ -4,19 +4,50 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var hitFlashAnimation = $HitFlashAnimation
 
+var tutorial = false
+var tutorialShoot = false
+
+@export var tempo : float = 0
+var beatTime : float
+var count : int = 0
+var lenientTime 
+var canShoot : bool = false
+var lowerBound : float
+var upperBound : float
+
 var isDashing = false
 var canDash = true
 
 @onready var main = get_tree().get_root()
-@onready var waveManager = $"../WaveManager"
 @onready var projectile = preload("res://Scenes/Projectiles/bass_bullet.tscn")
+@onready var beatExplosionScene = preload("res://Particles/beat_particle.tscn")
 
 var immune : bool
 var hitAnimation = false
 
+func setBeatTimer(tempo):
+	$PlayerBeatTimer.stop()
+	beatTime = float(60) / tempo
+	$PlayerBeatTimer.wait_time = beatTime
+	
+	if beatTime < .4:
+		lenientTime = beatTime * .2
+	else:
+		lenientTime = beatTime * .3
+		
+	upperBound = beatTime - lenientTime
+	lowerBound = lenientTime
+	
+	print(str(lowerBound) + "-" + str(upperBound))
+	
+	$PlayerBeatTimer.start(0)
+
+func _ready() -> void:
+	pass
+
 func _physics_process(delta): #Movement
 	
-	if waveManager.inWave and !hitAnimation:
+	if PlayerStatManager.getInWave() and !hitAnimation or tutorial:
 		var input_vector = Vector2.ZERO
 		input_vector.x = Input.get_action_strength("ui_d") - Input.get_action_strength("ui_a")
 		input_vector.y = Input.get_action_strength("ui_s") - Input.get_action_strength("ui_w")
@@ -86,40 +117,70 @@ func wasHit():
 	await get_tree().create_timer(2).timeout
 	PlayerStatManager.setPlayerImmune(false)
 	
+func _input(event: InputEvent):
+	if event is InputEventKey and event.is_pressed() and event.keycode == KEY_SPACE and tutorialShoot:
+		var currentTime = $PlayerBeatTimer.time_left
+		print(currentTime)
+		if lowerBound <= currentTime and currentTime <= upperBound:
+			canShoot = true
+		else:
+			canShoot = false
+		if canShoot and PlayerStatManager.getInWave():
+			attack()
+			var beatExplosion = beatExplosionScene.instantiate()
+			beatExplosion.global_position = $"../ControlPlayerUI/PlayerUI/HBoxContainer/BassParticlePosition".global_position
+			beatExplosion.emitting = true
+			beatExplosion.one_shot = true
+			get_tree().current_scene.find_child("PlayerUI").add_child(beatExplosion)
+			#print(beatExplosion.emitting)
+		elif canShoot and tutorial:
+			attack()
+		else:
+			if PlayerStatManager.getInWave():
+				$"../GameCamera".add_trauma(.5)
+		#print($"../BeatTimer".time_left)
 
 func attack(): # Attack function...will change with multiple weapons
 	
-	#print($"../WaveManager".enemiesAlive)
-	
-	var waveManager = $"../WaveManager"
-	
-	if (waveManager.enemiesAlive.size() > 0):
-		if (PlayerStatManager.hasWand()):
-			PlayerStatManager.addShot()
-			print(PlayerStatManager.getShotNumber())
-			if (PlayerStatManager.getShotNumber() == PlayerStatManager.getShotActivationNumber()):
-				PlayerStatManager.resetShot()
-				for enemy in waveManager.enemiesAlive:
-					if is_instance_valid(enemy):
-						var proj = projectile.instantiate()
-						proj.position = position
-						proj.linear_velocity = (enemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
-						proj.name = "PlayerBassBullet"
-						get_parent().add_child(proj)
-		var closestEnemy = waveManager.getClosestEnemyFromSprite($".")
-		#proj.apply_impulse((closestEnemy.position - position).normalized(),Vector2(bulletSpeed,0))
+	if tutorial:
+		$"../CanvasLayer".beats = $"../CanvasLayer".beats + 1
+		var closestEnemy = $"../CanvasLayer".getClosestEnemyFromSprite($".")
+			#proj.apply_impulse((closestEnemy.position - position).normalized(),Vector2(bulletSpeed,0))
 		if is_instance_valid(closestEnemy):
 			var proj = projectile.instantiate()
 			proj.position = position
 			proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
 			get_parent().add_child(proj)
-			var randNum = randf_range(1,101)
-			if (randNum <= PlayerStatManager.getExtraProjectileChance()):
-				proj = projectile.instantiate()
+		
+	else:
+		var waveManager = $"../WaveManager"
+		
+		if (waveManager.enemiesAlive.size() > 0):
+			if (PlayerStatManager.hasWand()):
+				PlayerStatManager.addShot()
+				print(PlayerStatManager.getShotNumber())
+				if (PlayerStatManager.getShotNumber() == PlayerStatManager.getShotActivationNumber()):
+					PlayerStatManager.resetShot()
+					for enemy in waveManager.enemiesAlive:
+						if is_instance_valid(enemy):
+							var proj = projectile.instantiate()
+							proj.position = position
+							proj.linear_velocity = (enemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
+							proj.name = "PlayerBassBullet"
+							get_parent().add_child(proj)
+			var closestEnemy = waveManager.getClosestEnemyFromSprite($".")
+			#proj.apply_impulse((closestEnemy.position - position).normalized(),Vector2(bulletSpeed,0))
+			if is_instance_valid(closestEnemy):
+				var proj = projectile.instantiate()
 				proj.position = position
 				proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
 				get_parent().add_child(proj)
-
+				var randNum = randf_range(1,101)
+				if (randNum <= PlayerStatManager.getExtraProjectileChance()):
+					proj = projectile.instantiate()
+					proj.position = position
+					proj.linear_velocity = (closestEnemy.position - position).normalized() * PlayerStatManager.getProjectileSpeed()
+					get_parent().add_child(proj)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var randNum = randf_range(1,101)

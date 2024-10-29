@@ -4897,7 +4897,6 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lhvhd")
-tempo = 128.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -5071,7 +5070,7 @@ script = ExtResource("2_g4bhq")
 wait_time = 2.5
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(529, 36)
 scale = Vector2(3.12, 3.18809)
 stream = ExtResource("13_6l5cb")
@@ -5116,8 +5115,6 @@ position = Vector2(1000, -544)
 rotation = -3.1376
 scale = Vector2(4.65007, 1.27105)
 shape = SubResource("WorldBoundaryShape2D_r1pfq")
-
-[node name="BeatTimer" type="Timer" parent="."]
 
 [node name="ShopAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -5263,10 +5260,7 @@ text = "HIT"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="WaveManager" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
-[connection signal="timeout" from="BeatTimer" to="." method="_on_beat_t_imer_timeout"]
-[connection signal="timeout" from="BeatTimer" to="FloorOneBoss" method="_on_beat_timer_timeout"]
-[connection signal="timeout" from="BeatTimer" to="GameCamera" method="_on_beat_timer_timeout"]
+[connection signal="finished" from="Music" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="animation_finished" from="ShopAnimationPlayer" to="ShopControl" method="_on_shop_animation_player_animation_finished"]
 [connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item1" to="ShopControl" method="_on_item_1_pressed"]
 [connection signal="pressed" from="ShopControl/CanvasLayer/HBoxContainer3/Item2" to="ShopControl" method="_on_item_2_pressed"]

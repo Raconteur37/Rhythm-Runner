@@ -503,7 +503,10 @@ libraries = {
 "": SubResource("AnimationLibrary_6i7bx")
 }
 
+[node name="PlayerBeatTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="animation_finished" from="HitFlashAnimation" to="." method="_on_hit_flash_animation_animation_finished"]
+[connection signal="timeout" from="PlayerBeatTimer" to="." method="_on_player_beat_timer_timeout"]

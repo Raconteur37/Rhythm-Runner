@@ -10,7 +10,6 @@ var isInShop : bool = false
 var bossFight : bool = false
 
 var enemyMap = {}
-var inWave = false # Test if the player is fighting in a wave
 var enemiesAlive = []
 
 func removeAliveEnemyFromList(enemy : CharacterBody2D):
@@ -85,36 +84,34 @@ func getClosestEnemyFromSprite(sprite : CharacterBody2D):
 		
 func startWave(floor : int, wave : int):
 	fillEnemyMap(floor,wave)
-	inWave = true
+	PlayerStatManager.setInWave(true)
 	$EnemySpawnTimer.wait_time = spawnTime
 	
 	
 func _ready():
+	$"../Player".tutorial = false
+	$"../Player".tutorialShoot = true
 	startWave(currentFloor,currentWave)
-
+	$"../Player".setBeatTimer(128)
+	#startBossOne()
 
 func _on_enemy_spawn_timer_timeout():
 	if (enemyMap.size() > 0):
 		spawnEnemiesFromMap(1)
 		
 func _process(delta: float) -> void:
-	if (enemyMap.is_empty() and enemiesAlive.is_empty() and inWave and !isInShop and !bossFight):
-		inWave = false
+	if (enemyMap.is_empty() and enemiesAlive.is_empty() and PlayerStatManager.getInWave() and !isInShop and !bossFight):
+		PlayerStatManager.setInWave(false)
 		currentWave = currentWave + 1
 		#print(int($"../AudioStreamPlayer2D".get_playback_position()) + $"../BeatTimer".wait_time)
-		$"../ShopControl".audioResume = int($"../AudioStreamPlayer2D".get_playback_position()) #+ $"../BeatTimer".wait_time
-		print(int($"../AudioStreamPlayer2D".get_playback_position()))
-		$"../BeatTimer".stop()
-		$"../AudioStreamPlayer2D".stop()
+		$"../ShopControl".audioResume = int($"../Music".get_playback_position()) #+ $"../BeatTimer".wait_time
+		print(int($"../Music".get_playback_position()))
+		$"../Music".stop()
 		$"../ShopControl/ShopMusic".play()
 		$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 		$"../ShopControl/CanvasLayer".visible = true
 		$"../ShopAnimationPlayer".play("ShopAppear")
 		$"../ShopAnimationPlayer".emit_signal("animation_finished")
-
-
-func _on_audio_stream_player_2d_finished() -> void:
-	$"../AudioStreamPlayer2D".play()
 	
 
 const bossOneLines: Array[String] = [
@@ -129,7 +126,7 @@ const bossSpeaking: Array[String] = [
 ]
 
 func startBossOne():
-	$"../AudioStreamPlayer2D".stop()
+	$"../Music".stop()
 	$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 	DialogManager.start_dialog($"../Player".global_position,bossOneLines,"Conductor","BossOne")
 	
@@ -139,7 +136,7 @@ func startBossOneFight():
 	$"../BossOneSong".play()
 	$"../FloorOneBoss".setCombat(true)
 	bossFight = true
-	inWave = true
+	PlayerStatManager.setInWave(true)
 	PlayerStatManager.setPlayerImmune(false)
 	enemiesAlive.append($"../FloorOneBoss")
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://us4rj66t5att"
+path="res://.godot/imported/Tutorial Phase 2.mp3-ac7e654f7e36d81f6312f7365da75175.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Tutorial/Tutorial Phase 2.mp3"
+dest_files=["res://.godot/imported/Tutorial Phase 2.mp3-ac7e654f7e36d81f6312f7365da75175.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

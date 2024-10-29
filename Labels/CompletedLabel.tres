@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://baagqa4riyuc6"]
+
+[ext_resource type="FontFile" uid="uid://btgo1unhvbpcy" path="res://Assets/Pixel-Regular.ttf" id="1_tis71"]
+
+[resource]
+font = ExtResource("1_tis71")
+font_size = 100
+font_color = Color(2.31028e-06, 0.744911, 0.451708, 1)
+outline_size = 50
+outline_color = Color(0.305287, 1, 0.915119, 1)
+shadow_color = Color(0, 0, 0, 1)

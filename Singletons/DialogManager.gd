@@ -66,7 +66,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if (speechEvent == "shop_intro"):
 				get_tree().root.get_child(2).find_child("ShopControl").startShop()
 			if (speechEvent == "Intro"):
-				get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
+				get_tree().root.get_child(2).find_child("CanvasLayer").tutorialStepOne()
+				#get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
 			if (speechEvent == "BossOne"):
 				get_tree().root.get_child(2).find_child("AnimationPlayer").play("BossOneAppear")
 			if (speechEvent == "BossOneStart"):

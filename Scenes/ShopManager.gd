@@ -216,9 +216,8 @@ func startShop():
 
 func closeShop():
 	$ShopMusic.stop()
-	$"../AudioStreamPlayer2D".play(audioResume)
-	print($"../AudioStreamPlayer2D".get_playback_position())
-	$"../BeatTimer".start(0)
+	$"../Music".play(audioResume)
+	$"../Player".setBeatTimer(128)
 	DialogManager.closeDialog()
 	DialogManager.start_dialog($CanvasLayer/HBoxContainer/TextBoxPosition.global_position,outroLines,"Conductor","")
 	await get_tree().create_timer(4).timeout
@@ -226,7 +225,7 @@ func closeShop():
 	$"../ShopAnimationPlayer".play("ShopDisappear")
 	$"../WaveManager".isInShop = false
 	await get_tree().create_timer(2).timeout
-	$"../AudioStreamPlayer2D".pitch_scale = 1
+	$"../Music".pitch_scale = 1
 	$"../WaveManager".startWave($"../WaveManager".currentFloor,$"../WaveManager".currentWave)
 	
 
