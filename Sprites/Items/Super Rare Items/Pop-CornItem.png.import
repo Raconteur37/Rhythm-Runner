@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkym5nyqjw6yw"
-path="res://.godot/imported/Medkit.png-74da1c7f4ca5a5362effc51031a6bf16.ctex"
+uid="uid://dbwgq576bxvxt"
+path="res://.godot/imported/Pop-CornItem.png-0fc4033ad8c3e316297509079ad3d30b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/Rare Items/Medkit.png"
-dest_files=["res://.godot/imported/Medkit.png-74da1c7f4ca5a5362effc51031a6bf16.ctex"]
+source_file="res://Sprites/Items/Super Rare Items/Pop-CornItem.png"
+dest_files=["res://.godot/imported/Pop-CornItem.png-0fc4033ad8c3e316297509079ad3d30b.ctex"]
 
 [params]
 

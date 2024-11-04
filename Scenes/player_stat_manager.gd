@@ -34,6 +34,7 @@ var isImmune : bool = false
 var playerStatsString = ""
 
 var items = {}
+var itemDisplayList = []
 
 func getPlayerPosition():
 	return global_position
@@ -153,31 +154,45 @@ func toString():
 
 func applyItem(item : String):
 	
-	if items.find_key(item):
+	get_tree().root.get_child(2).find_child("ItemContainer").show()
+	
+	if items.has(item):
 		items[item] = items.get(item) + 1
 	else:
 		items[item] = 1
 		
 	var amount : int
-
+	
+	var itemDisplayTexture
+	var itemDisplayAmount
+	
 	match item:
 		
 		"Mystic Feather":
 			amount = items.get(item)
 			speed = baseSpeed + (amount * 100)
+			itemDisplayTexture = load("res://Sprites/Items/CommonItems/MysticFeatherItem.png")
+			itemDisplayAmount = amount
 		"Shiny Cape":
 			amount = items.get(item)
 			dashSpeed = baseDashSpeed + (amount * 300)
+			itemDisplayTexture = load("res://Sprites/Items/CommonItems/ShinyCapeItem.png")
+			itemDisplayAmount = amount
 		"Bundle of Wires":
 			amount = items.get(item)
 			projectileSpeed = baseProjectileSpeed + (amount * 200)
-			
+			itemDisplayTexture = load("res://Sprites/Items/CommonItems/BundleofWiresItem.png")
+			itemDisplayAmount = amount
 		"Subwoofer":
 			amount = items.get(item)
 			extraProjectileChance = (amount * 6)
+			itemDisplayTexture = load("res://Sprites/Items/Rare Items/SubwooferItem.png")
+			itemDisplayAmount = amount
 		"Metal Sheet":
 			amount = items.get(item)
 			blockChance = (amount * 7)
+			itemDisplayTexture = load("res://Sprites/Items/Rare Items/MetalSheetItem.png")
+			itemDisplayAmount = amount
 		"Medkit":
 			amount = items.get(item)
 			healthPotionGainChance = (amount * .5)
@@ -186,11 +201,30 @@ func applyItem(item : String):
 			amount = items.get(item)
 			popcornChance = (amount * 10)
 			popcornDamage = popcornBaseDamage + (amount * 5)
+			itemDisplayTexture = load("res://Sprites/Items/Super Rare Items/Pop-CornItem.png")
+			itemDisplayAmount = amount
 			
 		"Conductor's Baton":
 			amount = items.get(item)
 			hasWandVar = true
 			wandActivationShot = baseWandActivationShot - (amount * 1)
+			itemDisplayTexture = load("res://Sprites/Items/Unseen Items/Conductor'sBatonItem.png")
+			itemDisplayAmount = amount
+			
+	print(items)
+	var found : bool = false
+	for x in itemDisplayList:
+		if x.name.contains(item):
+			found = true
+			x.changeLabelName(itemDisplayAmount)
+	if not found:
+		var displayItemScene = preload("res://Scenes/Item/texture_rect.tscn")
+		var itemDisplay = displayItemScene.instantiate()
+		itemDisplay.changeLabelName(itemDisplayAmount)
+		itemDisplay.changeSceneName(item)
+		itemDisplay.texture = itemDisplayTexture
+		itemDisplayList.append(itemDisplay)
+		get_tree().root.get_child(2).find_child("ItemContainer").add_child(itemDisplay)
 
 func popcornExplosion(location : Vector2):
 	var explosionParticle = popcornExplosionParticle.instantiate()
@@ -200,3 +234,5 @@ func popcornExplosion(location : Vector2):
 	get_tree().root.add_child(explosionParticle)
 	await get_tree().create_timer(1).timeout
 	explosionParticle.queue_free()
+	
+	

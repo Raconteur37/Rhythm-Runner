@@ -23,13 +23,11 @@ func fillEnemyMap(floor : int, wave : int):
 			1:
 				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1, "Bouncer" : 1}
 			2:
-				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 5, "Bouncer" : 5}
+				enemyMap = {"AcidPuddle" : 1}
 			3:
-				bossFight = true
-				startBossOne()
-				#enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15, "Bouncer" : 10}
+				enemyMap = {"AcidPuddle" : 1}
 			4:
-				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 20}
+				enemyMap = {"AcidPuddle" : 1}
 			5:
 				bossFight = true
 				startBossOne()
@@ -130,6 +128,7 @@ const bossSpeaking: Array[String] = [
 
 func startBossOne():
 	$"../Music".stop()
+	$"../FloorOneBoss".show()
 	$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 	DialogManager.start_dialog($"../Player".global_position,bossOneLines,"Conductor","BossOne")
 	

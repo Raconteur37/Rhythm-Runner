@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dar2anmbkdmpu"]
+
+[ext_resource type="Script" path="res://texture_rect.gd" id="1_b7yw6"]
+[ext_resource type="Texture2D" uid="uid://d15d6dyq0umu5" path="res://Sprites/Items/CommonItems/MysticFeatherItem.png" id="1_wrcpo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cs4me"]
+font_size = 13
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(10, 10)
+texture = ExtResource("1_wrcpo")
+script = ExtResource("1_b7yw6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 21.0
+offset_right = 62.0
+offset_bottom = 44.0
+text = "x0"
+label_settings = SubResource("LabelSettings_cs4me")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkym5nyqjw6yw"
-path="res://.godot/imported/Medkit2.png-afe2152f119d63b7863658bd9511a7ab.ctex"
+uid="uid://co03di1oc337"
+path="res://.godot/imported/ShinyCapeItem.png-e1fc26d01a5fce83e3939f5aefbf9f23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/Rare Items/Medkit2.png"
-dest_files=["res://.godot/imported/Medkit2.png-afe2152f119d63b7863658bd9511a7ab.ctex"]
+source_file="res://Sprites/Items/CommonItems/ShinyCapeItem.png"
+dest_files=["res://.godot/imported/ShinyCapeItem.png-e1fc26d01a5fce83e3939f5aefbf9f23.ctex"]
 
 [params]
 
