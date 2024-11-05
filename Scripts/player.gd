@@ -113,7 +113,8 @@ func wasHit():
 	$"../AnimationPlayer".play("PlayerDamageDone")
 	$"../GameCamera".follow_node = $"../GameCamera"
 	$"../GameCamera".position = Vector2(983,450)
-	$"../Music".volume_db = 1
+	if not PlayerStatManager.getIsInBossFight():
+		$"../Music".volume_db = 1
 	hitFlashAnimation.play("HitFlash")
 	await get_tree().create_timer(2).timeout
 	PlayerStatManager.setPlayerImmune(false)

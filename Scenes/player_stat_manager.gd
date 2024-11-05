@@ -5,6 +5,7 @@ extends Node2D
 var canHit : bool = false
 var inWave : bool = false
 var beatTime : float
+var isInBossFight : bool = false
 
 var health : int = 3
 const baseDamage : float = 3
@@ -35,6 +36,9 @@ var playerStatsString = ""
 
 var items = {}
 var itemDisplayList = []
+
+func getIsInBossFight():
+	return isInBossFight
 
 func getPlayerPosition():
 	return global_position
@@ -104,6 +108,9 @@ func isPlayerImmune():
 	
 func hasWand():
 	return hasWandVar
+	
+func setIsInBossFight(val):
+	isInBossFight = val
 	
 func setPlayerImmune(immune):
 	isImmune = immune

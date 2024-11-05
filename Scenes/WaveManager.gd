@@ -84,9 +84,8 @@ func getClosestEnemyFromSprite(sprite : CharacterBody2D):
 		return enemy
 		
 func startWave(floor : int, wave : int):
-	fillEnemyMap(floor,wave)
-	PlayerStatManager.setInWave(true)
-	$EnemySpawnTimer.wait_time = spawnTime
+	$"../ControlPlayerUI/PlayerUI/WaveNumberLabel".text = str(currentWave)
+	$"../AnimationPlayer".play("WaveNotification")
 	
 	
 	
@@ -94,8 +93,6 @@ func _ready():
 	$"../Player".tutorial = false
 	$"../Player".tutorialShoot = true
 	startWave(currentFloor,currentWave)
-	$"../Player".setBeatTimer(128)
-	$"../Music".play()
 	#startBossOne()
 
 func _on_enemy_spawn_timer_timeout():
@@ -128,6 +125,7 @@ const bossSpeaking: Array[String] = [
 
 func startBossOne():
 	$"../Music".stop()
+	PlayerStatManager.setIsInBossFight(true)
 	$"../FloorOneBoss".show()
 	$"../Player".global_position = $"../ShopControl/CanvasLayer/PlayerPosition".global_position
 	DialogManager.start_dialog($"../Player".global_position,bossOneLines,"Conductor","BossOne")
@@ -150,3 +148,14 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		$"../BossOneSong".stream = load("res://Sounds/BossOne/BossOnePreFight.mp3")
 		$"../BossOneSong".play()
 		DialogManager.start_dialog($"../Player".global_position,bossSpeaking,"BossOne","BossOneStart")
+	if (anim_name == "WaveNotification"):
+		#$"../AnimationPlayer".play("WaveNotification")
+		fillEnemyMap(currentFloor,currentWave)
+		PlayerStatManager.setInWave(true)
+		$EnemySpawnTimer.wait_time = spawnTime
+		$"../Player".setBeatTimer(128)
+		if not $"../Music".playing:
+			$"../Music".play()
+		else:
+			if not bossFight:
+				$"../Music".volume_db = 0

@@ -1,12 +1,14 @@
-[gd_scene load_steps=50 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=55 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
 [ext_resource type="Script" path="res://Scenes/WaveManager.gd" id="2_g4bhq"]
 [ext_resource type="Texture2D" uid="uid://dpypatt8wqf44" path="res://Sprites/UI/Bass-Sheet.png" id="2_mhqds"]
 [ext_resource type="AudioStream" uid="uid://cprgbb8jqlrtl" path="res://Sounds/HITTING_3.mp3" id="2_tptel"]
+[ext_resource type="Shader" path="res://Shaders/gameTint.gdshader" id="3_c4rqj"]
 [ext_resource type="Texture2D" uid="uid://cfj5v2b2x2w3e" path="res://Assets/MAIN_SHEETS/Room_Builder_Walls_16x16.png" id="3_uhywb"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_xxvlx"]
+[ext_resource type="LabelSettings" uid="uid://brkpsyj8ytcr8" path="res://Labels/waveLabel.tres" id="4_f3exv"]
 [ext_resource type="Texture2D" uid="uid://c50ftikshcj54" path="res://Sprites/UI/HeartJuice.png" id="4_ju45m"]
 [ext_resource type="Texture2D" uid="uid://cs543o45seskr" path="res://Assets/MAIN_SHEETS/Room_Builder_Floors_16x16.png" id="4_p8b2v"]
 [ext_resource type="Texture2D" uid="uid://b63y72i68ssr2" path="res://Assets/MAIN_SHEETS/1_Generic_16x16.png" id="5_dv7jf"]
@@ -24,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bit2kbn1kkemg" path="res://Sprites/Items/commonItemFrame.png" id="19_p2i7m"]
 [ext_resource type="Texture2D" uid="uid://ya2yf85xfa0v" path="res://Sprites/Items/debugItemTexture32x32.png" id="20_yil22"]
 [ext_resource type="AudioStream" uid="uid://d1b2o6bql766n" path="res://Sounds/BossFight1.mp3" id="24_17ei8"]
+[ext_resource type="AudioStream" uid="uid://kb5qpa3d4qim" path="res://Sounds/WaveStart.mp3" id="27_nm4es"]
 
 [sub_resource type="Animation" id="Animation_yo1u7"]
 resource_name = "BossOneAppear"
@@ -146,14 +149,192 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ControlPlayerUI/PlayerUI/WaveLabel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ControlPlayerUI/PlayerUI/WaveNumberLabel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ControlPlayerUI/PlayerUI/WaveNumberLabel:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ControlPlayerUI/PlayerUI/WaveLabel:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ControlPlayerUI/PlayerUI/WaveLabel:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(637, -194)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ControlPlayerUI/PlayerUI/WaveNumberLabel:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("WaveSound:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dbgc4"]
+resource_name = "WaveNotification"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlPlayerUI/PlayerUI/WaveLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlPlayerUI/PlayerUI/WaveNumberLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ControlPlayerUI/PlayerUI/WaveNumberLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ControlPlayerUI/PlayerUI/WaveLabel:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ControlPlayerUI/PlayerUI/WaveLabel:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(637, -194), Vector2(637, 238)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ControlPlayerUI/PlayerUI/WaveNumberLabel:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WaveSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_krb1u"]
 _data = {
 "BossOneAppear": SubResource("Animation_yo1u7"),
 "PlayerDamage": SubResource("Animation_243vm"),
 "PlayerDamageDone": SubResource("Animation_a4ssr"),
-"RESET": SubResource("Animation_2511j")
+"RESET": SubResource("Animation_2511j"),
+"WaveNotification": SubResource("Animation_dbgc4")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_je2lm"]
+resource_local_to_scene = true
+shader = ExtResource("3_c4rqj")
+shader_parameter/tint_color = Vector4(0, 0, 0, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_cfitd"]
 offsets = PackedFloat32Array(0.980519, 1)
@@ -4797,7 +4978,7 @@ tracks/0/path = NodePath("ShopControl/CanvasLayer/HBoxContainer/ConductorSprite:
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -4809,7 +4990,7 @@ tracks/1/path = NodePath("ShopControl/CanvasLayer/HBoxContainer2/ShopBackground:
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -4821,7 +5002,7 @@ tracks/2/path = NodePath("ShopControl/CanvasLayer/HBoxContainer3/Item1:self_modu
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -4917,6 +5098,39 @@ offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="PlayerUI" type="CanvasLayer" parent="ControlPlayerUI"]
+
+[node name="ScreenShader" type="ColorRect" parent="ControlPlayerUI/PlayerUI"]
+visible = false
+material = SubResource("ShaderMaterial_je2lm")
+offset_left = -6.0
+offset_right = 34.0
+offset_bottom = 40.0
+scale = Vector2(48.6707, 27.0636)
+
+[node name="WaveLabel" type="Label" parent="ControlPlayerUI/PlayerUI"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -634.0
+offset_right = 166.0
+offset_bottom = -429.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave"
+label_settings = ExtResource("4_f3exv")
+
+[node name="WaveNumberLabel" type="Label" parent="ControlPlayerUI/PlayerUI"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1208.0
+offset_top = 234.0
+offset_right = 1288.0
+offset_bottom = 385.0
+text = "1"
+label_settings = ExtResource("4_f3exv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlPlayerUI/PlayerUI"]
 anchors_preset = 2
@@ -5272,6 +5486,10 @@ scale = Vector2(19.5657, 10.8543)
 text = "HIT"
 
 [node name="BossTimer" type="Timer" parent="."]
+
+[node name="WaveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_nm4es")
+pitch_scale = 1.05
 
 [connection signal="animation_finished" from="AnimationPlayer" to="WaveManager" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="WaveManager/EnemySpawnTimer" to="WaveManager" method="_on_enemy_spawn_timer_timeout"]
