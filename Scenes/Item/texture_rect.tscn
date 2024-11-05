@@ -12,17 +12,18 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect"]
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 38.0
+offset_right = 34.0
+offset_bottom = 74.0
 scale = Vector2(10.7624, 10.2889)
 texture = SubResource("CompressedTexture2D_r1bve")
 script = ExtResource("1_b7yw6")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 21.0
-offset_right = 62.0
-offset_bottom = 44.0
+offset_left = 14.6807
+offset_top = 23.0345
+offset_right = 36.6807
+offset_bottom = 43.0345
 text = "x0"
 label_settings = SubResource("LabelSettings_cs4me")

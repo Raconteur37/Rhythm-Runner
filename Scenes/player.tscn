@@ -508,7 +508,7 @@ libraries = {
 
 [node name="Dash SFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_tx7mf")
-volume_db = -10.947
+volume_db = -30.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

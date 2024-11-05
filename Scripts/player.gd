@@ -88,8 +88,9 @@ func _physics_process(delta): #Movement
 func pauseCooldown():
 	await get_tree().create_timer(.6).timeout
 	if (canDash):
-		$"../ControlPlayerUI/PlayerUI/DashLabel".label_settings = load("res://Labels/UncompletedLabel.tres")
-		$"../ControlPlayerUI/PlayerUI/DashLabel".text = ""
+		if not tutorial:
+			$"../ControlPlayerUI/PlayerUI/DashLabel".label_settings = load("res://Labels/UncompletedLabel.tres")
+			$"../ControlPlayerUI/PlayerUI/DashLabel".text = ""
 		canDash = false
 		$DashCooldown.start(PlayerStatManager.getDashCooldown())
 		dashStartup()
@@ -204,34 +205,35 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				wasHit()
 
 func dashStartup():
-	for x in range(5):
-		if x == 0:
-			$"Dash SFX".play(0)
-			$"../ControlPlayerUI/PlayerUI/DashLabel".text = "D"
-			await get_tree().create_timer(.3).timeout
-			$"Dash SFX".stop()
-		if x == 1:
-			$"Dash SFX".play(1)
-			$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DA"
-			await get_tree().create_timer(.3).timeout
-			$"Dash SFX".stop()
-		if x == 2:
-			$"Dash SFX".play(2)
-			$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DAS"
-			await get_tree().create_timer(.3).timeout
-			$"Dash SFX".stop()
-		if x == 3:
-			$"Dash SFX".play(3)
-			$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DASH"
-			await get_tree().create_timer(.3).timeout
-			$"Dash SFX".stop()
-		if x == 4:
-			$"Dash SFX".play(4)
-			$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DASH!"
-			await get_tree().create_timer(.3).timeout
-			$"Dash SFX".stop()
-		await get_tree().create_timer((PlayerStatManager.getDashCooldown() / 5) - .3).timeout
-	$"../ControlPlayerUI/PlayerUI/DashLabel".label_settings = load("res://Labels/CompletedLabel.tres")
+	if not tutorial:
+		for x in range(5):
+			if x == 0:
+				$"Dash SFX".play(0)
+				$"../ControlPlayerUI/PlayerUI/DashLabel".text = "D"
+				await get_tree().create_timer(.3).timeout
+				$"Dash SFX".stop()
+			if x == 1:
+				$"Dash SFX".play(1)
+				$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DA"
+				await get_tree().create_timer(.3).timeout
+				$"Dash SFX".stop()
+			if x == 2:
+				$"Dash SFX".play(2)
+				$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DAS"
+				await get_tree().create_timer(.3).timeout
+				$"Dash SFX".stop()
+			if x == 3:
+				$"Dash SFX".play(3)
+				$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DASH"
+				await get_tree().create_timer(.3).timeout
+				$"Dash SFX".stop()
+			if x == 4:
+				$"Dash SFX".play(4)
+				$"../ControlPlayerUI/PlayerUI/DashLabel".text = "DASH!"
+				await get_tree().create_timer(.3).timeout
+				$"Dash SFX".stop()
+			await get_tree().create_timer((PlayerStatManager.getDashCooldown() / 5) - .3).timeout
+		$"../ControlPlayerUI/PlayerUI/DashLabel".label_settings = load("res://Labels/CompletedLabel.tres")
 
 func _on_dash_cooldown_timeout() -> void:
 	canDash = true
