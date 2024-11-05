@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cws80723wng3w"
-path="res://.godot/imported/MysticFeather2.png-3ae7b03d1d93fa8c5e549b4b2097576d.ctex"
+uid="uid://d3nlh415mf18q"
+path="res://.godot/imported/EnergyDrink.png-0d0878bbd822a51757b89ead2f6fc008.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/CommonItems/MysticFeather2.png"
-dest_files=["res://.godot/imported/MysticFeather2.png-3ae7b03d1d93fa8c5e549b4b2097576d.ctex"]
+source_file="res://Sprites/Items/CommonItems/EnergyDrink.png"
+dest_files=["res://.godot/imported/EnergyDrink.png-0d0878bbd822a51757b89ead2f6fc008.ctex"]
 
 [params]
 

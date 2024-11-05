@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DialogManager="*res://Singletons/DialogManager.gd"
 PlayerStatManager="*res://Scenes/player_stat_manager.gd"
+Sfx="*res://Sounds/FX/sfx.tscn"
 
 [display]
 

@@ -13,7 +13,7 @@ particles_anim_loop = false
 colors = PackedColorArray(0.788235, 0.105882, 0.662745, 1, 1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wghct"]
-radius = 118.004
+radius = 203.158
 
 [node name="Pop-cornParticle" type="CPUParticles2D"]
 texture_filter = 1
@@ -27,8 +27,8 @@ texture = ExtResource("1_o3ref")
 emission_shape = 1
 emission_sphere_radius = 50.0
 gravity = Vector2(0, 0)
-scale_amount_min = 6.0
-scale_amount_max = 6.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
 color_ramp = SubResource("Gradient_pm14a")
 anim_speed_min = 1.0
 anim_speed_max = 1.0

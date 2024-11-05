@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1t80i6gkb8e2"
-path="res://.godot/imported/Bundle of Wires2.png-6db3e01bc22ba3d15e8a91356ab67304.ctex"
+uid="uid://731623fypih6"
+path="res://.godot/imported/SpikeShapedRock.png-33d5110fd61e0affe426a8712958b23e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/CommonItems/Bundle of Wires2.png"
-dest_files=["res://.godot/imported/Bundle of Wires2.png-6db3e01bc22ba3d15e8a91356ab67304.ctex"]
+source_file="res://Sprites/Items/Super Rare Items/SpikeShapedRock.png"
+dest_files=["res://.godot/imported/SpikeShapedRock.png-33d5110fd61e0affe426a8712958b23e.ctex"]
 
 [params]
 

@@ -20,12 +20,18 @@ const baseProjectileSpeed : float = 500
 var projectileSpeed : float = baseProjectileSpeed
 const baseProjectileRangeTime : float = .5
 var projectileRangeTime : float = baseProjectileRangeTime
+const baseImmuneTime : float = 2
+var stunChance : float = 0
+const baseStunTime : float = 2
+var stunTime : float = baseStunTime
+var immuneTime : float = baseImmuneTime
 var extraProjectileChance : float = 0
 var blockChance : float = 0
 var healthPotionGainChance : float = 0
 var popcornChance : float = 0
 const popcornBaseDamage : float = 20
 var popcornDamage : float = popcornBaseDamage
+var extraBossDamage : float = 0
 const baseWandActivationShot : int = 6
 var wandActivationShot : int = baseWandActivationShot
 var shotNumber : int = 0
@@ -63,6 +69,15 @@ func getDashSpeed():
 	
 func getDashCooldown():
 	return dashCooldown
+	
+func getImmuneTime():
+	return immuneTime
+	
+func getStunChance():
+	return stunChance
+	
+func getStunTime():
+	return stunTime
 
 func getExtraProjectileChance():
 	return extraProjectileChance
@@ -75,6 +90,9 @@ func getHealthPotionGainChance():
 	
 func getPopcornChance():
 	return popcornChance
+	
+func getExtraBossDamage():
+	return extraBossDamage
 	
 func getPopcornDamage():
 	return popcornDamage
@@ -145,23 +163,28 @@ func toString():
 	Dash Cooldown - {dashcooldown} Seconds
 	Projectile Speed - {projectilespeed}
 	Projectile Range - {projectilerange}
+	Immune Time - {immunetime} Seconds
+	Stun Chance - {stunchance}%
+	Stun Time - {stuntime}
 	Extra Projectile Chance - {extraprojectilechance}%
 	Block Chance - {blockchance}%
 	Health Potion Gain Chance - {healthpotiongainchance}%
 	Pop-Corn Explosion Chance - {popcornchance}%
 	Pop-Corn Explosion Damage - {popcorndamage}
+	Extra Boss Damage - {extrabossdamage}
 	Conductor's Wand Activated - {wandactive}
 	Conductor's Wand Activation Shot - {wandshot}
 	""".format({"damage": damage, "health": health, "speed": speed, "dashspeed": dashSpeed, 
-	"dashcooldown": dashCooldown, "projectilespeed": projectileSpeed, "projectilerange": projectileRangeTime, 
+	"dashcooldown": dashCooldown, "projectilespeed": projectileSpeed, "projectilerange": projectileRangeTime,
+	"immunetime": immuneTime, "stunchance": stunChance, "stuntime": stunTime,
 	"extraprojectilechance": extraProjectileChance,"blockchance": blockChance,
 	 "healthpotiongainchance": healthPotionGainChance, "popcornchance": popcornChance, "popcorndamage": popcornDamage,
-	"wandactive": hasWandVar, "wandshot": wandActivationShot})
+	"extrabossdamage": extraBossDamage, "wandactive": hasWandVar, "wandshot": wandActivationShot})
 	return classString
 
 func applyItem(item : String):
 	
-	get_tree().root.get_child(2).find_child("ItemContainer").show()
+	get_tree().root.get_node("/root/Node2D").find_child("ItemContainer").show()
 	
 	if items.has(item):
 		items[item] = items.get(item) + 1
@@ -190,6 +213,22 @@ func applyItem(item : String):
 			projectileSpeed = baseProjectileSpeed + (amount * 200)
 			itemDisplayTexture = load("res://Sprites/Items/CommonItems/BundleofWiresItem.png")
 			itemDisplayAmount = amount
+		"Notebook":
+			amount = items.get(item)
+			immuneTime = baseImmuneTime + (amount * .5)
+			itemDisplayTexture = load("res://Sprites/Items/CommonItems/NotebookItem.png")
+			itemDisplayAmount = amount
+		"Blue Light Bulb":
+			amount = items.get(item)
+			stunChance = stunChance + (amount * 6)
+			stunTime = stunTime + (amount * .5)
+			itemDisplayTexture = load("res://Sprites/Items/CommonItems/BlueLightbulbItem.png")
+			itemDisplayAmount = amount
+		"Energy Drink":
+			amount = items.get(item)
+			dashCooldown = dashCooldown - (amount * .5)
+			itemDisplayTexture = load("res://Sprites/Items/CommonItems/EnergyDrinkItem.png")
+			itemDisplayAmount = amount
 		"Subwoofer":
 			amount = items.get(item)
 			extraProjectileChance = (amount * 6)
@@ -203,12 +242,18 @@ func applyItem(item : String):
 		"Medkit":
 			amount = items.get(item)
 			healthPotionGainChance = (amount * .5)
-			
+			itemDisplayTexture = load("res://Sprites/Items/Rare Items/MedkitItem.png")
+			itemDisplayAmount = amount
 		"Pop-Corn":
 			amount = items.get(item)
 			popcornChance = (amount * 10)
 			popcornDamage = popcornBaseDamage + (amount * 5)
 			itemDisplayTexture = load("res://Sprites/Items/Super Rare Items/Pop-CornItem.png")
+			itemDisplayAmount = amount
+		"Spike Shaped Rock":
+			amount = items.get(item)
+			extraBossDamage = (amount * 2)
+			itemDisplayTexture = load("res://Sprites/Items/Super Rare Items/SpikeShapedRockItem.png")
 			itemDisplayAmount = amount
 			
 		"Conductor's Baton":
@@ -231,7 +276,16 @@ func applyItem(item : String):
 		itemDisplay.changeSceneName(item)
 		itemDisplay.texture = itemDisplayTexture
 		itemDisplayList.append(itemDisplay)
-		get_tree().root.get_child(2).find_child("ItemContainer").add_child(itemDisplay)
+		get_tree().root.get_node("/root/Node2D").find_child("ItemContainer").add_child(itemDisplay)
+
+func stunEnemy(enemy):
+	enemy.find_child("AttackTimer").stop()
+	enemy.find_child("AnimatedSprite2D").pause()
+	Sfx.playStunAudio()
+	await get_tree().create_timer(getStunTime()).timeout
+	if (is_instance_valid(enemy)):
+		enemy.find_child("AttackTimer").start()
+		enemy.find_child("AnimatedSprite2D").play("default")
 
 func popcornExplosion(location : Vector2):
 	var explosionParticle = popcornExplosionParticle.instantiate()

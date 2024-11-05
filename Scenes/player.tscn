@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6xja88rrb6i8"]
+[gd_scene load_steps=28 format=3 uid="uid://b6xja88rrb6i8"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_a1knw"]
 [ext_resource type="Texture2D" uid="uid://bg5wfdu7yb2x6" path="res://Assets/Melody.png" id="1_vdcin"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes/player_stat_manager.gd" id="8_7smb8"]
 [ext_resource type="Texture2D" uid="uid://cfur4sqfuqub8" path="res://Sprites/Character/DrinkingPotionMelodySheet.png" id="8_h3e8w"]
 [ext_resource type="Texture2D" uid="uid://eidsckm25ufg" path="res://Sprites/Character/DashMelody.png" id="9_14lcg"]
+[ext_resource type="AudioStream" uid="uid://cxsgirt00ld04" path="res://Sounds/FX/DashCharge.mp3" id="12_tx7mf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ssh2"]
 resource_local_to_scene = true
@@ -504,6 +505,10 @@ libraries = {
 }
 
 [node name="PlayerBeatTimer" type="Timer" parent="."]
+
+[node name="Dash SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_tx7mf")
+volume_db = -10.947
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

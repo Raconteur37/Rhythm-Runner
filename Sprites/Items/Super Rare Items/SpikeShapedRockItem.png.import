@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xi8awne8g2ap"
-path="res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"
+uid="uid://bwb5k17gkw7tw"
+path="res://.godot/imported/SpikeShapedRockItem.png-f94077b4fad73dbf976b79211d02c017.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/CommonItems/MysticFeather.png"
-dest_files=["res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"]
+source_file="res://Sprites/Items/Super Rare Items/SpikeShapedRockItem.png"
+dest_files=["res://.godot/imported/SpikeShapedRockItem.png-f94077b4fad73dbf976b79211d02c017.ctex"]
 
 [params]
 

@@ -2,9 +2,9 @@ extends Control
 
 @onready var commonItemExplosion = preload("res://Particles/common_item_summon_explosion.tscn")
 
-const commonItems : Array[String] = ["Mystic Feather","Shiny Cape","Bundle of Wires"]
+const commonItems : Array[String] = ["Mystic Feather","Shiny Cape","Bundle of Wires","Notebook","Blue Light Bulb","Energy Drink"]
 const rareItems : Array[String] = ["Subwoofer","Medkit","Metal Sheet"]
-const superRareItems : Array[String] = ["Pop-Corn"]
+const superRareItems : Array[String] = ["Pop-Corn","Spike Shaped Rock"]
 const unseenItems : Array[String] = ["Conductor's Baton"]
 
 var button1Pressed : bool = false
@@ -46,7 +46,15 @@ func getItemDialog(itemName : String):
 		"Bundle of Wires":
 			words = ["A Bundle of Wires!","Use these to increase the speed of your projectiles"]
 			return words
-
+		"Notebook":
+			words = ["What a simple Notebook","It will increase how long you are immune for after getting hit"]
+			return words
+		"Blue Light Bulb":
+			words = ["I shiny Blue Lightbulb","Hitting an enemy has a chance to stun them!"]
+			return words
+		"Energy Drink":
+			words = ["Oooh a yummy Energy Drink","This will for sure decrease the cooldown of your dash"]
+			return words
 	
 		#Rare
 		"Subwoofer":
@@ -62,6 +70,9 @@ func getItemDialog(itemName : String):
 		#Super Rare
 		"Pop-Corn":
 			words = ["Pop-Corn...hehe","Get it....","Anyway, when you kill an enemy they will probably explode"]
+			return words
+		"Spike Shaped Rock":
+			words = ["Ah yes the Spike Shaped Rock","What can I say it's a rock shaped like a spike!","It gives you extra damage against bosses"]
 			return words
 			
 		#Unseen
@@ -100,7 +111,12 @@ func getItemImage(itemName : String):
 			return "res://Sprites/Items/CommonItems/Shiny Cape.png"
 		"Bundle of Wires":
 			return "res://Sprites/Items/CommonItems/Bundle of Wires.png"
-			
+		"Notebook":
+			return "res://Sprites/Items/CommonItems/Notebook.png"
+		"Blue Light Bulb":
+			return "res://Sprites/Items/CommonItems/BlueLightbulb.png"
+		"Energy Drink":
+			return "res://Sprites/Items/CommonItems/EnergyDrink.png"
 		#Rare
 		"Subwoofer":
 			return "res://Sprites/Items/Rare Items/Subwoofer.png"
@@ -112,6 +128,8 @@ func getItemImage(itemName : String):
 		#Super Rare
 		"Pop-Corn":
 			return "res://Sprites/Items/Super Rare Items/Pop-Corn.png"
+		"Spike Shaped Rock":
+			return "res://Sprites/Items/Super Rare Items/SpikeShapedRock.png"
 			
 		#Unseen
 		"Conductor's Baton":
@@ -133,9 +151,11 @@ func startShop():
 	# Common 70% 
 	# Rare 20%
 	# Super Rare 9%
-	# Unseen 1%	
+	# Unseen 1%
 	var rarity = randi_range(1,100)
 	var rarityString : String
+	
+	#rarity = 1
 	
 	if rarity <= 70:
 		$CanvasLayer/HBoxContainer3/Item1.texture_normal = load("res://Sprites/Items/commonItemFrame.png")

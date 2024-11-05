@@ -30,8 +30,9 @@ func _ready() -> void:
 	$AttackTimer.wait_time = 8
 
 func subtractHealth(dmg : float):
+	$AnimationPlayer.play("HitFlash")
 	if health - dmg <= 0:
-		print("dead")
+		queue_free()
 	else:
 		health = health - dmg
 
@@ -60,7 +61,7 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player Projectiles"):
-		subtractHealth(PlayerStatManager.getDamage())
+		subtractHealth(PlayerStatManager.getDamage() + PlayerStatManager.getExtraBossDamage())
 		body.queue_free()
 
 

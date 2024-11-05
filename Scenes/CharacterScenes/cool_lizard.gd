@@ -13,6 +13,10 @@ func takeDamage(damageAmount):
 	$AnimationPlayer.play("HitFlash")
 	if health <= 0:
 		onDeath()
+	else:
+		var num = randf_range(0,100)
+		if num <= PlayerStatManager.getStunChance():
+			PlayerStatManager.stunEnemy($".")
 
 func onDeath():
 	if (not isDead):

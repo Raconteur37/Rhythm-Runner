@@ -21,13 +21,13 @@ func fillEnemyMap(floor : int, wave : int):
 	if (floor == 1):
 		match wave:
 			1:
-				enemyMap = {"AcidPuddle" : 1, "CoolLizard" : 1, "Bouncer" : 1}
+				enemyMap = {"AcidPuddle" : 5, "CoolLizard" : 2, "Bouncer" : 1}
 			2:
-				enemyMap = {"AcidPuddle" : 1}
+				enemyMap = {"AcidPuddle" : 8, "CoolLizard" : 5, "Bouncer" : 3}
 			3:
-				enemyMap = {"AcidPuddle" : 1}
+				enemyMap = {"AcidPuddle" : 15, "CoolLizard" : 10, "Bouncer" : 8}
 			4:
-				enemyMap = {"AcidPuddle" : 1}
+				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15, "Bouncer" : 10}
 			5:
 				bossFight = true
 				startBossOne()

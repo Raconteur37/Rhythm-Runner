@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xi8awne8g2ap"
-path="res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"
+uid="uid://dgvvwtnl0gak8"
+path="res://.godot/imported/BlueLightbulb.png-2c2c68a1a922c590971b784f46d239fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/CommonItems/MysticFeather.png"
-dest_files=["res://.godot/imported/MysticFeather.png-cb1ddb1e6124a7de239ae39315498158.ctex"]
+source_file="res://Sprites/Items/CommonItems/BlueLightbulb.png"
+dest_files=["res://.godot/imported/BlueLightbulb.png-2c2c68a1a922c590971b784f46d239fc.ctex"]
 
 [params]
 

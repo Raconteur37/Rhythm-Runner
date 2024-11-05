@@ -1,7 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://dar2anmbkdmpu"]
 
 [ext_resource type="Script" path="res://texture_rect.gd" id="1_b7yw6"]
-[ext_resource type="Texture2D" uid="uid://d15d6dyq0umu5" path="res://Sprites/Items/CommonItems/MysticFeatherItem.png" id="1_wrcpo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r1bve"]
+load_path = "res://.godot/imported/MysticFeatherItem.png-2af2904293eacc14afd92073ea1b1ce8.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_cs4me"]
 font_size = 13
@@ -12,8 +14,8 @@ outline_color = Color(0, 0, 0, 1)
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(10, 10)
-texture = ExtResource("1_wrcpo")
+scale = Vector2(10.7624, 10.2889)
+texture = SubResource("CompressedTexture2D_r1bve")
 script = ExtResource("1_b7yw6")
 
 [node name="Label" type="Label" parent="."]

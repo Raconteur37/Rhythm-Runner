@@ -64,17 +64,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_dialog_active = false
 			current_line_index = 0
 			if (speechEvent == "shop_intro"):
-				get_tree().root.get_child(2).find_child("ShopControl").startShop()
+				get_tree().root.get_node("/root/Node2D").find_child("ShopControl").startShop()
 			if (speechEvent == "Intro"):
-				get_tree().root.get_child(2).find_child("CanvasLayer").tutorialStepOne()
+				get_tree().root.get_node("/root/GameIntroScene").find_child("CanvasLayer").tutorialStepOne()
 				#get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
 			if (speechEvent == "TutorialEnd"):
 				#get_tree().root.get_child(2).find_child("CanvasLayer").tutorialStepOne()
-				get_tree().root.get_child(2).find_child("AnimationPlayer").play("FadeOut")
+				get_tree().root.get_node("/root/GameIntroScene").find_child("AnimationPlayer").play("FadeOut")
 			if (speechEvent == "BossOne"):
-				get_tree().root.get_child(2).find_child("AnimationPlayer").play("BossOneAppear")
+				get_tree().root.get_node("/root/Node2D").find_child("AnimationPlayer").play("BossOneAppear")
 			if (speechEvent == "BossOneStart"):
-				get_tree().root.get_child(2).find_child("WaveManager").startBossOneFight()
+				get_tree().root.get_node("/root/Node2D").find_child("WaveManager").startBossOneFight()
 			return
 		
 		_show_text_box()
