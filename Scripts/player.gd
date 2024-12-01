@@ -104,6 +104,8 @@ func wasHit():
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 		PlayerStatManager.isDead = true
 		return
+	else:
+		PlayerStatManager.isDead = false
 	if (PlayerStatManager.getHealth() == 2):
 		$"../ControlPlayerUI/PlayerUI/HBoxContainer2/HealthPotion3".visible = false
 	if (PlayerStatManager.getHealth() == 1):
