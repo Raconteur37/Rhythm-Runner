@@ -7,6 +7,8 @@ var inWave : bool = false
 var beatTime : float
 var isInBossFight : bool = false
 
+var isDead = false
+
 var health : int = 3
 const baseDamage : float = 3
 var damage : float = baseDamage
@@ -111,6 +113,9 @@ func getInWave():
 	
 func getBeatTime():
 	return beatTime
+	
+func getIsDead():
+	return isDead
 
 func setBeatTime(val):
 	beatTime = val

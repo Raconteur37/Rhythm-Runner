@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://bojspjagh5p7p"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_mxnl8"]
+[ext_resource type="FontFile" uid="uid://btgo1unhvbpcy" path="res://Assets/Pixel-Regular.ttf" id="2_yincy"]
+[ext_resource type="AudioStream" uid="uid://fs55bmjeh3qb" path="res://Scenes/Game Over.mp3" id="3_3othv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iln55"]
+font = ExtResource("2_yincy")
+font_size = 65
+outline_size = 6
+outline_color = Color(1, 0.541176, 0.411765, 1)
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxnl8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(58.0796, 34.9232)
+color = Color(0.560784, 0.345098, 0.560784, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 152.0
+offset_right = 1144.0
+offset_bottom = 218.0
+text = "Game Over
+"
+label_settings = SubResource("LabelSettings_iln55")
+
+[node name="Gameover Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3othv")
+volume_db = 5.474
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 808.0
+offset_top = 333.0
+offset_right = 873.0
+offset_bottom = 364.0
+scale = Vector2(3.62553, 4.0071)
+text = "Restart
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

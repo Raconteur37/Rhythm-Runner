@@ -1,10 +1,11 @@
-[gd_scene load_steps=56 format=4 uid="uid://c1hkycx7ryy0l"]
+[gd_scene load_steps=57 format=4 uid="uid://c1hkycx7ryy0l"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_lhvhd"]
 [ext_resource type="PackedScene" uid="uid://b6xja88rrb6i8" path="res://Scenes/player.tscn" id="1_s8f1b"]
 [ext_resource type="Script" path="res://Scenes/WaveManager.gd" id="2_g4bhq"]
 [ext_resource type="Texture2D" uid="uid://dpypatt8wqf44" path="res://Sprites/UI/Bass-Sheet.png" id="2_mhqds"]
 [ext_resource type="AudioStream" uid="uid://cprgbb8jqlrtl" path="res://Sounds/HITTING_3.mp3" id="2_tptel"]
+[ext_resource type="PackedScene" uid="uid://bxrnqua7n2wbi" path="res://Scenes/pause_menu.tscn" id="2_xfra0"]
 [ext_resource type="Shader" path="res://Shaders/gameTint.gdshader" id="3_c4rqj"]
 [ext_resource type="Texture2D" uid="uid://cfj5v2b2x2w3e" path="res://Assets/MAIN_SHEETS/Room_Builder_Walls_16x16.png" id="3_uhywb"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_xxvlx"]
@@ -5268,6 +5269,13 @@ offset_right = 224.0
 offset_bottom = -55.0
 grow_vertical = 0
 scale = Vector2(2.5, 2.5)
+
+[node name="PauseMenu" parent="ControlPlayerUI/PlayerUI" instance=ExtResource("2_xfra0")]
+visible = false
+offset_left = 60.0
+offset_top = 27.0
+offset_right = 60.0
+offset_bottom = 27.0
 
 [node name="BackgroundControl" type="Control" parent="."]
 layout_mode = 3

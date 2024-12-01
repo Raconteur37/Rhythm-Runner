@@ -101,7 +101,9 @@ func wasHit():
 	$"../GameCamera".add_trauma(.8)
 	PlayerStatManager.takeDamage()
 	if (PlayerStatManager.getHealth() < 0):
-		print("game over")
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		PlayerStatManager.isDead = true
+		return
 	if (PlayerStatManager.getHealth() == 2):
 		$"../ControlPlayerUI/PlayerUI/HBoxContainer2/HealthPotion3".visible = false
 	if (PlayerStatManager.getHealth() == 1):

@@ -100,7 +100,7 @@ func _on_enemy_spawn_timer_timeout():
 		spawnEnemiesFromMap(1)
 		
 func _process(delta: float) -> void:
-	if (enemyMap.is_empty() and enemiesAlive.is_empty() and PlayerStatManager.getInWave() and !isInShop and !bossFight):
+	if (enemyMap.is_empty() and enemiesAlive.is_empty() and PlayerStatManager.getInWave() and !isInShop and !bossFight and not PlayerStatManager.getIsDead()):
 		PlayerStatManager.setInWave(false)
 		currentWave = currentWave + 1
 		#print(int($"../AudioStreamPlayer2D".get_playback_position()) + $"../BeatTimer".wait_time)
@@ -147,7 +147,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		$"../FloorOneBoss".setBossBeatTime()
 		$"../BossOneSong".stream = load("res://Sounds/BossOne/BossOnePreFight.mp3")
 		$"../BossOneSong".play()
-		DialogManager.start_dialog($"../Player".global_position,bossSpeaking,"BossOne","BossOneStart")
+		startBossOneFight()
 	if (anim_name == "WaveNotification"):
 		#$"../AnimationPlayer".play("WaveNotification")
 		fillEnemyMap(currentFloor,currentWave)
