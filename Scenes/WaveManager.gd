@@ -25,7 +25,7 @@ func fillEnemyMap(floor : int, wave : int):
 			2:
 				enemyMap = {"AcidPuddle" : 8, "CoolLizard" : 5, "Bouncer" : 3}
 			3:
-				enemyMap = {"AcidPuddle" : 15, "CoolLizard" : 10, "Bouncer" : 8}
+				enemyMap = {"AcidPuddle" : 15, "CoolLizard" : 12, "Bouncer" : 8}
 			4:
 				enemyMap = {"AcidPuddle" : 20, "CoolLizard" : 15, "Bouncer" : 10}
 			5:

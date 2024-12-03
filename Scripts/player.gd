@@ -32,7 +32,7 @@ func setBeatTimer(tempo):
 	PlayerStatManager.setBeatTime(beatTime)
 	
 	if beatTime < .4:
-		lenientTime = beatTime * .5
+		lenientTime = beatTime * .6
 	else:
 		lenientTime = beatTime * .3
 		
@@ -135,7 +135,7 @@ func _input(event: InputEvent):
 		if lowerBound >= currentTime or currentTime >= upperBound:
 			canShoot = true
 		else:
-			canShoot = true # CHAGNE BACK TO FALSE TODO 
+			canShoot = false # CHAGNE BACK TO FALSE TODO 
 		#if lowerBound <= currentTime and currentTime <= upperBound: #Bluetooth
 		#	canShoot = true
 		#else:
